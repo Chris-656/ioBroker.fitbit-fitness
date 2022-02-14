@@ -21,7 +21,7 @@
 ## 0.1.0 (2022-01-30)
 - Initial version
 - ported from projekt [GermanBluefox](https://github.com/GermanBluefox) 
-- [ iobroker-community-adapters/iobroker.fit-bit-api ](https://github.com/iobroker-community-adapters/iobroker.fit-bit-api) 
+- [ iobroker-community-adapters/iobroker.fitbit-fitness-api ](https://github.com/iobroker-community-adapters/iobroker.fitbit-fitness-api) 
 - and adpated and enhanced
 - used the new createadapter script to be on the newest adapter standard
 - reduced the parallel reading since the web page blocks after some time
