@@ -153,7 +153,7 @@
             "_id": "activity.Steps",
             "type": "state",
             "common": {
-                "role": "state",
+                "role": "value.health.steps",
                 "name": "Steps",
                 "type": "number",
                 "read": true,
@@ -165,7 +165,7 @@
             "_id": "activity.Calories",
             "type": "state",
             "common": {
-                "role": "state",
+                "role": "value.health.calories",
                 "name": "Calories",
                 "type": "number",
                 "read": true,
@@ -177,7 +177,7 @@
             "_id": "activity.ActivitiesCount",
             "type": "state",
             "common": {
-                "role": "state",
+                "role": "value.health.steps",
                 "name": "Number of daily Activities",
                 "type": "number",
                 "read": true,
@@ -197,7 +197,7 @@
             "_id": "body.weight",
             "type": "state",
             "common": {
-                "role": "state",
+                "role": "value.health.weight",
                 "name": "Weight",
                 "type": "number",
                 "read": true,
@@ -209,7 +209,7 @@
             "_id": "body.bmi",
             "type": "state",
             "common": {
-                "role": "state",
+                "role": "value.health.bmi",
                 "name": "BMI",
                 "type": "number",
                 "read": true,
@@ -221,7 +221,7 @@
             "_id": "body.fat",
             "type": "state",
             "common": {
-                "role": "state",
+                "role": "value.health.fat",
                 "name": "FAT",
                 "type": "number",
                 "read": true,
@@ -241,7 +241,7 @@
             "_id": "food.Calories",
             "type": "state",
             "common": {
-                "role": "state",
+                "role": "value.health.calories",
                 "name": "Calories Consumed",
                 "type": "number",
                 "read": true,
@@ -253,7 +253,7 @@
             "_id": "food.Fat",
             "type": "state",
             "common": {
-                "role": "state",
+                "role": "value.health.fat",
                 "name": "food.Fat",
                 "type": "number",
                 "read": true,
@@ -265,7 +265,7 @@
             "_id": "food.Protein",
             "type": "state",
             "common": {
-                "role": "state",
+                "role": "value.health.calories",
                 "name": "food.Protein",
                 "type": "number",
                 "read": true,
@@ -277,7 +277,7 @@
             "_id": "food.Water",
             "type": "state",
             "common": {
-                "role": "state",
+                "role": "value.health.calories",
                 "name": "food.Water",
                 "type": "number",
                 "read": true,

@@ -100,7 +100,7 @@ class FitBit extends utils.Adapter {
 
 			if (this.fitbit.status === 200) {
 				this.setState("info.connection", true, true);
-				this.log.info(`Logged in Status: ${response.status}`);
+				//this.log.info(`Logged in Status: ${response.status}`);
 				this.setUserStates(response.data);
 			}
 		}
@@ -125,21 +125,21 @@ class FitBit extends utils.Adapter {
 					headers: { "Authorization": `Bearer ${this.config.token}` },
 					timeout: axiosTimeout
 				});
-			this.log.info(`Status: ${response.status}`);
+			//this.log.info(`Status: ${response.status}`);
 
 			if (response.status === 200) {
 				this.setActivityStates(response.data);
 			}
 		}
 		catch (err) {
-			this.log.warn(`${err}`);
+			this.log.warn(`Activity Records: No activity records avaliable`);
 		}
 	}
 
 	setActivityStates(data) {
 		if (data.summary) {
 			this.fitbit.activities = data;				// First record in the array
-			this.log.info(`Activity Records retrieved Steps:${this.fitbit.activities.summary.steps} Calories:${this.fitbit.activities.summary.caloriesOut}`);
+			this.log.info(`Activity Records: Steps:${this.fitbit.activities.summary.steps} Calories:${this.fitbit.activities.summary.caloriesOut}`);
 
 			this.setState("activity.Steps", this.fitbit.activities.summary.steps, true);
 			this.setState("activity.Calories", this.fitbit.activities.summary.caloriesOut, true);
@@ -168,14 +168,14 @@ class FitBit extends utils.Adapter {
 			}
 		}
 		catch (err) {
-			this.log.warn(`${err}`);
+			this.log.warn(`Body Records: No weight records avaliable`);
 		}
 	}
 
 	setBodyStates(data) {
 		if (data.weight.length > 0) {
 			this.fitbit.body = data.weight[0];				// First record in the array
-			this.log.info(`Body records retrieved Weight:${this.fitbit.body.weight} Fat:${this.fitbit.body.fat} BMI:${this.fitbit.body.bmi}`);
+			this.log.info(`Body records: Weight:${this.fitbit.body.weight} Fat:${this.fitbit.body.fat} BMI:${this.fitbit.body.bmi}`);
 			this.setState("body.weight", this.fitbit.body.weight, true);
 			this.setState("body.fat", this.fitbit.body.fat, true);
 			this.setState("body.bmi", this.fitbit.body.bmi, true);
@@ -202,7 +202,7 @@ class FitBit extends utils.Adapter {
 			}
 		}
 		catch (err) {
-			this.log.warn(`${err}`);
+			this.log.warn(`Food Records: No food records avaliable`);
 		}
 	}
 
@@ -210,7 +210,7 @@ class FitBit extends utils.Adapter {
 
 		if (data.foods.length > 0) {
 			this.fitbit.food = data.summary;				// First record in the array
-			this.log.info(`Food records retrieved Cal:${this.fitbit.food.calories} Water:${this.fitbit.food.water} FAT:${this.fitbit.food.fat} Protein:${this.fitbit.food.protein}`);
+			this.log.info(`Food records: Cal:${this.fitbit.food.calories} Water:${this.fitbit.food.water} FAT:${this.fitbit.food.fat} Protein:${this.fitbit.food.protein}`);
 
 			this.setState("food.Water", this.fitbit.food.water, true);
 			this.setState("food.Calories", this.fitbit.food.calories, true);
@@ -239,13 +239,13 @@ class FitBit extends utils.Adapter {
 			}
 		}
 		catch (err) {
-			this.log.warn(`${err}`);
+			this.log.warn(`Sleep Records: No sleep records avaliable`);
 		}
 	}
 	setSleepStates(data) {
 		if (data.sleep.length > 0) {
 			this.fitbit.sleep = data.summary.stages;				// First record in the array
-			this.log.info(`Sleep records retrieved Deep:${this.fitbit.sleep.deep} light:${this.fitbit.sleep.light} rem:${this.fitbit.sleep.rem} wake:${this.fitbit.sleep.wake}`);
+			this.log.info(`Sleep records: Deep:${this.fitbit.sleep.deep} light:${this.fitbit.sleep.light} rem:${this.fitbit.sleep.rem} wake:${this.fitbit.sleep.wake}`);
 
 			this.setState("sleep.Deep", this.fitbit.sleep.deep, true);
 			this.setState("sleep.Light", this.fitbit.sleep.light, true);
