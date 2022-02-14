@@ -2,6 +2,10 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+
+## **WORK IN PROGRESS**
+- Bug fixes
+  
 ## 0.2.1 (2022-02-14)
 - Minor fixes
 
