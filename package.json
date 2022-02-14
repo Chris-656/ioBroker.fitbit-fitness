@@ -1,11 +1,11 @@
 {
   "name": "iobroker.fitbit-fitness",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "retrieves data from FITBIT",
   "author": "Chris <besterquester@live.at>",
   "homepage": "https://github.com/Chris1965/iobroker.fitbit-fitness",
   "license": "MIT",
-  "keywords": [ 
+  "keywords": [
     "Fitbit",
     "Heath",
     "Fitness"
