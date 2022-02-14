@@ -1,11 +1,8 @@
 {
   "name": "iobroker.fit-bit",
-  "version": "0.0.1",
+  "version": "0.1.3",
   "description": "retrieves data from FITBIT",
-  "author": {
-    "name": "Chris",
-    "email": "besterquester@live.at"
-  },
+  "author": "Chris <besterquester@live.at>",
   "homepage": "https://github.com/Chris1965/ioBroker.fit-bit",
   "license": "MIT",
   "keywords": [
@@ -15,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Chris1965/ioBroker.fit-bit"
+    "url": "git+https://github.com/Chris1965/ioBroker.fit-bit.git"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.5.1"
@@ -40,7 +37,8 @@
     "proxyquire": "^2.1.3",
     "sinon": "^13.0.1",
     "sinon-chai": "^3.7.0",
-    "typescript": "~4.4.4"
+    "typescript": "~4.4.4",
+    "watchpack": "^2.3.0"
   },
   "main": "main.js",
   "files": [
@@ -61,9 +59,16 @@
     "check": "tsc --noEmit -p tsconfig.check.json",
     "lint": "eslint",
     "release": "release-script"
+
+  },
+  "resolutions": {
+    "glob-parent": "^6.0.1"
   },
   "bugs": {
     "url": "https://github.com/Chris1965/ioBroker.fit-bit/issues"
   },
-  "readmeFilename": "README.md"
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  }
 }

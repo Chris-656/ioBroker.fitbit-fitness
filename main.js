@@ -7,9 +7,11 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const utils = require("@iobroker/adapter-core");
+const axios = require("axios").default;
+const axiosTimeout = 8000;
 
-// Load your modules here, e.g.:
-// const fs = require("fs");
+const BASE_URL = "https://api.fitbit.com/1/user/";
+const BASE2_URL = "https://api.fitbit.com/1.2/user/";
 
 class FitBit extends utils.Adapter {
 
@@ -26,6 +28,10 @@ class FitBit extends utils.Adapter {
 		// this.on("objectChange", this.onObjectChange.bind(this));
 		// this.on("message", this.onMessage.bind(this));
 		this.on("unload", this.onUnload.bind(this));
+
+		this.updateInterval = null;
+		this.fitbit = {};
+		this.fitbit.sleepRecordsStoredate = null;
 	}
 
 	/**
@@ -34,57 +40,230 @@ class FitBit extends utils.Adapter {
 	async onReady() {
 		// Initialize your adapter here
 
+		// Get system configuration
+		// const sysConf = await this.getForeignObjectAsync("system.config");
+
 		// The adapters config (in the instance object everything under the attribute "native") is accessible via
 		// this.config:
-		this.log.info("config option1: " + this.config.option1);
-		this.log.info("config option2: " + this.config.option2);
+		this.setState("info.connection", false, true);
 
-		/*
-		For every state in the system there has to be also an object of type state
-		Here a simple template for a boolean variable named "testVariable"
-		Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
-		*/
-		await this.setObjectNotExistsAsync("testVariable", {
-			type: "state",
-			common: {
-				name: "testVariable",
-				type: "boolean",
-				role: "indicator",
-				read: true,
-				write: true,
-			},
-			native: {},
-		});
+		this.login().
+			then(() => {
+				if (this.fitbit.status === 200) {
 
-		// In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
-		this.subscribeStates("testVariable");
-		// You can also add a subscription for multiple states. The following line watches all states starting with "lights."
-		// this.subscribeStates("lights.*");
-		// Or, if you really must, you can also watch all states. Don't do this if you don't need to. Otherwise this will cause a lot of unnecessary load on the system:
-		// this.subscribeStates("*");
+					this.setState("info.connection", true, true);
+					this.getFitbitRecords();					// get data one time
 
-		/*
-			setState examples
-			you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
-		*/
-		// the variable testVariable is set to true as command (ack=false)
-		await this.setStateAsync("testVariable", true);
+					this.updateInterval = setInterval(() => {
+						this.getFitbitRecords();
+					}, this.config.refresh * 1000 * 60); 			// in seconds
+				} else {
+					this.setState("info.connection", false, true);
+					this.log.warn(`FITBit login failed ${this.fitbit.status}`);
+				}
+			})
+			.catch((error) => {
+				this.log.error(`Adapter Connection Error: ${error} `);
+			});
 
-		// same thing, but the value is flagged "ack"
-		// ack should be always set to true if the value is received from or acknowledged from the target system
-		await this.setStateAsync("testVariable", { val: true, ack: true });
 
-		// same thing, but the state is deleted after 30s (getState will return null afterwards)
-		await this.setStateAsync("testVariable", { val: true, ack: true, expire: 30 });
+	}
+	async getFitbitRecords() {
+		this.log.info(`Getting data for user ${this.fitbit.user.fullName}`);
+		//const actualDate = new Date().getDate();
 
-		// examples for the checkPassword/checkGroup functions
-		let result = await this.checkPasswordAsync("admin", "iobroker");
-		this.log.info("check user admin pw iobroker: " + result);
-
-		result = await this.checkGroupAsync("admin", "admin");
-		this.log.info("check group user admin group admin: " + result);
+		if (this.config.activityrecords) {
+			await this.getActivityRecords();
+		}
+		if (this.config.bodyrecords) {
+			await this.getBodyRecords();
+		}
+		if (this.config.foodrecords) {
+			await this.getFoodRecords();
+		}
+		if (this.config.sleeprecords) {
+			await this.getSleepRecords();
+		}
 	}
 
+	async login() {
+		const url = "https://api.fitbit.com/1/user/-/profile.json";
+		const token = this.config.token;
+		try {
+			const response = await axios.get(url,
+				{
+					headers: { "Authorization": `Bearer ${token}` },
+					timeout: axiosTimeout
+				});
+
+			this.fitbit.status = response.status;
+
+			if (this.fitbit.status === 200) {
+				this.setState("info.connection", true, true);
+				this.log.info(`Logged in Status: ${response.status}`);
+				this.setUserStates(response.data);
+			}
+		}
+		catch (err) {
+			throw new Error(err);
+		}
+	}
+
+	setUserStates(data) {
+		this.fitbit.user = data.user;				// Use instance object for data
+		this.log.info(`User logged in ${this.fitbit.user.fullName}`);
+		this.setState("user.fullName", this.fitbit.user.fullName, true);
+	}
+
+	async getActivityRecords() {
+
+		const url = `${BASE_URL}-/activities/date/${this.getDate()}.json`;
+
+		try {
+			const response = await axios.get(url,
+				{
+					headers: { "Authorization": `Bearer ${this.config.token}` },
+					timeout: axiosTimeout
+				});
+			this.log.info(`Status: ${response.status}`);
+
+			if (response.status === 200) {
+				this.setActivityStates(response.data);
+			}
+		}
+		catch (err) {
+			this.log.warn(`${err}`);
+		}
+	}
+
+	setActivityStates(data) {
+		if (data.summary) {
+			this.fitbit.activities = data;				// First record in the array
+			this.log.info(`Activity Records retrieved Steps:${this.fitbit.activities.summary.steps} Calories:${this.fitbit.activities.summary.caloriesOut}`);
+
+			this.setState("activity.Steps", this.fitbit.activities.summary.steps, true);
+			this.setState("activity.Calories", this.fitbit.activities.summary.caloriesOut, true);
+			this.setState("activity.ActivitiesCount", this.fitbit.activities.activities.length, true);
+		} else {
+			throw new Error("FITBit: No Activity records available");
+		}
+	}
+
+	async getBodyRecords() {
+		//const url = "https://api.fitbit.com/1/user/-/body/log/fat/date/2022-02-01.json";
+		const url = `${BASE_URL}-/body/log/weight/date/${this.getDate()}.json`;
+
+		//const token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMjdHNUwiLCJzdWIiOiI4OTVXWEQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd3dlaSB3c29jIHdzZXQgd2FjdCB3bG9jIiwiZXhwIjoxNjQzODk0MTIwLCJpYXQiOjE2NDM4MDc3MjB9.wh7-CEc9Ysdj5CM5Tecs6AwqhWuzaaZ-s2ZMlTPpwIk";
+		const token = this.config.token;
+		try {
+			const response = await axios.get(url,
+				{
+					headers: { "Authorization": `Bearer ${token}` },
+					timeout: axiosTimeout
+				});
+			//this.log.info(`Status: ${response.status}`);
+
+			if (response.status === 200) {
+				this.setBodyStates(response.data);
+			}
+		}
+		catch (err) {
+			this.log.warn(`${err}`);
+		}
+	}
+
+	setBodyStates(data) {
+		if (data.weight.length > 0) {
+			this.fitbit.body = data.weight[0];				// First record in the array
+			this.log.info(`Body records retrieved Weight:${this.fitbit.body.weight} Fat:${this.fitbit.body.fat} BMI:${this.fitbit.body.bmi}`);
+			this.setState("body.weight", this.fitbit.body.weight, true);
+			this.setState("body.fat", this.fitbit.body.fat, true);
+			this.setState("body.bmi", this.fitbit.body.bmi, true);
+		}
+		else {
+			throw new Error("FITBit: No Weight records available");
+		}
+	}
+
+	async getFoodRecords() {
+
+		//const url = "https://api.fitbit.com/1/user/-/foods/log/date/2022-02-01.json";
+		const url = `${BASE_URL}-/foods/log/date/${this.getDate()}.json`;
+
+		try {
+			const response = await axios.get(url,
+				{
+					headers: { "Authorization": `Bearer ${this.config.token}` },
+					timeout: axiosTimeout
+				});
+
+			if (response.status === 200) {
+				this.setFoodStates(response.data);
+			}
+		}
+		catch (err) {
+			this.log.warn(`${err}`);
+		}
+	}
+
+	setFoodStates(data) {
+
+		if (data.foods.length > 0) {
+			this.fitbit.food = data.summary;				// First record in the array
+			this.log.info(`Food records retrieved Cal:${this.fitbit.food.calories} Water:${this.fitbit.food.water} FAT:${this.fitbit.food.fat} Protein:${this.fitbit.food.protein}`);
+
+			this.setState("food.Water", this.fitbit.food.water, true);
+			this.setState("food.Calories", this.fitbit.food.calories, true);
+			this.setState("food.Fat", this.fitbit.food.fat, true);
+			this.setState("food.Protein", this.fitbit.food.protein, true);
+		} else {
+			throw new Error("FITBit: No Food records available");
+		}
+
+	}
+
+	async getSleepRecords() {
+		//const url = "https://api.fitbit.com/1.2/user/-/sleep/date/2022-02-01.json";
+		const url = `${BASE2_URL}-/sleep/date/${this.getDate()}.json`;
+
+		try {
+			const response = await axios.get(url,
+				{
+					headers: { "Authorization": `Bearer ${this.config.token}` },
+					timeout: axiosTimeout
+				});
+			//this.log.info(`Food Status: ${response.status}`);
+
+			if (response.status === 200) {
+				this.setSleepStates(response.data);
+			}
+		}
+		catch (err) {
+			this.log.warn(`${err}`);
+		}
+	}
+	setSleepStates(data) {
+		if (data.sleep.length > 0) {
+			this.fitbit.sleep = data.summary.stages;				// First record in the array
+			this.log.info(`Sleep records retrieved Deep:${this.fitbit.sleep.deep} light:${this.fitbit.sleep.light} rem:${this.fitbit.sleep.rem} wake:${this.fitbit.sleep.wake}`);
+
+			this.setState("sleep.Deep", this.fitbit.sleep.deep, true);
+			this.setState("sleep.Light", this.fitbit.sleep.light, true);
+			this.setState("sleep.Rem", this.fitbit.sleep.rem, true);
+			this.setState("sleep.Wake", this.fitbit.sleep.wake, true);
+		} else {
+			throw new Error("FITBit: No Sleep Data found");
+		}
+	}
+
+	getDate() {
+		const today = new Date();
+		const dd = today.getDate();
+		const mm = today.getMonth() + 1;
+		const year = today.getFullYear();
+
+		return `${year}-${mm.toString(10).padStart(2, "0")}-${dd.toString(10).padStart(2, "0")}`;
+	}
 	/**
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!
 	 * @param {() => void} callback
@@ -96,7 +275,10 @@ class FitBit extends utils.Adapter {
 			// clearTimeout(timeout2);
 			// ...
 			// clearInterval(interval1);
-
+			if (this.updateInterval) {
+				clearInterval(this.updateInterval);
+				this.updateInterval = null;
+			}
 			callback();
 		} catch (e) {
 			callback();

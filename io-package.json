@@ -1,7 +1,7 @@
 {
 	"common": {
 		"name": "fit-bit",
-		"version": "0.0.1",
+		"version": "0.1.3",
 		"news": {
 			"0.0.1": {
 				"en": "initial release",
@@ -70,9 +70,280 @@
 		]
 	},
 	"native": {
-		"option1": true,
-		"option2": "42"
+		"refresh": 5,
+        "token": "",
+        "bodyrecords": false,
+        "activityrecords": false,
+        "sleeprecords": false,
+        "foodrecords": false,
+        "devicerecords": false
 	},
 	"objects": [],
-	"instanceObjects": []
+	"instanceObjects": [
+		{
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "Device or service connected",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "user",
+            "type": "channel",
+            "common": {
+                "name": "user data"
+            },
+            "native": {}
+        },
+        {
+            "_id": "user.fullName",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Full Name",
+                "type": "string",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "tokens",
+            "type": "channel",
+            "common": {
+                "name": "Access tokens"
+            },
+            "native": {}
+        },
+        {
+            "_id": "tokens.access",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Access token",
+                "type": "string",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "activity",
+            "type": "channel",
+            "common": {
+                "name": "Activity records"
+            },
+            "native": {}
+        },
+        {
+            "_id": "activity.Steps",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Steps",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "activity.Calories",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Calories",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "activity.ActivitiesCount",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Number of daily Activities",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "body",
+            "type": "channel",
+            "common": {
+                "name": "Body Records"
+            },
+            "native": {}
+        },
+        {
+            "_id": "body.weight",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Weight",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "body.bmi",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "BMI",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "body.fat",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "FAT",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "food",
+            "type": "channel",
+            "common": {
+                "name": "food data"
+            },
+            "native": {}
+        },
+        {
+            "_id": "food.Calories",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Calories Consumed",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "food.Fat",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "food.Fat",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "food.Protein",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "food.Protein",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "food.Water",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "food.Water",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "sleep",
+            "type": "channel",
+            "common": {
+                "name": "sleep data"
+            },
+            "native": {}
+        },
+        {
+            "_id": "sleep.Deep",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Deep Sleep Time",
+                "type": "number",
+                "unit": "Minutes",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "sleep.Light",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Light Sleep Time",
+                "type": "number",
+                "unit": "Minutes",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "sleep.Rem",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "REM Sleep Time",
+                "type": "number",
+                "unit": "Minutes",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "sleep.Wake",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Wake Time",
+                "type": "number",
+                "unit": "Minutes",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        }
+	]
 }

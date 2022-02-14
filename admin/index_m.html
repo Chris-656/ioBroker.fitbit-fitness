@@ -73,18 +73,65 @@
 			</div>
 		</div>
 
-		<!-- Put your content here -->
+		<div class="col s12">
+			<ul class="tabs">
+				<li class="tab col s2"><a href="#tab-main" class="translate active">fitbit adapter settings</a></li>
+				<li class="tab col s2"><a href="#tab-services" class="translate">Services</a></li>
+			</ul>
+		</div>
 
-		<!-- For example columns with settings: -->
-		<div class="row">
-			<div class="col s6 input-field">
-				<input type="checkbox" class="value" id="option1" />
-				<label for="option1" class="translate">option1</label>
+		<div id="tab-main" class="col s12 page">
+			<div class="row">
+				<div class="col s6">
+					<img src="fitbit.png" alt="logo" class="logo">
+				</div>
 			</div>
 
-			<div class="col s6 input-field">
-				<input type="text" class="value" id="option2" />
-				<label for="option2" class="translate">option2</label>
+			<div class="row owntoken no-iframe">
+				<div class="input-field col s12">
+					<input class="value" id="token" type="text">
+					<label for="token" class="translate">token</label>
+				</div>
+			</div>
+
+		</div>
+
+		<div id="tab-services" class="col s12 page">
+			<div class="row">
+				<div class="col s6 input-field">
+					<input type="number" class="value" id="refresh" min="1" max="60" />
+					<label for="refresh" class="translate">refresh</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12 m6 14">
+					<input class="value" id="bodyrecords" type="checkbox">
+					<span for="bodyrecords" class="translate">bodyrecords</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12 m6 l4">
+					<input class="value" id="activityrecords" type="checkbox">
+					<span for="activityrecords" class="translate">activityrecords</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12 m6 l4">
+					<input class="value" id="sleeprecords" type="checkbox">
+					<span for="sleeprecords" class="translate">sleeprecords</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12 m6 l4">
+					<input class="value" id="foodrecords" type="checkbox">
+					<span for="foodrecords" class="translate">foodrecords</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12 m6 l4">
+					<input class="value" id="devicerecords" type="checkbox">
+					<span for="devicerecords" class="translate">devicerecords</span>
+				</div>
 			</div>
 		</div>
 
