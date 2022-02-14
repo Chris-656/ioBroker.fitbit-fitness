@@ -1,0 +1,2 @@
+# ioBroker.fit-bit
+ 
