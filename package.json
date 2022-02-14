@@ -1,5 +1,5 @@
 {
-  "name": "@besterquester/iobroker.fit-bit",
+  "name": "iobroker.fit-bit",
   "version": "0.2.0",
   "description": "retrieves data from FITBIT",
   "author": "Chris <besterquester@live.at>",
