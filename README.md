@@ -1,4 +1,4 @@
-![Logo](admin/fit-bit.png)
+![Logo](admin/fitbit-fitness.png)
 # iobroker.fitbit-fitness
 
 [![Downloads](https://img.shields.io/npm/dm/iobroker.fitbit-fitness)](https://www.npmjs.com/package/iobroker.fitbit-fitness)
