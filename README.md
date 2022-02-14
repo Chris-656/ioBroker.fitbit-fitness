@@ -13,7 +13,7 @@ This adapter retrieves fitbit data into iobroker.
   
 ## Usage example
 
-### 0.2.0 (2022-02-08)
+### 0.2.1 (2022-02-08)
 - Changed Repo name to fitbit-fitness
 
 ### 0.1.3 (2022-02-08)
@@ -24,12 +24,12 @@ This adapter retrieves fitbit data into iobroker.
 - refresh rate in minutes added
   
 ### 0.1.1 (2022-01-20)
-* (Chris1965) initial release
+* (Chris-1965) initial release
 
 ## License
 MIT License
 
-Copyright (c) 2022 Chris1965 <besterquester@live.at>
+Copyright (c) 2022 Chris-1965 <besterquester@live.at>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
