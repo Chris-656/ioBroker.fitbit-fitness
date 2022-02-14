@@ -13,6 +13,8 @@ This adapter retrieves fitbit data into iobroker.
   
 ## Usage example
 
+### 0.2.0 (2022-02-08)
+- Changed Repo name to fitbit-fitness
 
 ### 0.1.3 (2022-02-08)
 - Activity records

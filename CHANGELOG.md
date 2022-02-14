@@ -2,10 +2,11 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+## **WORK IN PROGRESS**
+- Minor fixes
 
 ## 0.2.0 (2022-02-14)
-- 
-- 
+- renamed repo to fitbit-fitness
 
 ## 0.1.3 (2022-02-07)
 - Add: Loggings adapted
