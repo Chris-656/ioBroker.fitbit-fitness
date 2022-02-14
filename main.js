@@ -21,7 +21,7 @@ class FitBit extends utils.Adapter {
 	constructor(options) {
 		super({
 			...options,
-			name: "fit-bit",
+			name: "fitbit-fitness",
 		});
 		this.on("ready", this.onReady.bind(this));
 		this.on("stateChange", this.onStateChange.bind(this));

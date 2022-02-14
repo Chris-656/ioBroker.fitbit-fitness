@@ -3,17 +3,17 @@
 "use strict";
 
 systemDictionary = {
-	"fit-bit adapter settings": {
-		"en": "Adapter settings for fit-bit",
-		"de": "Adaptereinstellungen für fit-bit",
-		"ru": "Настройки адаптера для fit-bit",
-		"pt": "Configurações do adaptador para fit-bit",
-		"nl": "Adapterinstellingen voor fit-bit",
-		"fr": "Paramètres d'adaptateur pour fit-bit",
-		"it": "Impostazioni dell'adattatore per fit-bit",
-		"es": "Ajustes del adaptador para fit-bit",
-		"pl": "Ustawienia adaptera dla fit-bit",
-		"zh-cn": "fit-bit的适配器设置"
+	"fitbit-fitness adapter settings": {
+		"en": "Adapter settings for fitbit",
+		"de": "Adaptereinstellungen für fitbit",
+		"ru": "Настройки адаптера для fitbit",
+		"pt": "Configurações do adaptador para fitbit",
+		"nl": "Adapterinstellingen voor fitbit",
+		"fr": "Paramètres d'adaptateur pour fitbit",
+		"it": "Impostazioni dell'adattatore per fitbit",
+		"es": "Ajustes del adaptador para fitbit",
+		"pl": "Ustawienia adaptera dla fitbit",
+		"zh-cn": "fitbit的适配器设置"
 	},
 	"refresh": {
 		"en": "Refresh Rate (in Minutes)",
