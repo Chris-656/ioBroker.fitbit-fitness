@@ -11,20 +11,8 @@ This adapter retrieves fitbit data into iobroker.
 - Body, Activities, Food, Sleep are retrieved individually
 - Refresh in minutes for continiusly retrieving data
   
-## Usage example
-
-### 0.2.1 (2022-02-08)
-- Changed Repo name to fitbit-fitness
-
-### 0.1.3 (2022-02-08)
-- Activity records
-- Sleep recors
-- Body records
-- Food records
-- refresh rate in minutes added
-  
-### 0.1.1 (2022-01-20)
-* (Chris-1965) initial release
+## Changelog
+[Changelog](./CHANGELOG.md)
 
 ## License
 MIT License

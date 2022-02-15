@@ -286,6 +286,54 @@
             "native": {}
         },
         {
+            "_id": "food.Carbs",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Carbs Consumed",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "food.Fiber",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Fiber Consumed",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "food.Fiber",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Fiber Consumed",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        { 
+            "_id": "food.Sodium",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Sodium Consumed",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id": "food.Fat",
             "type": "state",
             "common": {

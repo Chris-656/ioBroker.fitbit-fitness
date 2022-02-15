@@ -2,6 +2,9 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+## **WORK IN PROGRESS**
+- added Food: Carbs, Fiber, Sodium
+- fixed Water recording
 
 ## 0.2.2 (2022-02-14)
 - Bug fixes
