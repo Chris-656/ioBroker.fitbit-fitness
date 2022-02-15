@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "fitbit-fitness",
-        "version": "0.2.2",
+        "version": "0.2.3",
         "news": {
+            "0.2.3": {
+                "en": "added Food: Carbs, Fiber, Sodium\nfixed Water recording",
+                "de": "Lebensmittelzusatz: Kohlenhydrate, Ballaststoffe, Natrium\nfeste Wasseraufnahme",
+                "ru": "добавленная пища: углеводы, клетчатка, натрий\nисправлена запись воды",
+                "pt": "Alimentos adicionados: Carboidratos, Fibra, Sódio\nGravação de água fixa",
+                "nl": "toegevoegd voedsel: koolhydraten, vezels, natrium\nvaste wateropname",
+                "fr": "Aliments ajoutés : glucides, fibres, sodium\nenregistrement d'eau fixe",
+                "it": "Cibo aggiunto: carboidrati, fibre, sodio\nregistrazione dell'acqua fissa",
+                "es": "Alimentos agregados: carbohidratos, fibra, sodio\nGrabación de agua fija",
+                "pl": "dodane jedzenie: węglowodany, błonnik, sód\nnaprawiono zapis wody",
+                "zh-cn": "添加食物：碳水化合物、纤维、钠\n固定水记录"
+            },
             "0.2.2": {
                 "en": "Bug fixes",
                 "de": "Fehlerbehebung",
@@ -321,7 +333,7 @@
             },
             "native": {}
         },
-        { 
+        {
             "_id": "food.Sodium",
             "type": "state",
             "common": {

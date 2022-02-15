@@ -2,7 +2,7 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
-## **WORK IN PROGRESS**
+## 0.2.3 (2022-02-15)
 - added Food: Carbs, Fiber, Sodium
 - fixed Water recording
 
