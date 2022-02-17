@@ -1,3 +1,4 @@
+
 // eslint-disable-next-line no-unused-vars
 /*global systemDictionary:true */
 "use strict";
@@ -110,5 +111,17 @@ systemDictionary = {
 		"es": "ocupaciones",
 		"pl": "zajęcia",
 		"zh-cn": "活动"
+	},
+	"debug": {
+		"en": "debug option",
+		"de": "Debug Option",
+		"ru": "отлаживать",
+		"pt": "depurar",
+		"nl": "debuggen",
+		"fr": "déboguer",
+		"it": "eseguire il debug",
+		"es": "depurar",
+		"pl": "odpluskwić",
+		"zh-cn": "调试"
 	}
 };

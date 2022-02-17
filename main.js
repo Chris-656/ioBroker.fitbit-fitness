@@ -7,8 +7,15 @@
 // The adapter-core module gives you access to the core ioBroker functions
 // you need to create an adapter
 const utils = require("@iobroker/adapter-core");
+
+//const { errorMonitor } = require("events");
 const axios = require("axios").default;
 const axiosTimeout = 8000;
+const clientID = "22BD68";
+const clientSecret = "c4612114c93436901b6affb03a1e5ec8";
+
+// const clientID = '2387KZ';
+// const clientSecret = '66f64352fbee230e076360245871bb09';
 
 const BASE_URL = "https://api.fitbit.com/1/user/";
 const BASE2_URL = "https://api.fitbit.com/1.2/user/";
@@ -32,6 +39,8 @@ class FitBit extends utils.Adapter {
 		this.updateInterval = null;
 		this.fitbit = {};
 		this.fitbit.sleepRecordsStoredate = null;
+
+
 	}
 
 	/**
@@ -49,7 +58,9 @@ class FitBit extends utils.Adapter {
 				if (this.fitbit.status === 200) {
 
 					this.setState("info.connection", true, true);
-					this.getFitbitRecords();					// get data one time
+					//this.getTokenExpireDate(this.config.token);
+
+					this.getFitbitRecords();						// get data one time
 
 					this.updateInterval = setInterval(() => {
 						this.getFitbitRecords();
@@ -66,30 +77,55 @@ class FitBit extends utils.Adapter {
 
 	}
 	async getFitbitRecords() {
-		this.log.info(`Getting data for user ${this.fitbit.user.fullName}`);
-		//const actualDate = new Date().getDate();
 
-		if (this.config.activityrecords) {
-			await this.getActivityRecords();
+		try {
+			//this.log.debug(`Getting data for user ${this.fitbit.user.fullName}`);
+			if (await this.checkToken()) {
+				if (this.config.debug) this.log.debug(`Tokens checked`);
+			}
+			if (this.config.activityrecords) {
+				await this.getActivityRecords();
+			}
+			if (this.config.bodyrecords) {
+				await this.getBodyRecords();
+			}
+			if (this.config.foodrecords) {
+				await this.getFoodRecords();
+			}
+			if (this.config.sleeprecords) {
+				await this.getSleepRecords();
+			}
 		}
-		if (this.config.bodyrecords) {
-			await this.getBodyRecords();
-		}
-		if (this.config.foodrecords) {
-			await this.getFoodRecords();
-		}
-		if (this.config.sleeprecords) {
-			await this.getSleepRecords();
+		catch (err) {
+			this.log.info(`Data retrieval  ${err}`);
 		}
 	}
 
 	async login() {
-		const url = "https://api.fitbit.com/1/user/-/profile.json";
-		const token = this.config.token;
+
 		try {
+			const url = "https://api.fitbit.com/1/user/-/profile.json";
+
+			if (this.config.owntoken && this.config.token != "") {
+				this.log.debug(`Using own token: ${this.config.token}`);
+			}
+			const accessToken = await this.getStateAsync("tokens.access");
+			const refreshToken = await this.getStateAsync("tokens.refresh");
+
+			if (accessToken && refreshToken && accessToken.val && refreshToken.val) {
+				this.fitbit.tokens = {
+					access_token: accessToken.val,
+					refresh_token: refreshToken.val
+				};
+
+				if (this.config.debug) this.log.debug(`Getting refresh Token: ${this.fitbit.tokens.refresh_token}`);
+			} else {
+				throw new Error("no tokens available. Recreate token in config");
+			}
+
 			const response = await axios.get(url,
 				{
-					headers: { "Authorization": `Bearer ${token}` },
+					headers: { "Authorization": `Bearer ${this.fitbit.tokens.access_token}` },
 					timeout: axiosTimeout
 				});
 
@@ -97,7 +133,6 @@ class FitBit extends utils.Adapter {
 
 			if (this.fitbit.status === 200) {
 				this.setState("info.connection", true, true);
-				//this.log.info(`Logged in Status: ${response.status}`);
 				this.setUserStates(response.data);
 			}
 		}
@@ -108,25 +143,27 @@ class FitBit extends utils.Adapter {
 
 	setUserStates(data) {
 		this.fitbit.user = data.user;				// Use instance object for data
-		this.log.info(`User logged in ${this.fitbit.user.fullName}`);
+		this.log.info(`User logged in ${this.fitbit.user.fullName} id:${this.fitbit.user.encodedId}`);
 		this.setState("user.fullName", this.fitbit.user.fullName, true);
+		this.setState("user.userid", this.fitbit.user.encodedId, true);
 	}
 
 	async getActivityRecords() {
 
 		const url = `${BASE_URL}-/activities/date/${this.getDate()}.json`;
+		const token = this.fitbit.tokens.access_token;
 
 		try {
 			const response = await axios.get(url,
 				{
-					headers: { "Authorization": `Bearer ${this.config.token}` },
+					headers: { "Authorization": `Bearer ${token}` },
 					timeout: axiosTimeout
 				});
-			this.log.info(`Status: ${response.status}`);
+			//this.log.info(`Status: ${response.status}`);
 
 			if (response.status === 200) {
 				if (!this.setActivityStates(response.data)) {
-					this.log.warn(`Activity Records: No activity records avaliable`);
+					if (this.config.debug) this.log.warn(`Activity Records: No activity records avaliable`);
 				}
 			}
 		}
@@ -155,7 +192,7 @@ class FitBit extends utils.Adapter {
 		const url = `${BASE_URL}-/body/log/weight/date/${this.getDate()}.json`;
 
 		//const token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMjdHNUwiLCJzdWIiOiI4OTVXWEQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd3dlaSB3c29jIHdzZXQgd2FjdCB3bG9jIiwiZXhwIjoxNjQzODk0MTIwLCJpYXQiOjE2NDM4MDc3MjB9.wh7-CEc9Ysdj5CM5Tecs6AwqhWuzaaZ-s2ZMlTPpwIk";
-		const token = this.config.token;
+		const token = this.fitbit.tokens.access_token;
 		try {
 			const response = await axios.get(url,
 				{
@@ -166,7 +203,7 @@ class FitBit extends utils.Adapter {
 
 			if (response.status === 200) {
 				if (!this.setBodyStates(response.data)) {
-					this.log.warn(`Body Records: No weight records avaliable`);
+					if (this.config.debug) this.log.warn(`Body Records: No weight records avaliable`);
 				}
 			}
 		}
@@ -193,19 +230,19 @@ class FitBit extends utils.Adapter {
 
 		//const url = "https://api.fitbit.com/1/user/-/foods/log/date/2022-02-01.json";
 		const url = `${BASE_URL}-/foods/log/date/${this.getDate()}.json`;
+		const token = this.fitbit.tokens.access_token;
 
 		try {
 			const response = await axios.get(url,
 				{
-					headers: { "Authorization": `Bearer ${this.config.token}` },
+					headers: { "Authorization": `Bearer ${token}` },
 					timeout: axiosTimeout
 				});
 
 			if (response.status === 200) {
 				if (!this.setFoodStates(response.data)) {
-					this.log.warn(`Food Records: No food records avaliable`);
+					if (this.config.debug) this.log.warn(`Food Records: No food records avaliable`);
 				}
-				this.setFoodStates(response.data);
 			}
 		}
 		catch (err) {
@@ -235,19 +272,19 @@ class FitBit extends utils.Adapter {
 	}
 
 	async getSleepRecords() {
-		//const url = "https://api.fitbit.com/1.2/user/-/sleep/date/2022-02-01.json";
 		const url = `${BASE2_URL}-/sleep/date/${this.getDate()}.json`;
+		const token = this.fitbit.tokens.access_token;
 
 		try {
 			const response = await axios.get(url,
 				{
-					headers: { "Authorization": `Bearer ${this.config.token}` },
+					headers: { "Authorization": `Bearer ${token}` },
 					timeout: axiosTimeout
 				});
 
 			if (response.status === 200) {
 				if (!this.setSleepStates(response.data)) {
-					this.log.warn(`Sleep Records: No sleep records avaliable`);
+					if (this.config.debug) this.log.warn(`Sleep Records: No sleep records avaliable`);
 				}
 			}
 		}
@@ -271,6 +308,92 @@ class FitBit extends utils.Adapter {
 		}
 	}
 
+	async getTokenInfo() {
+
+		const token = this.fitbit.tokens.access_token;
+
+		try {
+			const url = "https://api.fitbit.com/1.1/oauth2/introspect";
+			const payload = `token=${token}`;
+			const response = await axios({
+				url: url,
+				method: "post",
+				headers: {
+					"authorization": `Bearer ${token}`,
+					//'accept': 'application/json',
+					//'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				data: payload
+			});
+			this.fitbit.tokens = response.data;
+			this.log.info(`token expires: ${this.fitbit.tokens.exp}`);
+
+			//await this.setStateAsync("tokens.expire", this.fitbit.tokens.exp, true);
+			await this.setStateAsync("tokens.clientid", this.fitbit.tokens.client_id, true);
+			await this.setStateAsync("tokens.userid", this.fitbit.tokens.user_id, true);
+
+			return true;
+		}
+		catch (err) {
+			throw new Error(`${err}`);
+		}
+	}
+
+	async renewToken() {
+		try {
+			const url = "https://api.fitbit.com/oauth2/token";
+			const refreshToken = this.fitbit.tokens.refresh_token;
+			const response = await axios({
+				url: url,
+				method: "post",
+				headers: { "Authorization": `Basic ${Buffer.from(clientID + ":" + clientSecret).toString("base64")}` },
+				data: "grant_type=refresh_token&refresh_token=" + refreshToken,
+				timeout: axiosTimeout
+			});
+			this.fitbit.tokens = response.data;
+			if (response.status === 200) {
+				//this.log.info(`renew Token: ${this.fitbit.tokens.access_token} refresh: ${this.fitbit.tokens.refresh_token}`);
+				const time = new Date();
+				time.setSeconds(time.getSeconds() + this.fitbit.tokens.expires_in);
+				await this.setStateAsync("tokens.access", this.fitbit.tokens.access_token, true);
+				await this.setStateAsync("tokens.refresh", this.fitbit.tokens.refresh_token, true);
+				await this.setStateAsync("tokens.expire", time.toISOString(), true);
+				return true;
+			} else {
+				return false;
+			}
+		}
+		catch (err) {
+			this.log.error(`Renew Token`);
+		}
+	}
+
+	async checkToken() {
+		// ported from germanbluefox from his fitbit version fitbit-api thx
+		//
+
+		const stateExpire = await this.getStateAsync("tokens.expire");
+
+		if (!stateExpire || !stateExpire.val)
+			throw new Error("No valid tokens. Please authenticate in configuration");
+
+		const expireTime = new Date(stateExpire.val.toString()).getTime();
+		//if (this.config.debug) this.log.debug(`Expire Date time:${expireTime} left ${expireTime - Date.now()}`);
+
+		if (expireTime - Date.now() < 3600000) {		// < 1 hour refresh the token
+			//if (1 === 1) {
+			if (await this.renewToken()) {
+				if (this.config.debug) this.log.debug(`Token renewed: ${expireTime}`);
+				return true;
+			} else return false;
+		} else {
+			//this.fitbit.tokens.token = await this.getStateAsync("tokens.access");
+			return true;
+		}
+
+	}
+
+
 	getDate() {
 		const today = new Date();
 		const dd = today.getDate();
@@ -279,6 +402,8 @@ class FitBit extends utils.Adapter {
 
 		return `${year}-${mm.toString(10).padStart(2, "0")}-${dd.toString(10).padStart(2, "0")}`;
 	}
+
+
 	/**
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!
 	 * @param {() => void} callback

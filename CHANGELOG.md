@@ -2,9 +2,16 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+
+## **WORK IN PROGRESS**
+- changed the auth method (ported from @bluefox fitbit-api)
+- added a debug option to reduce the logs
+- some minor changes
+
 ## 0.2.3 (2022-02-15)
 - added Food: Carbs, Fiber, Sodium
 - fixed Water recording
+
 
 ## 0.2.2 (2022-02-14)
 - Bug fixes
@@ -28,7 +35,7 @@
 
 ## 0.1.0 (2022-01-30)
 - Initial version
-- ported from projekt [GermanBluefox](https://github.com/GermanBluefox) 
+- ported parts from projekt [GermanBluefox](https://github.com/GermanBluefox) 
 - [ iobroker-community-adapters/iobroker.fitbit-fitness-api ](https://github.com/iobroker-community-adapters/iobroker.fitbit-fitness-api) 
 - and adpated and enhanced
 - used the new createadapter script to be on the newest adapter standard

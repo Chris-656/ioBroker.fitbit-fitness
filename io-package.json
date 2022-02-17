@@ -119,12 +119,14 @@
     },
     "native": {
         "refresh": 5,
+        "debug": false,
         "token": "",
+        "owntoken": false,
+        "accesstoken": "",
         "bodyrecords": false,
         "activityrecords": false,
         "sleeprecords": false,
-        "foodrecords": false,
-        "devicerecords": false
+        "foodrecords": false
     },
     "objects": [],
     "instanceObjects": [
@@ -170,6 +172,18 @@
             "native": {}
         },
         {
+            "_id":  "user.userid",
+            "type": "state",
+            "common": {
+                "role":  "state",
+                "name":  "User Id on FitBit",
+                "type":  "string",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id": "tokens",
             "type": "channel",
             "common": {
@@ -185,6 +199,30 @@
                 "name": "Access token",
                 "type": "string",
                 "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "tokens.refresh",
+            "type": "state",
+            "common": {
+                "role":  "state",
+                "name":  "Refresh token",
+                "type":  "string",
+                "read":  true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id":  "tokens.expire",
+            "type": "state",
+            "common": {
+                "role":  "state",
+                "name":  "Expire on",
+                "type":  "string",
+                "read":  true,
                 "write": false
             },
             "native": {}
