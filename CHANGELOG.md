@@ -3,7 +3,7 @@
     ## **WORK IN PROGRESS**
 -->
 
-## **WORK IN PROGRESS**
+## 0.2.4 (2022-02-17)
 - changed the auth method (ported from @bluefox fitbit-api)
 - added a debug option to reduce the logs
 - some minor changes

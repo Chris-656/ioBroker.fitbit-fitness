@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "fitbit-fitness",
-        "version": "0.2.3",
+        "version": "0.2.4",
         "news": {
+            "0.2.4": {
+                "en": "changed the auth method (ported from @bluefox fitbit-api)\nadded a debug option to reduce the logs\nsome minor changes",
+                "de": "Authentifizierungsmethode geändert (portiert von @bluefox fitbit-api)\nDebug-Option hinzugefügt, um die Protokolle zu reduzieren\neinige kleinere Änderungen",
+                "ru": "изменен метод авторизации (портирован из @bluefox fitbit-api)\nдобавлена опция отладки для уменьшения журналов\nнекоторые незначительные изменения",
+                "pt": "alterei o método de autenticação (portado de @bluefox fitbit-api)\nadicionou uma opção de depuração para reduzir os logs\nalgumas pequenas alterações",
+                "nl": "de auth-methode gewijzigd (overgezet van @bluefox fitbit-api)\neen debug-optie toegevoegd om de logs te verkleinen\nenkele kleine wijzigingen",
+                "fr": "changé la méthode d'authentification (portée depuis @bluefox fitbit-api)\najout d'une option de débogage pour réduire les journaux\nquelques changements mineurs",
+                "it": "cambiato il metodo di autenticazione (portato da @bluefox fitbit-api)\naggiunta un'opzione di debug per ridurre i log\nalcune piccole modifiche",
+                "es": "cambió el método de autenticación (portado desde @bluefox fitbit-api)\nagregó una opción de depuración para reducir los registros\nalgunos cambios menores",
+                "pl": "zmieniono metodę uwierzytelniania (przeniesiona z @bluefox fitbit-api)\ndodano opcję debugowania, aby zmniejszyć logi\nkilka drobnych zmian",
+                "zh-cn": "更改了身份验证方法（从@bluefox fitbit-api 移植）\n添加了调试选项以减少日志\n一些小改动"
+            },
             "0.2.3": {
                 "en": "added Food: Carbs, Fiber, Sodium\nfixed Water recording",
                 "de": "Lebensmittelzusatz: Kohlenhydrate, Ballaststoffe, Natrium\nfeste Wasseraufnahme",
@@ -172,13 +184,13 @@
             "native": {}
         },
         {
-            "_id":  "user.userid",
+            "_id": "user.userid",
             "type": "state",
             "common": {
-                "role":  "state",
-                "name":  "User Id on FitBit",
-                "type":  "string",
-                "read":  true,
+                "role": "state",
+                "name": "User Id on FitBit",
+                "type": "string",
+                "read": true,
                 "write": false
             },
             "native": {}
@@ -204,25 +216,25 @@
             "native": {}
         },
         {
-            "_id":  "tokens.refresh",
+            "_id": "tokens.refresh",
             "type": "state",
             "common": {
-                "role":  "state",
-                "name":  "Refresh token",
-                "type":  "string",
-                "read":  true,
+                "role": "state",
+                "name": "Refresh token",
+                "type": "string",
+                "read": true,
                 "write": false
             },
             "native": {}
         },
         {
-            "_id":  "tokens.expire",
+            "_id": "tokens.expire",
             "type": "state",
             "common": {
-                "role":  "state",
-                "name":  "Expire on",
-                "type":  "string",
-                "read":  true,
+                "role": "state",
+                "name": "Expire on",
+                "type": "string",
+                "read": true,
                 "write": false
             },
             "native": {}
