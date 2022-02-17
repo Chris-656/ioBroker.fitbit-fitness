@@ -4,7 +4,7 @@
 -->
 
 ## 0.2.4 (2022-02-17)
-- changed the auth method (ported from @bluefox fitbit-api)
+- changed the auth method (ported from @GermanBluefox fitbit-api)
 - added a debug option to reduce the logs
 - some minor changes
 
