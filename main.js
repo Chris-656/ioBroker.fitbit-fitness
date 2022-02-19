@@ -94,6 +94,10 @@ class FitBit extends utils.Adapter {
 				await this.getFoodRecords();
 			}
 
+			if (this.config.foodrecords && !this.config.sleeprecords) {
+				this.getSleepRecords();
+			}
+
 		}
 		catch (err) {
 			this.log.info(`Data retrieval  ${err}`);
@@ -149,7 +153,7 @@ class FitBit extends utils.Adapter {
 
 	initSchedules() {
 		if (this.config.sleeprecordsschedule && this.config.sleeprecords) {
-			this.schedule = mSchedule.scheduleJob("10 * * * *", () => {
+			this.schedule = mSchedule.scheduleJob("0 10,20 * * *", () => {
 				this.log.debug(`Schedule activated`);
 				if (this.config.sleeprecords) {
 					this.getSleepRecords();
