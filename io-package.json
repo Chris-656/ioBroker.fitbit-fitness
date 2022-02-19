@@ -138,6 +138,7 @@
         "bodyrecords": false,
         "activityrecords": false,
         "sleeprecords": false,
+        "sleeprecordsschedule": true,
         "foodrecords": false
     },
     "objects": [],

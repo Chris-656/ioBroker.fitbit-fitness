@@ -148,12 +148,14 @@ class FitBit extends utils.Adapter {
 	}
 
 	initSchedules() {
-		this.schedule = mSchedule.scheduleJob("10 * * * *", () => {
-			this.log.debug(`Schedule activated`);
-			if (this.config.sleeprecords) {
-				this.getSleepRecords();
-			}
-		});
+		if (this.config.sleeprecordsschedule && this.config.sleeprecords) {
+			this.schedule = mSchedule.scheduleJob("10 * * * *", () => {
+				this.log.debug(`Schedule activated`);
+				if (this.config.sleeprecords) {
+					this.getSleepRecords();
+				}
+			});
+		}
 	}
 	async getActivityRecords() {
 
