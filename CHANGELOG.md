@@ -2,6 +2,8 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+## **WORK IN PROGRESS**
+- add possibility to read sleep records only in the morning and evening to reduce traffic
 
 ## 0.2.4 (2022-02-17)
 - changed the auth method (ported from @GermanBluefox fitbit-api)
