@@ -112,6 +112,18 @@ systemDictionary = {
 		"pl": "zajęcia",
 		"zh-cn": "活动"
 	},
+	"sleeprecordsschedule": {
+		"en": "get sleep record once a day",
+		"de": "Schlafaufzeichnung nur einmal am Tag",
+		"ru": "получить запись сна только один раз в день",
+		"pt": "obter registro de sono apenas uma vez por dia",
+		"nl": "krijg slechts één keer per dag een slaaprecord",
+		"fr": "obtenir un enregistrement de sommeil une seule fois par jour",
+		"it": "ottenere il record del sonno solo una volta al giorno",
+		"es": "obtener registro de sueño solo una vez al día",
+		"pl": "uzyskuj zapis snu tylko raz dziennie",
+		"zh-cn": "每天只获取一次睡眠记录"
+	},
 	"debug": {
 		"en": "debug option",
 		"de": "Debug Option",

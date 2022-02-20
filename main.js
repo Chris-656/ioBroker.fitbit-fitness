@@ -10,6 +10,7 @@ const utils = require("@iobroker/adapter-core");
 
 //const { errorMonitor } = require("events");
 const axios = require("axios").default;
+const mSchedule = require("node-schedule");          // https://github.com/node-schedule/node-schedule
 const axiosTimeout = 8000;
 const clientID = "22BD68";
 const clientSecret = "c4612114c93436901b6affb03a1e5ec8";
@@ -59,7 +60,7 @@ class FitBit extends utils.Adapter {
 
 					this.setState("info.connection", true, true);
 					//this.getTokenExpireDate(this.config.token);
-
+					this.initSchedules();
 					this.getFitbitRecords();						// get data one time
 
 					this.updateInterval = setInterval(() => {
@@ -92,9 +93,11 @@ class FitBit extends utils.Adapter {
 			if (this.config.foodrecords) {
 				await this.getFoodRecords();
 			}
-			if (this.config.sleeprecords) {
-				await this.getSleepRecords();
+
+			if (this.config.foodrecords && !this.config.sleeprecords) {
+				this.getSleepRecords();
 			}
+
 		}
 		catch (err) {
 			this.log.info(`Data retrieval  ${err}`);
@@ -148,6 +151,16 @@ class FitBit extends utils.Adapter {
 		this.setState("user.userid", this.fitbit.user.encodedId, true);
 	}
 
+	initSchedules() {
+		if (this.config.sleeprecordsschedule && this.config.sleeprecords) {
+			this.schedule = mSchedule.scheduleJob("0 10,20 * * *", () => {
+				this.log.debug(`Schedule activated`);
+				if (this.config.sleeprecords) {
+					this.getSleepRecords();
+				}
+			});
+		}
+	}
 	async getActivityRecords() {
 
 		const url = `${BASE_URL}-/activities/date/${this.getDate()}.json`;
@@ -412,12 +425,13 @@ class FitBit extends utils.Adapter {
 		try {
 			// Here you must clear all timeouts or intervals that may still be active
 			// clearTimeout(timeout1);
-			// clearTimeout(timeout2);
-			// ...
 			// clearInterval(interval1);
 			if (this.updateInterval) {
 				clearInterval(this.updateInterval);
 				this.updateInterval = null;
+			}
+			if (this.schedule) {
+				this.schedule.cancel();
 			}
 			callback();
 		} catch (e) {

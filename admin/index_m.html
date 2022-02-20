@@ -119,6 +119,18 @@
 				}
 				setTimeout(function () { M.updateTextFields() }, 500);
 			});
+			
+			var $sleeprecords = $('#sleeprecords');
+			 $sleeprecords.on('change', function () {
+			 	var val = $(this).prop('checked');
+				
+			 	if (val) {
+			 		$('.sleepschedule').show();
+			 	} else {
+			 		$('.sleepschedule').hide();
+			 		onChange();
+			 	}
+			 });
 
 			// var $ownToken = $('#ownToken');
 
@@ -271,9 +283,13 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="input-field col s12 m6 l4">
+					<div class="input-field col s3 m6 l4">
 						<input class="value" id="sleeprecords" type="checkbox">
 						<span for="sleeprecords" class="translate">sleeprecords</span>
+					</div>
+					<div class="input-field sleepschedule col s6">
+						<input class="value" id="sleeprecordsschedule" type="checkbox">
+						<span for="sleeprecordsschedule" class="translate">sleeprecordsschedule</span>
 					</div>
 				</div>
 				<div class="row">
