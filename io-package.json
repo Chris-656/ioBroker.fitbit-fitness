@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "fitbit-fitness",
-        "version": "0.2.4",
+        "version": "0.2.5",
         "news": {
+            "0.2.5": {
+                "en": "add possibility to read sleep records only in the morning and evening to reduce traffic",
+                "de": "Fügen Sie die Möglichkeit hinzu, Schlafaufzeichnungen nur morgens und abends zu lesen, um den Datenverkehr zu reduzieren",
+                "ru": "добавить возможность читать записи сна только утром и вечером для уменьшения трафика",
+                "pt": "adicionar a possibilidade de ler registros de sono apenas de manhã e à noite para reduzir o tráfego",
+                "nl": "mogelijkheid toevoegen om alleen 's ochtends en' s avonds slaapgegevens te lezen om het verkeer te verminderen",
+                "fr": "ajouter la possibilité de lire les enregistrements de sommeil uniquement le matin et le soir pour réduire le trafic",
+                "it": "aggiungi la possibilità di leggere i record del sonno solo al mattino e alla sera per ridurre il traffico",
+                "es": "agregue la posibilidad de leer los registros de sueño solo por la mañana y por la noche para reducir el tráfico",
+                "pl": "dodaj możliwość odczytu zapisów snu tylko rano i wieczorem, aby zmniejszyć ruch",
+                "zh-cn": "增加仅在早上和晚上阅读睡眠记录以减少交通的可能性"
+            },
             "0.2.4": {
                 "en": "changed the auth method (ported from @bluefox fitbit-api)\nadded a debug option to reduce the logs\nsome minor changes",
                 "de": "Authentifizierungsmethode geändert (portiert von @bluefox fitbit-api)\nDebug-Option hinzugefügt, um die Protokolle zu reduzieren\neinige kleinere Änderungen",

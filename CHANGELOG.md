@@ -2,7 +2,7 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
-## **WORK IN PROGRESS**
+## 0.2.5 (2022-02-20)
 - add possibility to read sleep records only in the morning and evening to reduce traffic
 
 ## 0.2.4 (2022-02-17)
