@@ -5,11 +5,12 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/chris-1965/iobroker.fitbit-fitness/badge.svg)](https://app.snyk.io/org/chris-1965/iobroker.fitbit-fitness)
 
 
-This adapter retrieves fitbit data into iobroker.
+This adapter retrieves fitbit data into iobroker. Ported from @GermanBluefox  from his fitbit-api (great thx) into the new iobroker template structure and added some new features
 
 ## Features
 - Body, Activities, Food, Sleep are retrieved individually
-- Refresh in minutes for continiusly retrieving data
+- Refresh in minutes for continiously retrieving data
+- Sleeping records can be loaded 2 times a day to reduce API calls
   
 ## Changelog
 [Changelog](./CHANGELOG.md)

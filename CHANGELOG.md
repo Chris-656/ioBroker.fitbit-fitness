@@ -2,6 +2,10 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+
+## **WORK IN PROGRESS**
+- bug fixes
+
 ## 0.2.5 (2022-02-20)
 - add possibility to read sleep records only in the morning and evening to reduce traffic
 
@@ -17,7 +21,7 @@
 
 ## 0.2.2 (2022-02-14)
 - Bug fixes
-  
+
 ## 0.2.1 (2022-02-14)
 - Minor fixes
 
@@ -37,8 +41,8 @@
 
 ## 0.1.0 (2022-01-30)
 - Initial version
-- ported parts from projekt [GermanBluefox](https://github.com/GermanBluefox) 
-- [ iobroker-community-adapters/iobroker.fitbit-fitness-api ](https://github.com/iobroker-community-adapters/iobroker.fitbit-fitness-api) 
+- ported parts from projekt @GermanBluefox fitbit-api [GermanBluefox](https://github.com/GermanBluefox)
+- [ iobroker-community-adapters/iobroker.fitbit-fitness-api ](https://github.com/iobroker-community-adapters/iobroker.fitbit-fitness-api)
 - and adpated and enhanced
 - used the new createadapter script to be on the newest adapter standard
 - reduced the parallel reading since the web page blocks after some time

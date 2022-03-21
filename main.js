@@ -60,7 +60,7 @@ class FitBit extends utils.Adapter {
 
 					this.setState("info.connection", true, true);
 					//this.getTokenExpireDate(this.config.token);
-					this.initSchedules();
+					this.initSleepSchedule();
 					this.getFitbitRecords();						// get data one time
 
 					this.updateInterval = setInterval(() => {
@@ -93,8 +93,7 @@ class FitBit extends utils.Adapter {
 			if (this.config.foodrecords) {
 				await this.getFoodRecords();
 			}
-
-			if (this.config.foodrecords && !this.config.sleeprecords) {
+			if (this.config.sleeprecords && !this.config.sleeprecordsschedule) {
 				this.getSleepRecords();
 			}
 
@@ -151,10 +150,10 @@ class FitBit extends utils.Adapter {
 		this.setState("user.userid", this.fitbit.user.encodedId, true);
 	}
 
-	initSchedules() {
+	initSleepSchedule() {
 		if (this.config.sleeprecordsschedule && this.config.sleeprecords) {
+			this.log.info (`Schedule for sleep activated`);
 			this.schedule = mSchedule.scheduleJob("0 10,20 * * *", () => {
-				this.log.debug(`Schedule activated`);
 				if (this.config.sleeprecords) {
 					this.getSleepRecords();
 				}
