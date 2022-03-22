@@ -82,7 +82,7 @@ class FitBit extends utils.Adapter {
 		try {
 			//this.log.debug(`Getting data for user ${this.fitbit.user.fullName}`);
 			if (await this.checkToken()) {
-				if (this.config.debug) this.log.debug(`Tokens checked`);
+				this.log.debug(`Tokens checked`);
 			}
 			if (this.config.activityrecords) {
 				await this.getActivityRecords();
@@ -120,7 +120,7 @@ class FitBit extends utils.Adapter {
 					refresh_token: refreshToken.val
 				};
 
-				if (this.config.debug) this.log.debug(`Getting refresh Token: ${this.fitbit.tokens.refresh_token}`);
+				this.log.debug(`Getting refresh Token: ${this.fitbit.tokens.refresh_token}`);
 			} else {
 				throw new Error("no tokens available. Recreate token in config");
 			}
@@ -175,7 +175,7 @@ class FitBit extends utils.Adapter {
 
 			if (response.status === 200) {
 				if (!this.setActivityStates(response.data)) {
-					if (this.config.debug) this.log.warn(`Activity Records: No activity records avaliable`);
+					this.log.debug(`Activity Records: No activity records avaliable`);
 				}
 			}
 		}
@@ -215,7 +215,7 @@ class FitBit extends utils.Adapter {
 
 			if (response.status === 200) {
 				if (!this.setBodyStates(response.data)) {
-					if (this.config.debug) this.log.warn(`Body Records: No weight records avaliable`);
+					this.log.debug(`Body Records: No weight records avaliable`);
 				}
 			}
 		}
@@ -253,7 +253,7 @@ class FitBit extends utils.Adapter {
 
 			if (response.status === 200) {
 				if (!this.setFoodStates(response.data)) {
-					if (this.config.debug) this.log.warn(`Food Records: No food records avaliable`);
+					this.log.debug(`Food Records: No food records avaliable`);
 				}
 			}
 		}
@@ -296,7 +296,7 @@ class FitBit extends utils.Adapter {
 
 			if (response.status === 200) {
 				if (!this.setSleepStates(response.data)) {
-					if (this.config.debug) this.log.warn(`Sleep Records: No sleep records avaliable`);
+					this.log.debug(`Sleep Records: No sleep records avaliable`);
 				}
 			}
 		}
@@ -395,7 +395,7 @@ class FitBit extends utils.Adapter {
 		if (expireTime - Date.now() < 3600000) {		// < 1 hour refresh the token
 			//if (1 === 1) {
 			if (await this.renewToken()) {
-				if (this.config.debug) this.log.debug(`Token renewed: ${expireTime}`);
+				this.log.debug(`Token renewed: ${expireTime}`);
 				return true;
 			} else return false;
 		} else {

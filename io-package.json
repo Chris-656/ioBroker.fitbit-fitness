@@ -143,7 +143,6 @@
     },
     "native": {
         "refresh": 5,
-        "debug": false,
         "token": "",
         "owntoken": false,
         "accesstoken": "",
