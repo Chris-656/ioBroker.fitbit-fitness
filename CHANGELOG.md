@@ -4,6 +4,7 @@
 -->
 
 ## **WORK IN PROGRESS**
+- changed logging -> debug for detailed logging
 - bug fixes
 
 ## 0.2.5 (2022-02-20)
