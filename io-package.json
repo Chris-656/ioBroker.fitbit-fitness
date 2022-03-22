@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "fitbit-fitness",
-        "version": "0.2.5",
+        "version": "0.3.0",
         "news": {
+            "0.3.0": {
+                "en": "changed logging -> debug for detailed logging\nbug fixes",
+                "de": "Logging geändert -> debug für detailliertes Logging\nFehlerbehebung",
+                "ru": "изменено ведение журнала -> отладка для подробного ведения журнала\nисправление ошибок",
+                "pt": "log alterado -> depurar para log detalhado\ncorreções de bugs",
+                "nl": "gewijzigde logboekregistratie -> foutopsporing voor gedetailleerde logboekregistratie\nbugfixes",
+                "fr": "journalisation modifiée -> débogage pour une journalisation détaillée\ncorrections de bogues",
+                "it": "registrazione modificata -> debug per la registrazione dettagliata\ncorrezioni di bug",
+                "es": "registro modificado -> depurar para registro detallado\ncorrección de errores",
+                "pl": "zmienione logowanie -> debug dla szczegółowego logowania\npoprawki błędów",
+                "zh-cn": "更改日志记录 -> 调试以获取详细日志记录\nbug修复"
+            },
             "0.2.5": {
                 "en": "add possibility to read sleep records only in the morning and evening to reduce traffic",
                 "de": "Fügen Sie die Möglichkeit hinzu, Schlafaufzeichnungen nur morgens und abends zu lesen, um den Datenverkehr zu reduzieren",
