@@ -20,8 +20,11 @@
 	<script type="text/javascript" src="words.js"></script>
 
 	<script type="text/javascript">
-		var clientID = '22BD68';
-		var clientSecret = 'c4612114c93436901b6affb03a1e5ec8';
+		var clientID = '2387KZ';
+		var clientSecret = 'bf343e0474cca869afb218975585b2e2';
+		// Original
+		// var clientID = '22BD68';
+		// var clientSecret = 'c4612114c93436901b6affb03a1e5ec8';
 
 		// var clientID = '2387KZ';
 		// var clientSecret = '66f64352fbee230e076360245871bb09';
@@ -59,21 +62,22 @@
 
 			$('.table-button-do').on('click', function () {
 				var url = 'https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=' + clientID + '&redirect_uri=https%3A%2F%2Foauth.iobroker.in%2Ftoken&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=2592000000';
+
 				var $iframe = $('#iframe');
 				$('#iframe_div').show();
 				$('.no-iframe').hide();
 				$('.tokens').hide();
-				//window.alert(url);
 				$iframe.attr('src', url).show();
 				$iframe.css('border', '1px solid red');
+				//window.alert(url);
 			});
 
 			var eventMethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
 			var eventer = window[eventMethod];
 			var messageEvent = eventMethod === 'attachEvent' ? 'onmessage' : 'message';
 			eventer(messageEvent, function (e) {
-				console.log(e.data);
-				//window.alert(e.data);
+				//console.log(e.data);
+				//window.alert("TTTTT");
 				$('#iframe').css('border', '0').hide();
 				$('#iframe_div').hide();
 				$('.tokens').show();
@@ -96,9 +100,11 @@
 						socket.emit('setState', 'fitbit-fitness.' + instance + '.tokens.access', data.access_token, true);
 						socket.emit('setState', 'fitbit-fitness.' + instance + '.tokens.refresh', data.refresh_token, true);
 						socket.emit('setState', 'fitbit-fitness.' + instance + '.tokens.expire', time.toISOString(), true);
+						//window.alert(`AT:${data.access_token} RT:${data.refresh_token} ex:${time.toISOString()}`);
 						$('#accessToken').val(data.access_token);
 						$('#refreshToken').val(data.refresh_token);
 						$('#expireOn').val(time.toISOString());
+
 						M.updateTextFields();
 					}).fail(function (err) {
 						window.alert("Error" + err);
@@ -121,16 +127,16 @@
 			});
 
 			var $sleeprecords = $('#sleeprecords');
-			 $sleeprecords.on('change', function () {
-			 	var val = $(this).prop('checked');
+			$sleeprecords.on('change', function () {
+				var val = $(this).prop('checked');
 
-			 	if (val) {
-			 		$('.sleepschedule').show();
-			 	} else {
-			 		$('.sleepschedule').hide();
-			 		onChange();
-			 	}
-			 });
+				if (val) {
+					$('.sleepschedule').show();
+				} else {
+					$('.sleepschedule').hide();
+					onChange();
+				}
+			});
 
 			// var $ownToken = $('#ownToken');
 

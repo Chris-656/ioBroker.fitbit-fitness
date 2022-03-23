@@ -12,9 +12,10 @@ const utils = require("@iobroker/adapter-core");
 const axios = require("axios").default;
 const mSchedule = require("node-schedule");          // https://github.com/node-schedule/node-schedule
 const axiosTimeout = 8000;
-const clientID = "22BD68";
-const clientSecret = "c4612114c93436901b6affb03a1e5ec8";
-
+// const clientID = "22BD68";
+// const clientSecret = "c4612114c93436901b6affb03a1e5ec8";
+const clientID = "2387KZ";
+const clientSecret = "bf343e0474cca869afb218975585b2e2";
 // const clientID = '2387KZ';
 // const clientSecret = '66f64352fbee230e076360245871bb09';
 
@@ -152,7 +153,7 @@ class FitBit extends utils.Adapter {
 
 	initSleepSchedule() {
 		if (this.config.sleeprecordsschedule && this.config.sleeprecords) {
-			this.log.info (`Schedule for sleep activated`);
+			this.log.info(`Schedule for sleep activated`);
 			this.schedule = mSchedule.scheduleJob("0 10,20 * * *", () => {
 				if (this.config.sleeprecords) {
 					this.getSleepRecords();
@@ -379,6 +380,7 @@ class FitBit extends utils.Adapter {
 			this.log.error(`Renew Token`);
 		}
 	}
+
 
 	async checkToken() {
 		// ported from germanbluefox from his fitbit version fitbit-api thx
