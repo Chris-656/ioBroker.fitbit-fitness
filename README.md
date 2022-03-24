@@ -13,7 +13,7 @@ This adapter retrieves fitbit data into iobroker. Ported from @GermanBluefox  fr
 - Sleeping records can be loaded 2 times a day to reduce API calls
 
 ## Known Bugs
-At the moment the Authorization method is not working in Chrome >86. So as workaround create the tokens in firefox. Then the adadpter runs without problems. First login to FitBit Home page to get the cookie, then the update works
+- none at the moment
 
 ## Changelog
 [Changelog](./CHANGELOG.md)
