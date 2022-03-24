@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Popup</title>
+
+    <script type="text/javascript">
+       const urlParams = new URLSearchParams(window.location.search);
+        //var index = window.open("http://localhost:8081/adapter/fitbit-fitness/index_m.html");
+        var code = urlParams.get('code');
+       
+        window.opener.postMessage({ code: code }, '*');
+        window.close();
+    </script>
+
+</head>
+
+<body>
+    getData
+</body>
+
+</html>
