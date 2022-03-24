@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "fitbit-fitness",
-        "version": "0.3.1",
+        "version": "0.3.2",
         "news": {
+            "0.3.2": {
+                "en": "changed the auth method. Tested also with Chrome",
+                "de": "die Authentifizierungsmethode geändert. Auch mit Chrome getestet",
+                "ru": "изменил метод авторизации. Проверено также с Chrome",
+                "pt": "mudou o método de autenticação. Testado também com Chrome",
+                "nl": "de auth-methode gewijzigd. Ook getest met Chrome",
+                "fr": "changé la méthode d'authentification. Testé aussi avec Chrome",
+                "it": "cambiato il metodo di autenticazione. Testato anche con Chrome",
+                "es": "cambió el método de autenticación. Probado también con Chrome",
+                "pl": "zmieniono metodę uwierzytelniania. Testowane również z Chrome",
+                "zh-cn": "更改了身份验证方法。也用 Chrome 测试过"
+            },
             "0.3.1": {
                 "en": "changed the auth method. resolved the bug with iframe. Now also chrome is working",
                 "de": "die Authentifizierungsmethode geändert. Fehler mit iframe behoben. Jetzt funktioniert auch Chrom",
