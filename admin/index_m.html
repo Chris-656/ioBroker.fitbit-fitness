@@ -20,7 +20,7 @@
 	<script type="text/javascript" src="words.js"></script>
 
 	<script type="text/javascript">
-		var clientID = '2387KZ';
+		var clientID = '2387KZ';  //2387KZ
 		var clientSecret = 'bf343e0474cca869afb218975585b2e2';
 		// Original
 		// var clientID = '22BD68';
@@ -61,30 +61,23 @@
 			});
 
 			$('.table-button-do').on('click', function () {
-				var url = 'https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=' + clientID + '&redirect_uri=https%3A%2F%2Foauth.iobroker.in%2Ftoken&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=2592000000';
-
-				var $iframe = $('#iframe');
-				$('#iframe_div').show();
-				$('.no-iframe').hide();
-				$('.tokens').hide();
-				$iframe.attr('src', url).show();
-				$iframe.css('border', '1px solid red');
-				//window.alert(url);
+				var url = `https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=${clientID}&redirect_uri=http%3A%2F%2Flocalhost%3A8081%2Fadapter%2Ffitbit-fitness%2FgetCode.html&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=2592000000`;
+				var popup = window.open(url, "mywindow", "width=850, height=850");
 			});
 
 			var eventMethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
 			var eventer = window[eventMethod];
 			var messageEvent = eventMethod === 'attachEvent' ? 'onmessage' : 'message';
+
 			eventer(messageEvent, function (e) {
-				//console.log(e.data);
-				//window.alert("TTTTT");
-				$('#iframe').css('border', '0').hide();
-				$('#iframe_div').hide();
+
+				//$('#iframe_div').hide();
 				$('.tokens').show();
 				$('.no-iframe').show();
-				//$('.owntoken').hide();
 
-				if (e.data) {
+				if (e.data.code) {
+					var urlGetAuth = `grant_type=authorization_code&clientId=${clientID}&redirect_uri=http%3A%2F%2Flocalhost%3A8081%2Fadapter%2Ffitbit-fitness%2FgetCode.html&code=${e.data.code}`;
+
 					$.ajax({
 						url: 'https://api.fitbit.com/oauth2/token',
 						type: 'POST',
@@ -92,7 +85,7 @@
 							'Content-Type': 'application/x-www-form-urlencoded',
 							'Authorization': 'Basic ' + btoa(clientID + ':' + clientSecret),
 						},
-						data: 'clientId=' + clientID + '&grant_type=authorization_code&redirect_uri=https%3A%2F%2Foauth.iobroker.in%2Ftoken&code=' + e.data,
+						data: urlGetAuth
 					}).done(function (data) {
 						var time = new Date();
 						time.setSeconds(time.getSeconds() + data.expires_in);
@@ -138,29 +131,6 @@
 				}
 			});
 
-			// var $ownToken = $('#ownToken');
-
-			// if (settings.token) {
-			// 	$ownToken.prop('checked', true);
-			// 	$('.owntoken').show();
-			// 	$('.generate').hide();
-			// } else {
-			// 	$('.owntoken').hide();
-			// 	$('.generate').show();
-			// }
-
-			// $ownToken.on('change', function () {
-			// 	var val = $(this).prop('checked');
-			// 	if (val) {
-			// 		$('.owntoken').show();
-			// 		$('.generate').hide();
-			// 	} else {
-			// 		$('.owntoken').hide();
-			// 		$('.generate').show();
-			// 		$('#token').val('');
-			// 		onChange();
-			// 	}
-			// });
 			onChange(false);
 			// reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
 			if (M) M.updateTextFields();
@@ -202,38 +172,14 @@
 						<img src="fitbit-fitness.png" alt="logo" class="logo">
 					</div>
 				</div>
-
-				<!-- <div class="row no-iframe">
-					<div class="input-field col s3">
-						<i class="material-icons prefix">account_circle</i>
-						<input id="clientid" class="value" type="text">
-						<label for="clientid" class="translate">clientid</label>
-					</div>
-					<div class="input-field col s3">
-						<i class="material-icons prefix">account_circle</i>
-						<input id="clientsecret" class="value" type="text">
-						<label for="clientsecret" class="translate">clientsecret</label>
-					</div>
-				</div> -->
-				<!-- <div class="row no-iframe">
-					<div class="input-field col s12 m6 l4">
-						<input class="value" id="owntoken" type="checkbox">
-						<span for="owntoken" class="translate">I have yet an access token</span>
-					</div>
-				</div>
-				<div class="row owntoken no-iframe">
-					<div class="input-field col s12">
-						<input class="value" id="token" type="text">
-						<label for="token" class="translate">token</label>
-					</div>
-				</div> -->
 				<div class="row generate no-iframe">
 					<a class="waves-effect waves-light btn blue table-button-do"><i class="material-icons">add</i><span
 							class="translate">Authorize</span></a>
 				</div>
 				<div class="row generate" id="iframe_div">
 					<iframe id="iframe" name="iframe" src=""
-						style="display: none; width: 100%; height: calc(100% - 50px); border: 0;"></iframe>
+						style="display: none; width: 100%; height: calc(100% - 50px); border: 0;">
+					</iframe>
 				</div>
 				<div class="row tokens generate no-iframe">
 					<div class="input-field col s22">

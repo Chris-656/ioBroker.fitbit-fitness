@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "fitbit-fitness",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "news": {
+            "0.3.1": {
+                "en": "changed the auth method. resolved the bug with iframe. Now also chrome is working",
+                "de": "die Authentifizierungsmethode geändert. Fehler mit iframe behoben. Jetzt funktioniert auch Chrom",
+                "ru": "изменил метод авторизации. исправлена ошибка с iframe. Теперь и хром работает",
+                "pt": "mudou o método de autenticação. resolveu o bug com iframe. Agora também o chrome está funcionando",
+                "nl": "de auth-methode gewijzigd. de bug opgelost met iframe. Nu werkt ook chroom",
+                "fr": "changé la méthode d'authentification. résolu le bogue avec iframe. Maintenant aussi le chrome fonctionne",
+                "it": "cambiato il metodo di autenticazione. risolto il bug con iframe. Ora funziona anche Chrome",
+                "es": "cambió el método de autenticación. resolvió el error con iframe. Ahora también Chrome está funcionando.",
+                "pl": "zmieniono metodę uwierzytelniania. rozwiązał błąd z iframe. Teraz również chrom działa",
+                "zh-cn": "更改了身份验证方法。用 iframe 解决了这个错误。现在chrome也在工作"
+            },
             "0.3.0": {
                 "en": "changed logging -> debug for detailed logging\nbug fixes",
                 "de": "Logging geändert -> debug für detailliertes Logging\nFehlerbehebung",

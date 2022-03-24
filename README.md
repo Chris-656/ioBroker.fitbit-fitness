@@ -11,7 +11,10 @@ This adapter retrieves fitbit data into iobroker. Ported from @GermanBluefox  fr
 - Body, Activities, Food, Sleep are retrieved individually
 - Refresh in minutes for continiously retrieving data
 - Sleeping records can be loaded 2 times a day to reduce API calls
-  
+
+## Known Bugs
+- none at the moment
+
 ## Changelog
 [Changelog](./CHANGELOG.md)
 
