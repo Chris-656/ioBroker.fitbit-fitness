@@ -2,6 +2,9 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+## **WORK IN PROGRESS**
+- changed the auth method. Tested also with Chrome
+
 ## 0.3.1 (2022-03-24)
 - changed the auth method. resolved the bug with iframe. Now also chrome is working
 
