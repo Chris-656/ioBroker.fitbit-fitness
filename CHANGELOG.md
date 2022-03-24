@@ -3,6 +3,7 @@
     ## **WORK IN PROGRESS**
 -->
 ## **WORK IN PROGRESS**
+- changed the auth method. resolved the bug with iframe. Now also chrome is working
 
 ## 0.3.0 (2022-03-22)
 - changed logging -> debug for detailed logging

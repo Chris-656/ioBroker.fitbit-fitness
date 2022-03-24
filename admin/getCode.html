@@ -4,13 +4,12 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>Popup</title>
+    <title>Getting Code from FitBit</title>
 
     <script type="text/javascript">
-       const urlParams = new URLSearchParams(window.location.search);
-        //var index = window.open("http://localhost:8081/adapter/fitbit-fitness/index_m.html");
+        const urlParams = new URLSearchParams(window.location.search);
         var code = urlParams.get('code');
-       
+
         window.opener.postMessage({ code: code }, '*');
         window.close();
     </script>
@@ -18,7 +17,7 @@
 </head>
 
 <body>
-    getData
+
 </body>
 
 </html>
