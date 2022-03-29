@@ -2,7 +2,7 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
-## 0.3.2 (2022-03-24)
+## 0.3.7 (2022-03-24)
 - changed the auth method. Tested also with Chrome
 
 ## 0.3.1 (2022-03-24)
