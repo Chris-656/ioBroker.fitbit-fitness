@@ -62,7 +62,7 @@
 			var ip = location.host;
 
 			$('.table-button-do').on('click', function () {
-				var url = `https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=${clientID}&redirect_uri=https%3A%2F%2Fraw.githubusercontent.com%2FChris-1965%2FioBroker.fitbit-fitness%2Fmaster%2Fadmin%2FgetCode.html&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=2592000000`;
+				var url = `https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=${clientID}&redirect_uri=https%3A%2F%2Fchris-1965.github.io%2Ffitbit.web%2FgetCode.html&scope=activity%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight&expires_in=2592000000`;
 				var popup = window.open(url, "mywindow", "width=850, height=850");
 			});
 
@@ -77,7 +77,7 @@
 				$('.no-iframe').show();
 
 				if (e.data.code) {
-					var urlGetAuth = `grant_type=authorization_code&clientId=${clientID}&redirect_uri=https%3A%2F%2Fraw.githubusercontent.com%2FChris-1965%2FioBroker.fitbit-fitness%2Fmaster%2Fadmin%2FgetCode.html&code=${e.data.code}`;
+					var urlGetAuth = `grant_type=authorization_code&clientId=${clientID}&redirect_uri=https%3A%2F%2Fchris-1965.github.io%2Ffitbit.web%2FgetCode.html&code=${e.data.code}`;
 
 					$.ajax({
 						url: 'https://api.fitbit.com/oauth2/token',
