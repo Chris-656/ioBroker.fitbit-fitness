@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "fitbit-fitness",
-        "version": "0.3.7",
+        "version": "0.3.8",
         "news": {
+            "0.3.8": {
+                "en": "corrected the auth method of the redirection",
+                "de": "die auth-Methode der Umleitung korrigiert",
+                "ru": "исправлен метод авторизации редиректа",
+                "pt": "corrigiu o método de autenticação do redirecionamento",
+                "nl": "de auth-methode van de omleiding gecorrigeerd",
+                "fr": "corrigé la méthode auth de la redirection",
+                "it": "corretto il metodo di autenticazione del reindirizzamento",
+                "es": "corregido el método de autenticación de la redirección",
+                "pl": "poprawiono metodę uwierzytelniania przekierowania",
+                "zh-cn": "更正了重定向的auth方法"
+            },
             "0.3.7": {
                 "en": "changed the auth method. Tested also with Chrome",
                 "de": "die Authentifizierungsmethode geändert. Auch mit Chrome getestet",

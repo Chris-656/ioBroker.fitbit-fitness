@@ -2,7 +2,7 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
-## **WORK IN PROGRESS**
+## 0.3.8 (2022-04-09)
 - corrected the auth method of the redirection 
 
 ## 0.3.7 (2022-03-24)
