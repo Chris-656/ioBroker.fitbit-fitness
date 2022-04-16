@@ -383,8 +383,6 @@ class FitBit extends utils.Adapter {
 
 
 	async checkToken() {
-		// ported from germanbluefox from his fitbit version fitbit-api thx
-		//
 
 		const stateExpire = await this.getStateAsync("tokens.expire");
 
@@ -394,10 +392,10 @@ class FitBit extends utils.Adapter {
 		const expireTime = new Date(stateExpire.val.toString()).getTime();
 		//if (this.config.debug) this.log.debug(`Expire Date time:${expireTime} left ${expireTime - Date.now()}`);
 
-		if (expireTime - Date.now() < 3600000) {		// < 1 hour refresh the token
-			//if (1 === 1) {
+		//if (expireTime - Date.now() < 3600000) {		// < 1 hour refresh the token
+		if (1 === 1) {
 			if (await this.renewToken()) {
-				this.log.debug(`Token renewed: ${expireTime}`);
+				this.log.info(`Token renewed: ${expireTime}`);
 				return true;
 			} else return false;
 		} else {
