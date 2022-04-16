@@ -320,6 +320,18 @@
             "native": {}
         },
         {
+            "_id": "activity.Floors",
+            "type": "state",
+            "common": {
+                "role": "value.health.steps",
+                "name": "Floors",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
             "_id": "activity.Calories",
             "type": "state",
             "common": {
@@ -337,6 +349,30 @@
             "common": {
                 "role": "value.health.steps",
                 "name": "Number of daily Activities",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "activity.ActiveMinutes",
+            "type": "state",
+            "common": {
+                "role": "state",
+                "name": "Active Minutes",
+                "type": "number",
+                "read": true,
+                "write": false
+            },
+            "native": {}
+        },
+        {
+            "_id": "activity.RestingHeartRate",
+            "type": "state",
+            "common": {
+                "role": "value.health.bpm",
+                "name": "Resting Heart Rate",
                 "type": "number",
                 "read": true,
                 "write": false
