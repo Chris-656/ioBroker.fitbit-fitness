@@ -2,9 +2,10 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+## **WORK IN PROGRESS**
+- added Resting Heartrate
 
 ## 0.3.9 (2022-04-16)
-- added Resting Heartrate
 - added ActiveMinutes
 - added Floors (activities)
 
