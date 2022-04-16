@@ -371,6 +371,8 @@ class FitBit extends utils.Adapter {
 				await this.setStateAsync("tokens.access", this.fitbit.tokens.access_token, true);
 				await this.setStateAsync("tokens.refresh", this.fitbit.tokens.refresh_token, true);
 				await this.setStateAsync("tokens.expire", time.toISOString(), true);
+				this.log.info(`Token renewed: ${time.toISOString()}`);
+
 				return true;
 			} else {
 				return false;
@@ -389,13 +391,12 @@ class FitBit extends utils.Adapter {
 		if (!stateExpire || !stateExpire.val)
 			throw new Error("No valid tokens. Please authenticate in configuration");
 
-		const expireTime = new Date(stateExpire.val.toString()).getTime();
+		//const expireTime = new Date(stateExpire.val.toString()).getTime();
 		//if (this.config.debug) this.log.debug(`Expire Date time:${expireTime} left ${expireTime - Date.now()}`);
 
-		//if (expireTime - Date.now() < 3600000) {		// < 1 hour refresh the token
+		//if (expireTime - Date.now() < 3600000) {		// < 1 hour refresh the token time.toISOString()
 		if (1 === 1) {
 			if (await this.renewToken()) {
-				this.log.info(`Token renewed: ${expireTime}`);
 				return true;
 			} else return false;
 		} else {
