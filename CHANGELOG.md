@@ -2,7 +2,7 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
-## **WORK IN PROGRESS**
+## 0.3.10 (2022-04-16)
 - added Resting Heartrate
 
 ## 0.3.9 (2022-04-16)

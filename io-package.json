@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "fitbit-fitness",
-        "version": "0.3.8",
+        "version": "0.3.10",
         "news": {
+            "0.3.10": {
+                "en": "added Resting Heartrate",
+                "de": "Ruheherzfrequenz hinzugefügt",
+                "ru": "добавлен пульс в состоянии покоя",
+                "pt": "adicionado batimento cardíaco em repouso",
+                "nl": "Hartslag in rust toegevoegd",
+                "fr": "ajouté Rythme cardiaque au repos",
+                "it": "aggiunto Battito cardiaco a riposo",
+                "es": "frecuencia cardiaca en reposo añadida",
+                "pl": "dodano tętno spoczynkowe",
+                "zh-cn": "添加了静息心率"
+            },
             "0.3.8": {
                 "en": "corrected the auth method of the redirection",
                 "de": "die auth-Methode der Umleitung korrigiert",
