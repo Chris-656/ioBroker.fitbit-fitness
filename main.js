@@ -188,12 +188,13 @@ class FitBit extends utils.Adapter {
 	setActivityStates(data) {
 		if (data.summary) {
 			this.fitbit.activities = data;				// First record in the array
-			this.log.info(`Activity Records: Steps:${this.fitbit.activities.summary.steps} Calories:${this.fitbit.activities.summary.caloriesOut}`);
+			this.log.info(`Activity Records: Steps:${this.fitbit.activities.summary.steps} Calories:${this.fitbit.activities.summary.caloriesOut} BPM:${this.fitbit.activities.summary.restingHeartRate}`);
 
 			this.setState("activity.Steps", this.fitbit.activities.summary.steps, true);
 			this.setState("activity.Floors", this.fitbit.activities.summary.floors, true);
 			this.setState("activity.ActiveMinutes", this.fitbit.activities.summary.veryActiveMinutes, true);
-			this.setState("activity.RestingHeartRate", this.fitbit.activities.summary.restingHeartRate, true);
+			if (this.fitbit.activities.summary.restingHeartRate)
+				this.setState("activity.RestingHeartRate", this.fitbit.activities.summary.restingHeartRate, true);
 			this.setState("activity.Calories", this.fitbit.activities.summary.caloriesOut, true);
 			this.setState("activity.ActivitiesCount", this.fitbit.activities.activities.length, true);
 			return true;
@@ -399,7 +400,7 @@ class FitBit extends utils.Adapter {
 		//if (this.config.debug) this.log.debug(`Expire Date time:${expireTime} left ${expireTime - Date.now()}`);
 
 		if (expireTime - Date.now() < 3600000) {		// < 1 hour refresh the token time.toISOString()
-		//if (1 === 1) {
+			//if (1 === 1) {
 			if (await this.renewToken()) {
 				return true;
 			} else return false;
