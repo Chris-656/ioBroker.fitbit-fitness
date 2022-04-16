@@ -2,8 +2,14 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+
+## **WORK IN PROGRESS**
+- added Resting Heartrate
+- added ActiveMinutes
+- added Floors (activities)
+
 ## 0.3.8 (2022-04-09)
-- corrected the auth method of the redirection 
+- corrected the auth method of the redirection
 
 ## 0.3.7 (2022-03-24)
 - changed the auth method. Tested also with Chrome
