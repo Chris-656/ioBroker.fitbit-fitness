@@ -397,9 +397,11 @@ class FitBit extends utils.Adapter {
 			throw new Error("No valid tokens. Please authenticate in configuration");
 
 		const expireTime = new Date(stateExpire.val.toString()).getTime();
-		this.log.info(`Expire Date time:${expireTime} DateNow ${Date.now()} left ${expireTime - Date.now()}`);
+		const now = new Date().getTime();
 
-		if (expireTime - Date.now() < 3600000) {		// < 1 hour refresh the token time.toISOString()
+		this.log.info(`Expire Date time:${expireTime} DateNow ${now} left ${expireTime - Date.now()}`);
+
+		if (expireTime - now < 3600000) {		// < 1 hour refresh the token time.toISOString()
 			//if (1 === 1) {
 			if (await this.renewToken()) {
 				return true;
