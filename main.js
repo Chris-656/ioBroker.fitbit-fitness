@@ -188,7 +188,7 @@ class FitBit extends utils.Adapter {
 	setActivityStates(data) {
 		if (data.summary) {
 			this.fitbit.activities = data;				// First record in the array
-			this.log.info(`Activity Records: Steps:${this.fitbit.activities.summary.steps} Calories:${this.fitbit.activities.summary.caloriesOut}`);
+			this.log.info(`Activity Records: Steps:${this.fitbit.activities.summary.steps} Floors:${this.fitbit.activities.summary.floors} Calories:${this.fitbit.activities.summary.caloriesOut} ${(this.fitbit.activities.summary.restingHeartRate)?"BMP"+this.fitbit.activities.summary.restingHeartRate:""}`);
 
 			this.setState("activity.Steps", this.fitbit.activities.summary.steps, true);
 			this.setState("activity.Floors", this.fitbit.activities.summary.floors, true);
