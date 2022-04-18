@@ -399,7 +399,7 @@ class FitBit extends utils.Adapter {
 		const expireTime = new Date(stateExpire.val.toString()).getTime();
 		const now = new Date().getTime();
 
-		this.log.info(`Expire Date time:${expireTime} DateNow ${now} left ${expireTime - Date.now()}`);
+		this.log.info(`Expire Date time:${expireTime} DateNow ${now} left ${expireTime - now}`);
 
 		if (expireTime - now < 3600000) {		// < 1 hour refresh the token time.toISOString()
 			//if (1 === 1) {
