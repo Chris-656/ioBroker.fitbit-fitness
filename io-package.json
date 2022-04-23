@@ -407,7 +407,7 @@
                 "name": "Weight",
                 "type": "number",
                 "read": true,
-                "write": false
+                "write": true
             },
             "native": {}
         },
