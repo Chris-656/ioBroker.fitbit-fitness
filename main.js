@@ -70,7 +70,7 @@ class FitBit extends utils.Adapter {
 				this.log.error(`Adapter Connection: ${error} `);
 			});
 
-		this.subscribeStates("*.body.weight");				// fitbit-fitness.0.body.weight
+		this.subscribeStates("*");				// fitbit-fitness.0.body.weight
 	}
 
 	async getFitbitRecords() {
@@ -449,6 +449,8 @@ class FitBit extends utils.Adapter {
 	 */
 	onStateChange(id, state) {
 
+		this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+
 		if (state) {
 			if (state && state.ack === false) {
 
@@ -456,7 +458,6 @@ class FitBit extends utils.Adapter {
 					this.log.info(`weight changed ${id} changed: ${state.val} (ack = ${state.ack})`);
 					// setstate
 				}
-				this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 			}
 		} else {
 			// The state was deleted
