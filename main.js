@@ -70,7 +70,8 @@ class FitBit extends utils.Adapter {
 				this.log.error(`Adapter Connection: ${error} `);
 			});
 
-		this.subscribeStates("*");				// fitbit-fitness.0.body.weight
+		this.subscribeStates("body.weight");				// fitbit-fitness.0.body.weight
+		//this.subscribeStates("*");				// fitbit-fitness.0.body.weight
 	}
 
 	async getFitbitRecords() {
@@ -156,9 +157,36 @@ class FitBit extends utils.Adapter {
 			});
 		}
 	}
+
+	async setWeight(actWeight) {
+		const url = `${BASE_URL}-/body/log/weight.json`;
+		const token = this.fitbit.tokens.access_token;
+
+		const datetime = this.getDateTime();
+		const payload = `weight=${actWeight}&date=${datetime.date}&time=${datetime.time}`;
+
+		try {
+			const response = await axios.post(url,
+				{
+					headers: { "Authorization": `Bearer ${token}` },
+					timeout: axiosTimeout,
+					data: payload
+				});
+
+			this.log.info(`Status: ${response.status}`);
+
+			// if (response.status === 200) {
+
+			// }
+		}
+		catch (err) {
+			this.log.warn(`${err}`);
+		}
+	}
+
 	async getActivityRecords() {
 
-		const url = `${BASE_URL}-/activities/date/${this.getDate()}.json`;
+		const url = `${BASE_URL}-/activities/date/${this.getDateTime().date}.json`;
 		const token = this.fitbit.tokens.access_token;
 
 		try {
@@ -201,7 +229,7 @@ class FitBit extends utils.Adapter {
 
 	async getBodyRecords() {
 		//const url = "https://api.fitbit.com/1/user/-/body/log/fat/date/2022-02-01.json";
-		const url = `${BASE_URL}-/body/log/weight/date/${this.getDate()}.json`;
+		const url = `${BASE_URL}-/body/log/weight/date/${this.getDateTime().date}.json`;
 
 		//const token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMjdHNUwiLCJzdWIiOiI4OTVXWEQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd3dlaSB3c29jIHdzZXQgd2FjdCB3bG9jIiwiZXhwIjoxNjQzODk0MTIwLCJpYXQiOjE2NDM4MDc3MjB9.wh7-CEc9Ysdj5CM5Tecs6AwqhWuzaaZ-s2ZMlTPpwIk";
 		const token = this.fitbit.tokens.access_token;
@@ -241,7 +269,7 @@ class FitBit extends utils.Adapter {
 	async getFoodRecords() {
 
 		//const url = "https://api.fitbit.com/1/user/-/foods/log/date/2022-02-01.json";
-		const url = `${BASE_URL}-/foods/log/date/${this.getDate()}.json`;
+		const url = `${BASE_URL}-/foods/log/date/${this.getDateTime().date}.json`;
 		const token = this.fitbit.tokens.access_token;
 
 		try {
@@ -284,7 +312,7 @@ class FitBit extends utils.Adapter {
 	}
 
 	async getSleepRecords() {
-		const url = `${BASE2_URL}-/sleep/date/${this.getDate()}.json`;
+		const url = `${BASE2_URL}-/sleep/date/${this.getDateTime().date}.json`;
 		const token = this.fitbit.tokens.access_token;
 
 		try {
@@ -409,13 +437,21 @@ class FitBit extends utils.Adapter {
 	}
 
 
-	getDate() {
+	getDateTime() {
+
+		const datetime = {};
 		const today = new Date();
 		const dd = today.getDate();
 		const mm = today.getMonth() + 1;
 		const year = today.getFullYear();
 
-		return `${year}-${mm.toString(10).padStart(2, "0")}-${dd.toString(10).padStart(2, "0")}`;
+		const hh = today.getHours();
+		const mi = today.getMinutes();
+		const ss = today.getSeconds();
+
+		datetime.date = `${year}-${mm.toString(10).padStart(2, "0")}-${dd.toString(10).padStart(2, "0")}`;
+		datetime.time = `${hh.toString(10).padStart(2, "0")}:${mi.toString(10).padStart(2, "0")}:${ss.toString(10).padStart(2, "0")}`;
+		return datetime;
 	}
 
 
@@ -449,7 +485,6 @@ class FitBit extends utils.Adapter {
 	 */
 	onStateChange(id, state) {
 
-		this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 
 		if (state) {
 			if (state && state.ack === false) {
@@ -459,29 +494,14 @@ class FitBit extends utils.Adapter {
 					// setstate
 				}
 			}
+
+			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+
 		} else {
 			// The state was deleted
 			this.log.info(`state ${id} deleted`);
 		}
 	}
-
-	// If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
-	// /**
-	//  * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
-	//  * Using this method requires "common.messagebox" property to be set to true in io-package.json
-	//  * @param {ioBroker.Message} obj
-	//  */
-	// onMessage(obj) {
-	// 	if (typeof obj === "object" && obj.message) {
-	// 		if (obj.command === "send") {
-	// 			// e.g. send email or pushover or whatever
-	// 			this.log.info("send command");
-
-	// 			// Send response in callback if required
-	// 			if (obj.callback) this.sendTo(obj.from, obj.command, "Message received", obj.callback);
-	// 		}
-	// 	}
-	// }
 
 }
 
