@@ -16,8 +16,6 @@ const axiosTimeout = 8000;
 // const clientSecret = "c4612114c93436901b6affb03a1e5ec8";
 const clientID = "2387KZ";
 const clientSecret = "bf343e0474cca869afb218975585b2e2";
-// const clientID = '2387KZ';
-// const clientSecret = '66f64352fbee230e076360245871bb09';
 
 const BASE_URL = "https://api.fitbit.com/1/user/";
 const BASE2_URL = "https://api.fitbit.com/1.2/user/";
@@ -34,15 +32,11 @@ class FitBit extends utils.Adapter {
 		});
 		this.on("ready", this.onReady.bind(this));
 		this.on("stateChange", this.onStateChange.bind(this));
-		// this.on("objectChange", this.onObjectChange.bind(this));
-		// this.on("message", this.onMessage.bind(this));
 		this.on("unload", this.onUnload.bind(this));
 
 		this.updateInterval = null;
 		this.fitbit = {};
 		this.fitbit.sleepRecordsStoredate = null;
-
-
 	}
 
 	/**
@@ -76,10 +70,9 @@ class FitBit extends utils.Adapter {
 				this.log.error(`Adapter Connection: ${error} `);
 			});
 
-		this.subscribeStates("weight");
-
-
+		this.subscribeStates("*.body.weight");				// fitbit-fitness.0.body.weight
 	}
+
 	async getFitbitRecords() {
 
 		try {
@@ -448,22 +441,6 @@ class FitBit extends utils.Adapter {
 		}
 	}
 
-	// If you need to react to object changes, uncomment the following block and the corresponding line in the constructor.
-	// You also need to subscribe to the objects with `this.subscribeObjects`, similar to `this.subscribeStates`.
-	// /**
-	//  * Is called if a subscribed object changes
-	//  * @param {string} id
-	//  * @param {ioBroker.Object | null | undefined} obj
-	//  */
-	// onObjectChange(id, obj) {
-	// 	if (obj) {
-	// 		// The object was changed
-	// 		this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
-	// 	} else {
-	// 		// The object was deleted
-	// 		this.log.info(`object ${id} deleted`);
-	// 	}
-	// }
 
 	/**
 	 * Is called if a subscribed state changes
@@ -471,20 +448,19 @@ class FitBit extends utils.Adapter {
 	 * @param {ioBroker.State | null | undefined} state
 	 */
 	onStateChange(id, state) {
+
 		if (state) {
-			// The state was changed
-			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+			if (state && state.ack === false) {
+
+				if (id.indexOf("body.weight") !== -1) {
+					this.log.info(`weight changed ${id} changed: ${state.val} (ack = ${state.ack})`);
+					// setstate
+				}
+				this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+			}
 		} else {
 			// The state was deleted
 			this.log.info(`state ${id} deleted`);
-		}
-
-		if (state && state.ack === false) {
-
-			if (id.indexOf("weight") !== -1) {
-				this.log.info(`weight changed ${id} changed: ${state.val} (ack = ${state.ack})`);
-				// setstate
-			}
 		}
 	}
 
