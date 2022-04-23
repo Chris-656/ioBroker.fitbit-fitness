@@ -76,6 +76,8 @@ class FitBit extends utils.Adapter {
 				this.log.error(`Adapter Connection: ${error} `);
 			});
 
+		this.subscribeStates("weight");
+
 
 	}
 	async getFitbitRecords() {
@@ -188,7 +190,7 @@ class FitBit extends utils.Adapter {
 	setActivityStates(data) {
 		if (data.summary) {
 			this.fitbit.activities = data;				// First record in the array
-			this.log.info(`Activity Records: Steps:${this.fitbit.activities.summary.steps} Floors:${this.fitbit.activities.summary.floors} Calories:${this.fitbit.activities.summary.caloriesOut} ${(this.fitbit.activities.summary.restingHeartRate)?"BMP:"+this.fitbit.activities.summary.restingHeartRate:""}`);
+			this.log.info(`Activity Records: Steps:${this.fitbit.activities.summary.steps} Floors:${this.fitbit.activities.summary.floors} Calories:${this.fitbit.activities.summary.caloriesOut} ${(this.fitbit.activities.summary.restingHeartRate) ? "BMP:" + this.fitbit.activities.summary.restingHeartRate : ""}`);
 
 			this.setState("activity.Steps", this.fitbit.activities.summary.steps, true);
 			this.setState("activity.Floors", this.fitbit.activities.summary.floors, true);
@@ -475,6 +477,14 @@ class FitBit extends utils.Adapter {
 		} else {
 			// The state was deleted
 			this.log.info(`state ${id} deleted`);
+		}
+
+		if (state && state.ack === false) {
+
+			if (id.indexOf("weight") !== -1) {
+				this.log.info(`weight changed ${id} changed: ${state.val} (ack = ${state.ack})`);
+				// setstate
+			}
 		}
 	}
 
