@@ -332,6 +332,18 @@
             "native": {}
         },
         {
+            "_id": "activity.HeartRate-ts",
+            "type": "state",
+            "common": {
+                "role": "value.health.heartrate",
+                "name": "heartrate",
+                "type": "number",
+                "read": true,
+                "write": true
+            },
+            "native": {}
+        },
+        {
             "_id": "activity.Floors",
             "type": "state",
             "common": {
@@ -431,7 +443,7 @@
                 "name": "FAT",
                 "type": "number",
                 "read": true,
-                "write": false
+                "write": true
             },
             "native": {}
         },

@@ -71,6 +71,7 @@ class FitBit extends utils.Adapter {
 			});
 
 		this.subscribeStates("body.weight");				// fitbit-fitness.0.body.weight
+		this.subscribeStates("body.fat");				// fitbit-fitness.0.body.weight
 		//this.subscribeStates("*");				// fitbit-fitness.0.body.weight
 	}
 
@@ -158,20 +159,76 @@ class FitBit extends utils.Adapter {
 		}
 	}
 
+	async getLastHistoryEntry(id) {
+		return new Promise((resolve, reject) => {
+			const date = new Date().getTime();
+			let state;
+
+			this.sendTo("history.0", "getHistory", {
+				id: id,
+				options: {
+					start: date - 60 * 60 * 1000,
+					end: date,
+					//count: 1,
+					aggregate: "none" // or 'none' to get raw values
+				}
+			}, (ret) => {
+
+				// @ts-ignore
+				if (ret && ret.error) {
+					reject("Error: " + ret.error);
+				} else {
+					//this.log.info(`Result: ${JSON.stringify(ret)} `);
+					// @ts-ignore
+					if (ret && ret.result) {
+						state = ret.result.slice(-1)[0];
+						resolve(state);
+					}
+				}
+			});
+		});
+	}
+
+	async syncHeartRateTS() {
+
+		const date = new Date();
+		date.setDate(date.getDate() - 3);
+		const tsNow = date.getTime();
+		const ts1 = tsNow - 1000 * 60;
+		const ts2 = ts1 - 1000 * 60;
+		const ts3 = ts2 - 1000 * 60;
+
+		const statearr = [];
+		statearr.push({ ts: tsNow, val: 99, q: 0 });
+		statearr.push({ ts: ts1, val: 98, q: 0 });
+		statearr.push({ ts: ts2, val: 96, q: 0 });
+		statearr.push({ ts: ts3, val: 95, q: 0 });
+
+		this.sendTo("history.0", "storeState", {
+			id: "fitbit-fitness.0.activity.HeartRate-ts",
+			state: statearr
+		}, result => {
+			this.log.info(`data inserted ${JSON.stringify(result)}`);
+		}
+		);
+	}
+
 	async setWeight(actWeight) {
 		const url = `${BASE_URL}-/body/log/weight.json`;
 		const token = this.fitbit.tokens.access_token;
 
 		const datetime = this.getDateTime();
 		const payload = `weight=${actWeight}&date=${datetime.date}&time=${datetime.time}`;
+		this.log.info(`Payload: ${payload}`);
 
 		try {
-			const response = await axios.post(url,
-				{
-					headers: { "Authorization": `Bearer ${token}` },
-					timeout: axiosTimeout,
-					data: payload
-				});
+			const response = await axios({
+				url: url,
+				method: "post",
+				headers: { "Authorization": `Bearer ${token}` },
+				timeout: axiosTimeout,
+				data: payload
+			});
 
 			this.log.info(`Status: ${response.status}`);
 
@@ -181,6 +238,30 @@ class FitBit extends utils.Adapter {
 		}
 		catch (err) {
 			this.log.warn(`${err}`);
+		}
+	}
+
+	async getHeartRateTimeSeries(from, period) {
+
+		const url = `${BASE_URL}-/activities/heart/date/${from}/${period}.json`;
+		const url1 = `https://api.fitbit.com/1/user/-/activities/heart/date/${from}/${period}/1min/time/17:00/19:00.json`;
+		const token = this.fitbit.tokens.access_token;
+		//this.log.debug(`token: ${token}`);
+
+		try {
+			const response = await axios({
+				url: url,
+				method: "get",
+				headers: { "Authorization": `Bearer ${token}` },
+				timeout: axiosTimeout
+			});
+			//this.log.info(`DATA: ${JSON.stringify(response.status)}`);
+			if (response.status === 200) {
+				return (response.data);
+			}
+		}
+		catch (err) {
+			return (`Error in Heartrate ${err}`);
 		}
 	}
 
@@ -231,7 +312,6 @@ class FitBit extends utils.Adapter {
 		//const url = "https://api.fitbit.com/1/user/-/body/log/fat/date/2022-02-01.json";
 		const url = `${BASE_URL}-/body/log/weight/date/${this.getDateTime().date}.json`;
 
-		//const token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMjdHNUwiLCJzdWIiOiI4OTVXWEQiLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd251dCB3cHJvIHdzbGUgd3dlaSB3c29jIHdzZXQgd2FjdCB3bG9jIiwiZXhwIjoxNjQzODk0MTIwLCJpYXQiOjE2NDM4MDc3MjB9.wh7-CEc9Ysdj5CM5Tecs6AwqhWuzaaZ-s2ZMlTPpwIk";
 		const token = this.fitbit.tokens.access_token;
 		try {
 			const response = await axios.get(url,
@@ -254,10 +334,12 @@ class FitBit extends utils.Adapter {
 
 	setBodyStates(data) {
 		if (data.weight.length > 0) {
-			this.fitbit.body = data.weight[0];				// First record in the array
+			this.fitbit.body = data.weight.slice(-1);				// last record entry from a day
+
 			this.log.info(`Body records: Weight:${this.fitbit.body.weight} Fat:${this.fitbit.body.fat} BMI:${this.fitbit.body.bmi}`);
 			this.setState("body.weight", this.fitbit.body.weight, true);
-			this.setState("body.fat", this.fitbit.body.fat, true);
+			if (this.fitbit.body.fat)
+				this.setState("body.fat", this.fitbit.body.fat, true);
 			this.setState("body.bmi", this.fitbit.body.bmi, true);
 			return true;
 		}
@@ -437,20 +519,21 @@ class FitBit extends utils.Adapter {
 	}
 
 
-	getDateTime() {
+	getDateTime(ts = new Date()) {
 
 		const datetime = {};
-		const today = new Date();
-		const dd = today.getDate();
-		const mm = today.getMonth() + 1;
-		const year = today.getFullYear();
+		const date = new Date(ts);
+		const dd = date.getDate();
+		const mm = date.getMonth() + 1;
+		const year = date.getFullYear();
 
-		const hh = today.getHours();
-		const mi = today.getMinutes();
-		const ss = today.getSeconds();
+		const hh = date.getHours();
+		const mi = date.getMinutes();
+		const ss = date.getSeconds();
 
 		datetime.date = `${year}-${mm.toString(10).padStart(2, "0")}-${dd.toString(10).padStart(2, "0")}`;
 		datetime.time = `${hh.toString(10).padStart(2, "0")}:${mi.toString(10).padStart(2, "0")}:${ss.toString(10).padStart(2, "0")}`;
+		datetime.ts = date.getTime();
 		return datetime;
 	}
 
@@ -483,20 +566,35 @@ class FitBit extends utils.Adapter {
 	 * @param {string} id
 	 * @param {ioBroker.State | null | undefined} state
 	 */
-	onStateChange(id, state) {
-
+	async onStateChange(id, state) {
 
 		if (state) {
 			if (state && state.ack === false) {
 
 				if (id.indexOf("body.weight") !== -1) {
 					this.log.info(`weight changed ${id} changed: ${state.val} (ack = ${state.ack})`);
-					// setstate
+					this.setWeight(state.val);
+				}
+
+				if (id.indexOf("body.fat") !== -1) {
+					this.log.info(`fat changed ${id} changed: ${state.val} (ack = ${state.ack})`);
+
+					// const historyState = await this.getLastHistoryEntry(id);
+					// const datetime = this.getDateTime(historyState.ts);
+					// const now = this.getDateTime();
+					// const daysbetween = (now.ts - datetime.ts)/(1000*60*60*24);
+
+					// this.log.info(`Last History entry: From:${now.date}:${now.time} to:${datetime.date}:${datetime.time} Days:${daysbetween}`);
+					// const tslist = await this.getHeartRateTimeSeries(datetime.date, "1d");
+
+					// const ts = tslist["activities-heart-intraday"]["dataset"];
+					// this.log.info(`tsnew: ${JSON.stringify(ts[0])}`);
+					// const ts_new = ts.map(el => {
+					// 	//this.log.info(`tsnew: ${el.time} val:${el.value}`);
+					// });
+
 				}
 			}
-
-			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-
 		} else {
 			// The state was deleted
 			this.log.info(`state ${id} deleted`);
