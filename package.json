@@ -1,6 +1,6 @@
 {
   "name": "iobroker.fitbit-fitness",
-  "version": "0.3.10",
+  "version": "0.4.0",
   "description": "retrieves data from FITBIT",
   "author": "Chris <besterquester@live.at>",
   "homepage": "https://github.com/Chris-1965/ioBroker.fitbit-fitness",
@@ -20,7 +20,7 @@
     "node-schedule": "^2.1.0"
   },
   "devDependencies": {
-    "@alcalzone/release-script": "^2.2.2",
+    "@alcalzone/release-script": "^3.5.9",
     "@iobroker/testing": "^2.5.4",
     "@types/chai": "^4.3.0",
     "@types/chai-as-promised": "^7.1.5",

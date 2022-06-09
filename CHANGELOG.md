@@ -2,7 +2,7 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
-## **WORK IN PROGRESS**
+## 0.4.0 (2022-06-09)
 - fixed lower case iobroker
 - moved axios to normal dependency
 - changed node.schedule to random schedule with an hour
@@ -39,7 +39,6 @@
 ## 0.2.3 (2022-02-15)
 - added Food: Carbs, Fiber, Sodium
 - fixed Water recording
-
 
 ## 0.2.2 (2022-02-14)
 - Bug fixes
