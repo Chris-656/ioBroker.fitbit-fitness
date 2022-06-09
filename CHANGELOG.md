@@ -2,6 +2,12 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+## **WORK IN PROGRESS**
+- fixed lower case iobroker
+- moved axios to normal dependency
+- changed node.schedule to random schedule with an hour
+- prepared for syncing history data will come in the next versions
+
 ## 0.3.10 (2022-04-16)
 - added Resting Heartrate
 

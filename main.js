@@ -150,8 +150,10 @@ class FitBit extends utils.Adapter {
 
 	initSleepSchedule() {
 		if (this.config.sleeprecordsschedule && this.config.sleeprecords) {
+			const rndMinutes = Math.floor(Math.random() * 59);
+
 			this.log.info(`Schedule for sleep activated`);
-			this.schedule = mSchedule.scheduleJob("0 10,20 * * *", () => {
+			this.schedule = mSchedule.scheduleJob(`${rndMinutes} 20 * * *"`, () => {
 				if (this.config.sleeprecords) {
 					this.getSleepRecords();
 				}
@@ -159,7 +161,20 @@ class FitBit extends utils.Adapter {
 		}
 	}
 
-	async getLastHistoryEntry(id) {
+	async writeHistorytoState(id, historyInstance = "history.0", statearr) {
+		// const statearr = [];
+		// statearr.push({ ts: tsNow, val: 99, q: 0 });
+
+		this.sendTo(historyInstance, "storeState", {
+			id: id,
+			state: statearr
+		}, result => {
+			console.log(`data inserted ${JSON.stringify(result)}`);
+		}
+		);
+	}
+
+	async getLastHistoryDate(id) {
 		return new Promise((resolve, reject) => {
 			const date = new Date().getTime();
 			let state;
@@ -169,48 +184,49 @@ class FitBit extends utils.Adapter {
 				options: {
 					start: date - 60 * 60 * 1000,
 					end: date,
-					//count: 1,
+					count: 1,
 					aggregate: "none" // or 'none' to get raw values
 				}
 			}, (ret) => {
 
 				// @ts-ignore
 				if (ret && ret.error) {
+					// @ts-ignore
 					reject("Error: " + ret.error);
 				} else {
-					//this.log.info(`Result: ${JSON.stringify(ret)} `);
 					// @ts-ignore
 					if (ret && ret.result) {
+						// @ts-ignore
 						state = ret.result.slice(-1)[0];
-						resolve(state);
+						resolve(this.getDateTime(state.ts));
 					}
 				}
 			});
 		});
 	}
 
-	async syncHeartRateTS() {
+	async syncHeartRateTS(id, historyInstance = "history.0") {
 
-		const date = new Date();
-		date.setDate(date.getDate() - 3);
-		const tsNow = date.getTime();
-		const ts1 = tsNow - 1000 * 60;
-		const ts2 = ts1 - 1000 * 60;
-		const ts3 = ts2 - 1000 * 60;
+		const historyValues = [];
+		const from = await this.getLastHistoryDate(id);
+		const now = this.getDateTime();
 
-		const statearr = [];
-		statearr.push({ ts: tsNow, val: 99, q: 0 });
-		statearr.push({ ts: ts1, val: 98, q: 0 });
-		statearr.push({ ts: ts2, val: 96, q: 0 });
-		statearr.push({ ts: ts3, val: 95, q: 0 });
+		this.log.info(`Syncing data from:${from.dateString}:${from.time} to: ${now.dateString}:${now.time}`);
 
-		this.sendTo("history.0", "storeState", {
-			id: "fitbit-fitness.0.activity.HeartRate-ts",
-			state: statearr
-		}, result => {
-			this.log.info(`data inserted ${JSON.stringify(result)}`);
+		for (let i = from.date; i <= now.date; i.setDate(i.getDate() + 1)) {
+			const stepDate = this.getDateTime(i);
+			const timefrom = (i == from.date)?from.timeShort:"00:00";
+			const timeto = (i == now.date)?now.timeShort:"23:59";
+			this.log.info(`   ... syncing: ${stepDate.dateString} from ${timefrom} to ${timeto}`);
+			const intradayHeartRates = await this.getHeartRateTimeSeries(stepDate.dateString, timefrom,timeto);
+			//const dataset = intradayHeartRates["activities-heart-intraday"]["dataset"];
+
+			intradayHeartRates.map(el => {
+				//this.log.info(`Date : ${`${stepDate.dateString}T${el.time}`}`);
+				historyValues.push({ ts: new Date(`${stepDate.dateString}T${el.time}`), val: el.value, q: 0 });
+			});
 		}
-		);
+		this.writeHistorytoState(id, historyInstance, historyValues);
 	}
 
 	async setWeight(actWeight) {
@@ -218,7 +234,7 @@ class FitBit extends utils.Adapter {
 		const token = this.fitbit.tokens.access_token;
 
 		const datetime = this.getDateTime();
-		const payload = `weight=${actWeight}&date=${datetime.date}&time=${datetime.time}`;
+		const payload = `weight=${actWeight}&date=${datetime.dateString}&time=${datetime.time}`;
 		this.log.info(`Payload: ${payload}`);
 
 		try {
@@ -241,10 +257,10 @@ class FitBit extends utils.Adapter {
 		}
 	}
 
-	async getHeartRateTimeSeries(from, period) {
+	async getHeartRateTimeSeries(dateFrom, timeFrom, timeTo) {
 
-		const url = `${BASE_URL}-/activities/heart/date/${from}/${period}.json`;
-		const url1 = `https://api.fitbit.com/1/user/-/activities/heart/date/${from}/${period}/1min/time/17:00/19:00.json`;
+		const url = `${BASE_URL}-/activities/heart/date/${dateFrom}/1d/1min/time/${timeFrom}/${timeTo}.json`;
+		//const url1 = `https://api.fitbit.com/1/user/-/activities/heart/date/${from}/${period}/1min/time/17:00/19:00.json`;
 		const token = this.fitbit.tokens.access_token;
 		//this.log.debug(`token: ${token}`);
 
@@ -257,7 +273,8 @@ class FitBit extends utils.Adapter {
 			});
 			//this.log.info(`DATA: ${JSON.stringify(response.status)}`);
 			if (response.status === 200) {
-				return (response.data);
+				const intradayData = response.data["activities-heart-intraday"]["dataset"];
+				return (intradayData);
 			}
 		}
 		catch (err) {
@@ -310,7 +327,7 @@ class FitBit extends utils.Adapter {
 
 	async getBodyRecords() {
 		//const url = "https://api.fitbit.com/1/user/-/body/log/fat/date/2022-02-01.json";
-		const url = `${BASE_URL}-/body/log/weight/date/${this.getDateTime().date}.json`;
+		const url = `${BASE_URL}-/body/log/weight/date/${this.getDateTime().dateString}.json`;
 
 		const token = this.fitbit.tokens.access_token;
 		try {
@@ -351,7 +368,7 @@ class FitBit extends utils.Adapter {
 	async getFoodRecords() {
 
 		//const url = "https://api.fitbit.com/1/user/-/foods/log/date/2022-02-01.json";
-		const url = `${BASE_URL}-/foods/log/date/${this.getDateTime().date}.json`;
+		const url = `${BASE_URL}-/foods/log/date/${this.getDateTime().dateString}.json`;
 		const token = this.fitbit.tokens.access_token;
 
 		try {
@@ -394,7 +411,7 @@ class FitBit extends utils.Adapter {
 	}
 
 	async getSleepRecords() {
-		const url = `${BASE2_URL}-/sleep/date/${this.getDateTime().date}.json`;
+		const url = `${BASE2_URL}-/sleep/date/${this.getDateTime().dateString}.json`;
 		const token = this.fitbit.tokens.access_token;
 
 		try {
@@ -519,10 +536,11 @@ class FitBit extends utils.Adapter {
 	}
 
 
-	getDateTime(ts = new Date()) {
+	getDateTime(ts = new Date(), addDays = 0) {
 
 		const datetime = {};
 		const date = new Date(ts);
+		date.setDate(date.getDate() + addDays);
 		const dd = date.getDate();
 		const mm = date.getMonth() + 1;
 		const year = date.getFullYear();
@@ -531,8 +549,10 @@ class FitBit extends utils.Adapter {
 		const mi = date.getMinutes();
 		const ss = date.getSeconds();
 
-		datetime.date = `${year}-${mm.toString(10).padStart(2, "0")}-${dd.toString(10).padStart(2, "0")}`;
+		datetime.dateString = `${year}-${mm.toString(10).padStart(2, "0")}-${dd.toString(10).padStart(2, "0")}`;
+		datetime.date = date;
 		datetime.time = `${hh.toString(10).padStart(2, "0")}:${mi.toString(10).padStart(2, "0")}:${ss.toString(10).padStart(2, "0")}`;
+		datetime.timeShort = `${hh.toString(10).padStart(2, "0")}:${mi.toString(10).padStart(2, "0")}`;
 		datetime.ts = date.getTime();
 		return datetime;
 	}
@@ -576,24 +596,10 @@ class FitBit extends utils.Adapter {
 					this.setWeight(state.val);
 				}
 
-				if (id.indexOf("body.fat") !== -1) {
-					this.log.info(`fat changed ${id} changed: ${state.val} (ack = ${state.ack})`);
-
-					// const historyState = await this.getLastHistoryEntry(id);
-					// const datetime = this.getDateTime(historyState.ts);
-					// const now = this.getDateTime();
-					// const daysbetween = (now.ts - datetime.ts)/(1000*60*60*24);
-
-					// this.log.info(`Last History entry: From:${now.date}:${now.time} to:${datetime.date}:${datetime.time} Days:${daysbetween}`);
-					// const tslist = await this.getHeartRateTimeSeries(datetime.date, "1d");
-
-					// const ts = tslist["activities-heart-intraday"]["dataset"];
-					// this.log.info(`tsnew: ${JSON.stringify(ts[0])}`);
-					// const ts_new = ts.map(el => {
-					// 	//this.log.info(`tsnew: ${el.time} val:${el.value}`);
-					// });
-
-				}
+				// if (id.indexOf("body.fat") !== -1) {
+				// 	this.log.info(`fat changed ${id} changed: ${state.val} (ack = ${state.ack})`);
+				// 	this.syncHeartRateTS("fitbit-fitness.0.activity.HeartRate-ts");
+				// }
 			}
 		} else {
 			// The state was deleted
