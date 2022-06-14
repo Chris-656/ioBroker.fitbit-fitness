@@ -152,8 +152,8 @@ class FitBit extends utils.Adapter {
 		if (this.config.sleeprecordsschedule && this.config.sleeprecords) {
 			const rndMinutes = Math.floor(Math.random() * 59);
 
-			this.log.info(`Schedule for sleep activated`);
-			this.schedule = mSchedule.scheduleJob(`${rndMinutes} 20 * * *"`, () => {
+			this.log.info(`Schedule for sleep activated. ${rndMinutes} 20 * * *`);
+			this.schedule = mSchedule.scheduleJob(`${rndMinutes} 20 * * *`, () => {
 				if (this.config.sleeprecords) {
 					this.getSleepRecords();
 				}
@@ -294,7 +294,7 @@ class FitBit extends utils.Adapter {
 					headers: { "Authorization": `Bearer ${token}` },
 					timeout: axiosTimeout
 				});
-			this.log.info(`getActivityRecords Status: ${response.status}`);
+			//this.log.info(`getActivityRecords Status: ${response.status}`);
 
 			if (response.status === 200) {
 				if (!this.setActivityStates(response.data)) {
