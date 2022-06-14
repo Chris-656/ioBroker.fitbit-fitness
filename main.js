@@ -215,10 +215,10 @@ class FitBit extends utils.Adapter {
 
 		for (let i = from.date; i <= now.date; i.setDate(i.getDate() + 1)) {
 			const stepDate = this.getDateTime(i);
-			const timefrom = (i == from.date)?from.timeShort:"00:00";
-			const timeto = (i == now.date)?now.timeShort:"23:59";
+			const timefrom = (i == from.date) ? from.timeShort : "00:00";
+			const timeto = (i == now.date) ? now.timeShort : "23:59";
 			this.log.info(`   ... syncing: ${stepDate.dateString} from ${timefrom} to ${timeto}`);
-			const intradayHeartRates = await this.getHeartRateTimeSeries(stepDate.dateString, timefrom,timeto);
+			const intradayHeartRates = await this.getHeartRateTimeSeries(stepDate.dateString, timefrom, timeto);
 			//const dataset = intradayHeartRates["activities-heart-intraday"]["dataset"];
 
 			intradayHeartRates.map(el => {
@@ -286,6 +286,7 @@ class FitBit extends utils.Adapter {
 
 		const url = `${BASE_URL}-/activities/date/${this.getDateTime().date}.json`;
 		const token = this.fitbit.tokens.access_token;
+		this.log.info(`url: ${url}`);
 
 		try {
 			const response = await axios.get(url,
@@ -413,6 +414,7 @@ class FitBit extends utils.Adapter {
 	async getSleepRecords() {
 		const url = `${BASE2_URL}-/sleep/date/${this.getDateTime().dateString}.json`;
 		const token = this.fitbit.tokens.access_token;
+		//this.log.info(`url: ${url}`);
 
 		try {
 			const response = await axios.get(url,
@@ -428,7 +430,7 @@ class FitBit extends utils.Adapter {
 			}
 		}
 		catch (err) {
-			this.log.warn(`getSleepRecords: ${err}`);
+			this.log.warn(`getSleepRecords:${err}`);
 		}
 	}
 	setSleepStates(data) {
