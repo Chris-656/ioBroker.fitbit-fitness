@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "fitbit-fitness",
-        "version": "0.3.10",
+        "version": "0.4.10",
         "news": {
+            "0.4.0": {
+                  "en": "changed node.schedule to random schedule with an hour",
+                  "de": "node.schedule in zufallsschema mit einer stunde",
+                  "ru": "измененный node.schedule к случайному расписанию с часом",
+                  "pt": "mudou node.schedule para horário aleatório com uma hora",
+                  "nl": "veranderde node",
+                  "fr": "changé node.schedule à l'horaire aléatoire avec une heure",
+                  "it": "cambiato node.schedule a programma casuale con un'ora",
+                  "es": "cambio de nodo. horario al azar con una hora",
+                  "pl": "zmienione węzeły mają losowy plan z godziną",
+                  "zh-cn": "没有改变随时间随机安排时间。"
+                },
             "0.3.10": {
                 "en": "added Resting Heartrate",
                 "de": "Ruheherzfrequenz hinzugefügt",
@@ -186,8 +198,8 @@
         "main": "main.js",
         "icon": "fitbit-fitness.png",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/Chris-1965/iobroker.fitbit-fitness/main/admin/fitbit-fitness.png",
-        "readme": "https://github.com/Chris-1965/iobroker.fitbit-fitness/blob/main/README.md",
+        "extIcon": "https://raw.githubusercontent.com/Chris-1965/ioBroker.fitbit-fitness/main/admin/fitbit-fitness.png",
+        "readme": "https://github.com/Chris-1965/ioBroker.fitbit-fitness/blob/main/README.md",
         "loglevel": "info",
         "mode": "daemon",
         "type": "health",

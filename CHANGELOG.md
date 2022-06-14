@@ -2,6 +2,9 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+## 0.4.1 (2022-06-14)
+- clean up
+
 ## 0.4.0 (2022-06-09)
 - fixed lower case iobroker
 - moved axios to normal dependency
