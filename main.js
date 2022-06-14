@@ -286,7 +286,7 @@ class FitBit extends utils.Adapter {
 
 		const url = `${BASE_URL}-/activities/date/${this.getDateTime().dateString}.json`;
 		const token = this.fitbit.tokens.access_token;
-		this.log.info(`url: ${url}`);
+		//this.log.info(`url: ${url}`);
 
 		try {
 			const response = await axios.get(url,
