@@ -284,7 +284,7 @@ class FitBit extends utils.Adapter {
 
 	async getActivityRecords() {
 
-		const url = `${BASE_URL}-/activities/date/${this.getDateTime().date}.json`;
+		const url = `${BASE_URL}-/activities/date/${this.getDateTime().dateString}.json`;
 		const token = this.fitbit.tokens.access_token;
 		this.log.info(`url: ${url}`);
 
