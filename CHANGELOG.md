@@ -6,7 +6,7 @@
 - fixed lower case iobroker
 - moved axios to normal dependency
 - changed node.schedule to random schedule with an hour
-- prepared for syncing history data will come in the next versions server request to fitbit is pending
+- prepared for syncing history data will come in the next versions server request to fitbit is pending.
 
 ## 0.4.2 (2022-06-14)
 - further clean up and testing
