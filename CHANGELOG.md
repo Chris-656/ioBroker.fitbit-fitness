@@ -2,6 +2,13 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+## 0.4.3 (2022-06-14)
+- further clean up and testing
+-
+
+## 0.4.2 (2022-06-14)
+- further clean up and testing
+
 ## 0.4.1 (2022-06-14)
 - clean up
 

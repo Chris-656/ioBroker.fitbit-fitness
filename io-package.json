@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "fitbit-fitness",
-        "version": "0.4.10",
+        "version": "0.4.3",
         "news": {
-            "0.4.0": {
+            "0.4.3": {
                   "en": "changed node.schedule to random schedule with an hour",
                   "de": "node.schedule in zufallsschema mit einer stunde",
                   "ru": "измененный node.schedule к случайному расписанию с часом",
@@ -134,18 +134,6 @@
                 "es": "Correcciones menores",
                 "pl": "Drobne poprawki",
                 "zh-cn": "小修复"
-            },
-            "0.2.0": {
-                "en": "\n",
-                "de": "\n",
-                "ru": "\n",
-                "pt": "\n",
-                "nl": "\n",
-                "fr": "\n",
-                "it": "\n",
-                "es": "\n",
-                "pl": "\n",
-                "zh-cn": "\n"
             },
             "0.0.1": {
                 "en": "initial release",
