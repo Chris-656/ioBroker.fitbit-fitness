@@ -192,7 +192,7 @@ class FitBit extends utils.Adapter {
 				// @ts-ignore
 				if (ret && ret.error) {
 					// @ts-ignore
-					reject("Error: " + ret.error);
+					reject("Error:(gethistorydata) " + ret.error);
 				} else {
 					// @ts-ignore
 					if (ret && ret.result) {
@@ -253,7 +253,7 @@ class FitBit extends utils.Adapter {
 			// }
 		}
 		catch (err) {
-			this.log.warn(`${err}`);
+			this.log.warn(`setWeight: ${err}`);
 		}
 	}
 
@@ -293,7 +293,7 @@ class FitBit extends utils.Adapter {
 					headers: { "Authorization": `Bearer ${token}` },
 					timeout: axiosTimeout
 				});
-			//this.log.info(`Status: ${response.status}`);
+			this.log.info(`getActivityRecords Status: ${response.status}`);
 
 			if (response.status === 200) {
 				if (!this.setActivityStates(response.data)) {
@@ -302,7 +302,7 @@ class FitBit extends utils.Adapter {
 			}
 		}
 		catch (err) {
-			this.log.warn(`${err}`);
+			this.log.warn(`getActivityRecords: ${err}`);
 		}
 	}
 
@@ -345,7 +345,7 @@ class FitBit extends utils.Adapter {
 			}
 		}
 		catch (err) {
-			this.log.warn(`${err}`);
+			this.log.warn(`getBodyRecords: ${err}`);
 		}
 	}
 
@@ -385,7 +385,7 @@ class FitBit extends utils.Adapter {
 			}
 		}
 		catch (err) {
-			this.log.warn(`${err}`);
+			this.log.warn(`getFoodRecords: ${err}`);
 		}
 	}
 
@@ -428,7 +428,7 @@ class FitBit extends utils.Adapter {
 			}
 		}
 		catch (err) {
-			this.log.warn(`${err}`);
+			this.log.warn(`getSleepRecords: ${err}`);
 		}
 	}
 	setSleepStates(data) {
