@@ -3,7 +3,7 @@
     ## **WORK IN PROGRESS**
 -->
 ## 0.4.4 (2022-06-16)
-- fixed minor issues
+- fixed minor issues with versions and testing
 
 ## 0.4.3 (2022-06-14)
 - fixed lower case iobroker
