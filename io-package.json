@@ -3,17 +3,17 @@
     "name": "fitbit-fitness",
     "version": "0.4.4",
     "news": {
-      "0.4.4": {
-        "en": "test",
-        "de": "prüfverfahren",
-        "ru": "тест",
-        "pt": "teste de teste",
-        "nl": "test",
-        "fr": "essai",
-        "it": "test di prova",
-        "es": "prueba",
-        "pl": "test",
-        "zh-cn": "试验"
+      "0.4.4":  {
+        "en": "fixed minor issues",
+        "de": "feste kleinere probleme",
+        "ru": "фиксированные мелкие вопросы",
+        "pt": "problemas menores",
+        "nl": "gerepareerde kleine kwesties",
+        "fr": "questions mineures",
+        "it": "problemi minori fissi",
+        "es": "cuestiones menores fijas",
+        "pl": "drobna kwestia",
+        "zh-cn": "固定问题"
       },
       "0.4.3": {
         "en": "changed node.schedule to random schedule with an hour",
