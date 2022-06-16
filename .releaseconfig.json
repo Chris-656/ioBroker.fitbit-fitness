@@ -1,5 +1,6 @@
 {
 	"plugins": ["iobroker"],
     "dry": true,
-    "no-workflow-check":true
+    "no-workflow-check":true,
+    "all":true
 }
