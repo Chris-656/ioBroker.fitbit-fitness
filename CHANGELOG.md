@@ -2,6 +2,9 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+## 0.4.5 (2022-06-16)
+ - bumping version 0.4.5
+
 ## 0.4.4 (2022-06-16)
 - fixed minor issues with versions and testing
 
