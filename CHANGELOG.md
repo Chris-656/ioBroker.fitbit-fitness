@@ -2,7 +2,7 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
-## **WORK IN PROGRESS**
+## 0.4.4 (2022-06-16)
 - test
 
 ## 0.4.3 (2022-06-14)

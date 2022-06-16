@@ -1,615 +1,555 @@
 {
-    "common": {
-        "name": "fitbit-fitness",
-        "version": "0.4.3",
-        "news": {
-            "0.4.3": {
-                  "en": "changed node.schedule to random schedule with an hour",
-                  "de": "node.schedule in zufallsschema mit einer stunde",
-                  "ru": "измененный node.schedule к случайному расписанию с часом",
-                  "pt": "mudou node.schedule para horário aleatório com uma hora",
-                  "nl": "veranderde node",
-                  "fr": "changé node.schedule à l'horaire aléatoire avec une heure",
-                  "it": "cambiato node.schedule a programma casuale con un'ora",
-                  "es": "cambio de nodo. horario al azar con una hora",
-                  "pl": "zmienione węzeły mają losowy plan z godziną",
-                  "zh-cn": "没有改变随时间随机安排时间。"
-                },
-            "0.3.10": {
-                "en": "added Resting Heartrate",
-                "de": "Ruheherzfrequenz hinzugefügt",
-                "ru": "добавлен пульс в состоянии покоя",
-                "pt": "adicionado batimento cardíaco em repouso",
-                "nl": "Hartslag in rust toegevoegd",
-                "fr": "ajouté Rythme cardiaque au repos",
-                "it": "aggiunto Battito cardiaco a riposo",
-                "es": "frecuencia cardiaca en reposo añadida",
-                "pl": "dodano tętno spoczynkowe",
-                "zh-cn": "添加了静息心率"
-            },
-            "0.3.8": {
-                "en": "corrected the auth method of the redirection",
-                "de": "die auth-Methode der Umleitung korrigiert",
-                "ru": "исправлен метод авторизации редиректа",
-                "pt": "corrigiu o método de autenticação do redirecionamento",
-                "nl": "de auth-methode van de omleiding gecorrigeerd",
-                "fr": "corrigé la méthode auth de la redirection",
-                "it": "corretto il metodo di autenticazione del reindirizzamento",
-                "es": "corregido el método de autenticación de la redirección",
-                "pl": "poprawiono metodę uwierzytelniania przekierowania",
-                "zh-cn": "更正了重定向的auth方法"
-            },
-            "0.3.7": {
-                "en": "changed the auth method. Tested also with Chrome",
-                "de": "die Authentifizierungsmethode geändert. Auch mit Chrome getestet",
-                "ru": "изменил метод авторизации. Проверено также с Chrome",
-                "pt": "mudou o método de autenticação. Testado também com Chrome",
-                "nl": "de auth-methode gewijzigd. Ook getest met Chrome",
-                "fr": "changé la méthode d'authentification. Testé aussi avec Chrome",
-                "it": "cambiato il metodo di autenticazione. Testato anche con Chrome",
-                "es": "cambió el método de autenticación. Probado también con Chrome",
-                "pl": "zmieniono metodę uwierzytelniania. Testowane również z Chrome",
-                "zh-cn": "更改了身份验证方法。也用 Chrome 测试过"
-            },
-            "0.3.1": {
-                "en": "changed the auth method. resolved the bug with iframe. Now also chrome is working",
-                "de": "die Authentifizierungsmethode geändert. Fehler mit iframe behoben. Jetzt funktioniert auch Chrom",
-                "ru": "изменил метод авторизации. исправлена ошибка с iframe. Теперь и хром работает",
-                "pt": "mudou o método de autenticação. resolveu o bug com iframe. Agora também o chrome está funcionando",
-                "nl": "de auth-methode gewijzigd. de bug opgelost met iframe. Nu werkt ook chroom",
-                "fr": "changé la méthode d'authentification. résolu le bogue avec iframe. Maintenant aussi le chrome fonctionne",
-                "it": "cambiato il metodo di autenticazione. risolto il bug con iframe. Ora funziona anche Chrome",
-                "es": "cambió el método de autenticación. resolvió el error con iframe. Ahora también Chrome está funcionando.",
-                "pl": "zmieniono metodę uwierzytelniania. rozwiązał błąd z iframe. Teraz również chrom działa",
-                "zh-cn": "更改了身份验证方法。用 iframe 解决了这个错误。现在chrome也在工作"
-            },
-            "0.3.0": {
-                "en": "changed logging -> debug for detailed logging\nbug fixes",
-                "de": "Logging geändert -> debug für detailliertes Logging\nFehlerbehebung",
-                "ru": "изменено ведение журнала -> отладка для подробного ведения журнала\nисправление ошибок",
-                "pt": "log alterado -> depurar para log detalhado\ncorreções de bugs",
-                "nl": "gewijzigde logboekregistratie -> foutopsporing voor gedetailleerde logboekregistratie\nbugfixes",
-                "fr": "journalisation modifiée -> débogage pour une journalisation détaillée\ncorrections de bogues",
-                "it": "registrazione modificata -> debug per la registrazione dettagliata\ncorrezioni di bug",
-                "es": "registro modificado -> depurar para registro detallado\ncorrección de errores",
-                "pl": "zmienione logowanie -> debug dla szczegółowego logowania\npoprawki błędów",
-                "zh-cn": "更改日志记录 -> 调试以获取详细日志记录\nbug修复"
-            },
-            "0.2.5": {
-                "en": "add possibility to read sleep records only in the morning and evening to reduce traffic",
-                "de": "Fügen Sie die Möglichkeit hinzu, Schlafaufzeichnungen nur morgens und abends zu lesen, um den Datenverkehr zu reduzieren",
-                "ru": "добавить возможность читать записи сна только утром и вечером для уменьшения трафика",
-                "pt": "adicionar a possibilidade de ler registros de sono apenas de manhã e à noite para reduzir o tráfego",
-                "nl": "mogelijkheid toevoegen om alleen 's ochtends en' s avonds slaapgegevens te lezen om het verkeer te verminderen",
-                "fr": "ajouter la possibilité de lire les enregistrements de sommeil uniquement le matin et le soir pour réduire le trafic",
-                "it": "aggiungi la possibilità di leggere i record del sonno solo al mattino e alla sera per ridurre il traffico",
-                "es": "agregue la posibilidad de leer los registros de sueño solo por la mañana y por la noche para reducir el tráfico",
-                "pl": "dodaj możliwość odczytu zapisów snu tylko rano i wieczorem, aby zmniejszyć ruch",
-                "zh-cn": "增加仅在早上和晚上阅读睡眠记录以减少交通的可能性"
-            },
-            "0.2.4": {
-                "en": "changed the auth method (ported from @bluefox fitbit-api)\nadded a debug option to reduce the logs\nsome minor changes",
-                "de": "Authentifizierungsmethode geändert (portiert von @bluefox fitbit-api)\nDebug-Option hinzugefügt, um die Protokolle zu reduzieren\neinige kleinere Änderungen",
-                "ru": "изменен метод авторизации (портирован из @bluefox fitbit-api)\nдобавлена опция отладки для уменьшения журналов\nнекоторые незначительные изменения",
-                "pt": "alterei o método de autenticação (portado de @bluefox fitbit-api)\nadicionou uma opção de depuração para reduzir os logs\nalgumas pequenas alterações",
-                "nl": "de auth-methode gewijzigd (overgezet van @bluefox fitbit-api)\neen debug-optie toegevoegd om de logs te verkleinen\nenkele kleine wijzigingen",
-                "fr": "changé la méthode d'authentification (portée depuis @bluefox fitbit-api)\najout d'une option de débogage pour réduire les journaux\nquelques changements mineurs",
-                "it": "cambiato il metodo di autenticazione (portato da @bluefox fitbit-api)\naggiunta un'opzione di debug per ridurre i log\nalcune piccole modifiche",
-                "es": "cambió el método de autenticación (portado desde @bluefox fitbit-api)\nagregó una opción de depuración para reducir los registros\nalgunos cambios menores",
-                "pl": "zmieniono metodę uwierzytelniania (przeniesiona z @bluefox fitbit-api)\ndodano opcję debugowania, aby zmniejszyć logi\nkilka drobnych zmian",
-                "zh-cn": "更改了身份验证方法（从@bluefox fitbit-api 移植）\n添加了调试选项以减少日志\n一些小改动"
-            },
-            "0.2.3": {
-                "en": "added Food: Carbs, Fiber, Sodium\nfixed Water recording",
-                "de": "Lebensmittelzusatz: Kohlenhydrate, Ballaststoffe, Natrium\nfeste Wasseraufnahme",
-                "ru": "добавленная пища: углеводы, клетчатка, натрий\nисправлена запись воды",
-                "pt": "Alimentos adicionados: Carboidratos, Fibra, Sódio\nGravação de água fixa",
-                "nl": "toegevoegd voedsel: koolhydraten, vezels, natrium\nvaste wateropname",
-                "fr": "Aliments ajoutés : glucides, fibres, sodium\nenregistrement d'eau fixe",
-                "it": "Cibo aggiunto: carboidrati, fibre, sodio\nregistrazione dell'acqua fissa",
-                "es": "Alimentos agregados: carbohidratos, fibra, sodio\nGrabación de agua fija",
-                "pl": "dodane jedzenie: węglowodany, błonnik, sód\nnaprawiono zapis wody",
-                "zh-cn": "添加食物：碳水化合物、纤维、钠\n固定水记录"
-            },
-            "0.2.2": {
-                "en": "Bug fixes",
-                "de": "Fehlerbehebung",
-                "ru": "Исправление ошибок",
-                "pt": "Correções de bugs",
-                "nl": "Bugfixes",
-                "fr": "Corrections de bogues",
-                "it": "Correzioni di bug",
-                "es": "Corrección de errores",
-                "pl": "Poprawki błędów",
-                "zh-cn": "Bug修复"
-            },
-            "0.2.1": {
-                "en": "Minor fixes",
-                "de": "Kleinere Korrekturen",
-                "ru": "Мелкие исправления",
-                "pt": "Correções menores",
-                "nl": "Kleine reparaties",
-                "fr": "Corrections mineures",
-                "it": "Piccole correzioni",
-                "es": "Correcciones menores",
-                "pl": "Drobne poprawki",
-                "zh-cn": "小修复"
-            },
-            "0.0.1": {
-                "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "zh-cn": "首次出版"
-            }
-        },
-        "title": "Fitbit",
-        "titleLang": {
-            "en": "Fitbit",
-            "de": "Fitbit",
-            "ru": "Фитбит",
-            "pt": "Fitbit",
-            "nl": "Fitbit",
-            "fr": "Fitbit",
-            "it": "Fitbit",
-            "es": "fitbit",
-            "pl": "Fitbit",
-            "zh-cn": "Fitbit"
-        },
-        "desc": {
-            "en": "retrieves data from FITBIT",
-            "de": "ruft Daten von FITBIT ab",
-            "ru": "извлекает данные из FITBIT",
-            "pt": "recupera dados do FITBIT",
-            "nl": "haalt gegevens op van FITBIT",
-            "fr": "récupère les données de FITBIT",
-            "it": "recupera i dati da FITBIT",
-            "es": "recupera datos de FITBIT",
-            "pl": "pobiera dane z FITBIT",
-            "zh-cn": "从 FITBIT 检索数据"
-        },
-        "authors": [
-            "Chris <besterquester@live.at>"
-        ],
-        "keywords": [
-            "Fitbit",
-            "Heath",
-            "Fitness"
-        ],
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "main": "main.js",
-        "icon": "fitbit-fitness.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/Chris-1965/ioBroker.fitbit-fitness/main/admin/fitbit-fitness.png",
-        "readme": "https://github.com/Chris-1965/ioBroker.fitbit-fitness/blob/main/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "type": "health",
-        "compact": true,
-        "connectionType": "cloud",
-        "dataSource": "poll",
-        "materialize": true,
-        "dependencies": [
-            {
-                "js-controller": ">=2.0.0"
-            }
-        ]
+  "common": {
+    "name": "fitbit-fitness",
+    "version": "0.4.4",
+    "news": {
+      "0.4.4": {
+        "en": "test",
+        "de": "prüfverfahren",
+        "ru": "тест",
+        "pt": "teste de teste",
+        "nl": "test",
+        "fr": "essai",
+        "it": "test di prova",
+        "es": "prueba",
+        "pl": "test",
+        "zh-cn": "试验"
+      },
+      "0.4.3": {
+        "en": "changed node.schedule to random schedule with an hour",
+        "de": "node.schedule in zufallsschema mit einer stunde",
+        "ru": "измененный node.schedule к случайному расписанию с часом",
+        "pt": "mudou node.schedule para horário aleatório com uma hora",
+        "nl": "veranderde node",
+        "fr": "changé node.schedule à l'horaire aléatoire avec une heure",
+        "it": "cambiato node.schedule a programma casuale con un'ora",
+        "es": "cambio de nodo. horario al azar con una hora",
+        "pl": "zmienione węzeły mają losowy plan z godziną",
+        "zh-cn": "没有改变随时间随机安排时间。"
+      },
+      "0.3.10": {
+        "en": "added Resting Heartrate",
+        "de": "Ruheherzfrequenz hinzugefügt",
+        "ru": "добавлен пульс в состоянии покоя",
+        "pt": "adicionado batimento cardíaco em repouso",
+        "nl": "Hartslag in rust toegevoegd",
+        "fr": "ajouté Rythme cardiaque au repos",
+        "it": "aggiunto Battito cardiaco a riposo",
+        "es": "frecuencia cardiaca en reposo añadida",
+        "pl": "dodano tętno spoczynkowe",
+        "zh-cn": "添加了静息心率"
+      },
+      "0.3.8": {
+        "en": "corrected the auth method of the redirection",
+        "de": "die auth-Methode der Umleitung korrigiert",
+        "ru": "исправлен метод авторизации редиректа",
+        "pt": "corrigiu o método de autenticação do redirecionamento",
+        "nl": "de auth-methode van de omleiding gecorrigeerd",
+        "fr": "corrigé la méthode auth de la redirection",
+        "it": "corretto il metodo di autenticazione del reindirizzamento",
+        "es": "corregido el método de autenticación de la redirección",
+        "pl": "poprawiono metodę uwierzytelniania przekierowania",
+        "zh-cn": "更正了重定向的auth方法"
+      },
+      "0.3.7": {
+        "en": "changed the auth method. Tested also with Chrome",
+        "de": "die Authentifizierungsmethode geändert. Auch mit Chrome getestet",
+        "ru": "изменил метод авторизации. Проверено также с Chrome",
+        "pt": "mudou o método de autenticação. Testado também com Chrome",
+        "nl": "de auth-methode gewijzigd. Ook getest met Chrome",
+        "fr": "changé la méthode d'authentification. Testé aussi avec Chrome",
+        "it": "cambiato il metodo di autenticazione. Testato anche con Chrome",
+        "es": "cambió el método de autenticación. Probado también con Chrome",
+        "pl": "zmieniono metodę uwierzytelniania. Testowane również z Chrome",
+        "zh-cn": "更改了身份验证方法。也用 Chrome 测试过"
+      },
+      "0.3.1": {
+        "en": "changed the auth method. resolved the bug with iframe. Now also chrome is working",
+        "de": "die Authentifizierungsmethode geändert. Fehler mit iframe behoben. Jetzt funktioniert auch Chrom",
+        "ru": "изменил метод авторизации. исправлена ошибка с iframe. Теперь и хром работает",
+        "pt": "mudou o método de autenticação. resolveu o bug com iframe. Agora também o chrome está funcionando",
+        "nl": "de auth-methode gewijzigd. de bug opgelost met iframe. Nu werkt ook chroom",
+        "fr": "changé la méthode d'authentification. résolu le bogue avec iframe. Maintenant aussi le chrome fonctionne",
+        "it": "cambiato il metodo di autenticazione. risolto il bug con iframe. Ora funziona anche Chrome",
+        "es": "cambió el método de autenticación. resolvió el error con iframe. Ahora también Chrome está funcionando.",
+        "pl": "zmieniono metodę uwierzytelniania. rozwiązał błąd z iframe. Teraz również chrom działa",
+        "zh-cn": "更改了身份验证方法。用 iframe 解决了这个错误。现在chrome也在工作"
+      },
+      "0.3.0": {
+        "en": "changed logging -> debug for detailed logging\nbug fixes",
+        "de": "Logging geändert -> debug für detailliertes Logging\nFehlerbehebung",
+        "ru": "изменено ведение журнала -> отладка для подробного ведения журнала\nисправление ошибок",
+        "pt": "log alterado -> depurar para log detalhado\ncorreções de bugs",
+        "nl": "gewijzigde logboekregistratie -> foutopsporing voor gedetailleerde logboekregistratie\nbugfixes",
+        "fr": "journalisation modifiée -> débogage pour une journalisation détaillée\ncorrections de bogues",
+        "it": "registrazione modificata -> debug per la registrazione dettagliata\ncorrezioni di bug",
+        "es": "registro modificado -> depurar para registro detallado\ncorrección de errores",
+        "pl": "zmienione logowanie -> debug dla szczegółowego logowania\npoprawki błędów",
+        "zh-cn": "更改日志记录 -> 调试以获取详细日志记录\nbug修复"
+      }
     },
-    "native": {
-        "refresh": 5,
-        "token": "",
-        "owntoken": false,
-        "accesstoken": "",
-        "bodyrecords": false,
-        "activityrecords": false,
-        "sleeprecords": false,
-        "sleeprecordsschedule": true,
-        "foodrecords": false
+    "title": "Fitbit",
+    "titleLang": {
+      "en": "Fitbit",
+      "de": "Fitbit",
+      "ru": "Фитбит",
+      "pt": "Fitbit",
+      "nl": "Fitbit",
+      "fr": "Fitbit",
+      "it": "Fitbit",
+      "es": "fitbit",
+      "pl": "Fitbit",
+      "zh-cn": "Fitbit"
     },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "Device or service connected",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "user",
-            "type": "channel",
-            "common": {
-                "name": "user data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "user.fullName",
-            "type": "state",
-            "common": {
-                "role": "state",
-                "name": "Full Name",
-                "type": "string",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "user.userid",
-            "type": "state",
-            "common": {
-                "role": "state",
-                "name": "User Id on FitBit",
-                "type": "string",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "tokens",
-            "type": "channel",
-            "common": {
-                "name": "Access tokens"
-            },
-            "native": {}
-        },
-        {
-            "_id": "tokens.access",
-            "type": "state",
-            "common": {
-                "role": "state",
-                "name": "Access token",
-                "type": "string",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "tokens.refresh",
-            "type": "state",
-            "common": {
-                "role": "state",
-                "name": "Refresh token",
-                "type": "string",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "tokens.expire",
-            "type": "state",
-            "common": {
-                "role": "state",
-                "name": "Expire on",
-                "type": "string",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "activity",
-            "type": "channel",
-            "common": {
-                "name": "Activity records"
-            },
-            "native": {}
-        },
-        {
-            "_id": "activity.Steps",
-            "type": "state",
-            "common": {
-                "role": "value.health.steps",
-                "name": "Steps",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "activity.HeartRate-ts",
-            "type": "state",
-            "common": {
-                "role": "value.health.heartrate",
-                "name": "heartrate",
-                "type": "number",
-                "read": true,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "activity.Floors",
-            "type": "state",
-            "common": {
-                "role": "value.health.steps",
-                "name": "Floors",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "activity.Calories",
-            "type": "state",
-            "common": {
-                "role": "value.health.calories",
-                "name": "Calories",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "activity.ActivitiesCount",
-            "type": "state",
-            "common": {
-                "role": "value.health.steps",
-                "name": "Number of daily Activities",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "activity.ActiveMinutes",
-            "type": "state",
-            "common": {
-                "role": "state",
-                "name": "Active Minutes",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "activity.RestingHeartRate",
-            "type": "state",
-            "common": {
-                "role": "value.health.bpm",
-                "name": "Resting Heart Rate",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "body",
-            "type": "channel",
-            "common": {
-                "name": "Body Records"
-            },
-            "native": {}
-        },
-        {
-            "_id": "body.weight",
-            "type": "state",
-            "common": {
-                "role": "value.health.weight",
-                "name": "Weight",
-                "type": "number",
-                "read": true,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "body.bmi",
-            "type": "state",
-            "common": {
-                "role": "value.health.bmi",
-                "name": "BMI",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "body.fat",
-            "type": "state",
-            "common": {
-                "role": "value.health.fat",
-                "name": "FAT",
-                "type": "number",
-                "read": true,
-                "write": true
-            },
-            "native": {}
-        },
-        {
-            "_id": "food",
-            "type": "channel",
-            "common": {
-                "name": "food data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "food.Calories",
-            "type": "state",
-            "common": {
-                "role": "value.health.calories",
-                "name": "Calories Consumed",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "food.Carbs",
-            "type": "state",
-            "common": {
-                "role": "state",
-                "name": "Carbs Consumed",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "food.Fiber",
-            "type": "state",
-            "common": {
-                "role": "state",
-                "name": "Fiber Consumed",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "food.Fiber",
-            "type": "state",
-            "common": {
-                "role": "state",
-                "name": "Fiber Consumed",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "food.Sodium",
-            "type": "state",
-            "common": {
-                "role": "state",
-                "name": "Sodium Consumed",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "food.Fat",
-            "type": "state",
-            "common": {
-                "role": "value.health.fat",
-                "name": "food.Fat",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "food.Protein",
-            "type": "state",
-            "common": {
-                "role": "value.health.calories",
-                "name": "food.Protein",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "food.Water",
-            "type": "state",
-            "common": {
-                "role": "value.health.calories",
-                "name": "food.Water",
-                "type": "number",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "sleep",
-            "type": "channel",
-            "common": {
-                "name": "sleep data"
-            },
-            "native": {}
-        },
-        {
-            "_id": "sleep.Deep",
-            "type": "state",
-            "common": {
-                "role": "state",
-                "name": "Deep Sleep Time",
-                "type": "number",
-                "unit": "Minutes",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "sleep.Light",
-            "type": "state",
-            "common": {
-                "role": "state",
-                "name": "Light Sleep Time",
-                "type": "number",
-                "unit": "Minutes",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "sleep.Rem",
-            "type": "state",
-            "common": {
-                "role": "state",
-                "name": "REM Sleep Time",
-                "type": "number",
-                "unit": "Minutes",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        },
-        {
-            "_id": "sleep.Wake",
-            "type": "state",
-            "common": {
-                "role": "state",
-                "name": "Wake Time",
-                "type": "number",
-                "unit": "Minutes",
-                "read": true,
-                "write": false
-            },
-            "native": {}
-        }
+    "desc": {
+      "en": "retrieves data from FITBIT",
+      "de": "ruft Daten von FITBIT ab",
+      "ru": "извлекает данные из FITBIT",
+      "pt": "recupera dados do FITBIT",
+      "nl": "haalt gegevens op van FITBIT",
+      "fr": "récupère les données de FITBIT",
+      "it": "recupera i dati da FITBIT",
+      "es": "recupera datos de FITBIT",
+      "pl": "pobiera dane z FITBIT",
+      "zh-cn": "从 FITBIT 检索数据"
+    },
+    "authors": [
+      "Chris <besterquester@live.at>"
+    ],
+    "keywords": [
+      "Fitbit",
+      "Heath",
+      "Fitness"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "fitbit-fitness.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/Chris-1965/ioBroker.fitbit-fitness/main/admin/fitbit-fitness.png",
+    "readme": "https://github.com/Chris-1965/ioBroker.fitbit-fitness/blob/main/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "health",
+    "compact": true,
+    "connectionType": "cloud",
+    "dataSource": "poll",
+    "materialize": true,
+    "dependencies": [
+      {
+        "js-controller": ">=2.0.0"
+      }
     ]
+  },
+  "native": {
+    "refresh": 5,
+    "token": "",
+    "owntoken": false,
+    "accesstoken": "",
+    "bodyrecords": false,
+    "activityrecords": false,
+    "sleeprecords": false,
+    "sleeprecordsschedule": true,
+    "foodrecords": false
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "Device or service connected",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "user",
+      "type": "channel",
+      "common": {
+        "name": "user data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "user.fullName",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "Full Name",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "user.userid",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "User Id on FitBit",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "tokens",
+      "type": "channel",
+      "common": {
+        "name": "Access tokens"
+      },
+      "native": {}
+    },
+    {
+      "_id": "tokens.access",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "Access token",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "tokens.refresh",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "Refresh token",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "tokens.expire",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "Expire on",
+        "type": "string",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "activity",
+      "type": "channel",
+      "common": {
+        "name": "Activity records"
+      },
+      "native": {}
+    },
+    {
+      "_id": "activity.Steps",
+      "type": "state",
+      "common": {
+        "role": "value.health.steps",
+        "name": "Steps",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "activity.HeartRate-ts",
+      "type": "state",
+      "common": {
+        "role": "value.health.heartrate",
+        "name": "heartrate",
+        "type": "number",
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "activity.Floors",
+      "type": "state",
+      "common": {
+        "role": "value.health.steps",
+        "name": "Floors",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "activity.Calories",
+      "type": "state",
+      "common": {
+        "role": "value.health.calories",
+        "name": "Calories",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "activity.ActivitiesCount",
+      "type": "state",
+      "common": {
+        "role": "value.health.steps",
+        "name": "Number of daily Activities",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "activity.ActiveMinutes",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "Active Minutes",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "activity.RestingHeartRate",
+      "type": "state",
+      "common": {
+        "role": "value.health.bpm",
+        "name": "Resting Heart Rate",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "body",
+      "type": "channel",
+      "common": {
+        "name": "Body Records"
+      },
+      "native": {}
+    },
+    {
+      "_id": "body.weight",
+      "type": "state",
+      "common": {
+        "role": "value.health.weight",
+        "name": "Weight",
+        "type": "number",
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "body.bmi",
+      "type": "state",
+      "common": {
+        "role": "value.health.bmi",
+        "name": "BMI",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "body.fat",
+      "type": "state",
+      "common": {
+        "role": "value.health.fat",
+        "name": "FAT",
+        "type": "number",
+        "read": true,
+        "write": true
+      },
+      "native": {}
+    },
+    {
+      "_id": "food",
+      "type": "channel",
+      "common": {
+        "name": "food data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "food.Calories",
+      "type": "state",
+      "common": {
+        "role": "value.health.calories",
+        "name": "Calories Consumed",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "food.Carbs",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "Carbs Consumed",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "food.Fiber",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "Fiber Consumed",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "food.Fiber",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "Fiber Consumed",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "food.Sodium",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "Sodium Consumed",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "food.Fat",
+      "type": "state",
+      "common": {
+        "role": "value.health.fat",
+        "name": "food.Fat",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "food.Protein",
+      "type": "state",
+      "common": {
+        "role": "value.health.calories",
+        "name": "food.Protein",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "food.Water",
+      "type": "state",
+      "common": {
+        "role": "value.health.calories",
+        "name": "food.Water",
+        "type": "number",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "sleep",
+      "type": "channel",
+      "common": {
+        "name": "sleep data"
+      },
+      "native": {}
+    },
+    {
+      "_id": "sleep.Deep",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "Deep Sleep Time",
+        "type": "number",
+        "unit": "Minutes",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "sleep.Light",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "Light Sleep Time",
+        "type": "number",
+        "unit": "Minutes",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "sleep.Rem",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "REM Sleep Time",
+        "type": "number",
+        "unit": "Minutes",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    },
+    {
+      "_id": "sleep.Wake",
+      "type": "state",
+      "common": {
+        "role": "state",
+        "name": "Wake Time",
+        "type": "number",
+        "unit": "Minutes",
+        "read": true,
+        "write": false
+      },
+      "native": {}
+    }
+  ]
 }
