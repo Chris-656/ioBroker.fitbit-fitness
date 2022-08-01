@@ -2,7 +2,7 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
-## **WORK IN PROGRESS**
+## 0.4.6 (2022-08-01)
 - Changed the schedule variance also to 2 hours
 
 ## 0.4.5 (2022-06-16)

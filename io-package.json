@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "fitbit-fitness",
-    "version": "0.4.5",
+    "version": "0.4.6",
     "news": {
+      "0.4.6": {
+        "en": "Changed the schedule variance also to 2 hours",
+        "de": "Änderung der Fahrplanvarianz auch auf 2 Stunden",
+        "ru": "Изменили вариантность графика также до 2 часов",
+        "pt": "Alterou a variação do horário também para 2 horas",
+        "nl": "Verander het schema ook tot 2 uur",
+        "fr": "Changement de l'écart horaire à 2 heures",
+        "it": "Cambiato la variazione di programma anche a 2 ore",
+        "es": "Cambio de la diferencia de horarios también a 2 horas",
+        "pl": "Zmienił zmienność harmonogramu do 2 godzin",
+        "zh-cn": "B. 改变时间表"
+      },
       "0.4.5": {
         "en": "bumping version 0.4.5",
         "de": "bumping version 0.4.5",
@@ -74,18 +86,6 @@
         "es": "cambió el método de autenticación. Probado también con Chrome",
         "pl": "zmieniono metodę uwierzytelniania. Testowane również z Chrome",
         "zh-cn": "更改了身份验证方法。也用 Chrome 测试过"
-      },
-      "0.3.1": {
-        "en": "changed the auth method. resolved the bug with iframe. Now also chrome is working",
-        "de": "die Authentifizierungsmethode geändert. Fehler mit iframe behoben. Jetzt funktioniert auch Chrom",
-        "ru": "изменил метод авторизации. исправлена ошибка с iframe. Теперь и хром работает",
-        "pt": "mudou o método de autenticação. resolveu o bug com iframe. Agora também o chrome está funcionando",
-        "nl": "de auth-methode gewijzigd. de bug opgelost met iframe. Nu werkt ook chroom",
-        "fr": "changé la méthode d'authentification. résolu le bogue avec iframe. Maintenant aussi le chrome fonctionne",
-        "it": "cambiato il metodo di autenticazione. risolto il bug con iframe. Ora funziona anche Chrome",
-        "es": "cambió el método de autenticación. resolvió el error con iframe. Ahora también Chrome está funcionando.",
-        "pl": "zmieniono metodę uwierzytelniania. rozwiązał błąd z iframe. Teraz również chrom działa",
-        "zh-cn": "更改了身份验证方法。用 iframe 解决了这个错误。现在chrome也在工作"
       }
     },
     "title": "Fitbit",
