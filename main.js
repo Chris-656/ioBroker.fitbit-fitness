@@ -150,10 +150,11 @@ class FitBit extends utils.Adapter {
 
 	initSleepSchedule() {
 		if (this.config.sleeprecordsschedule && this.config.sleeprecords) {
-			const rndMinutes = Math.floor(Math.random() * 59);
+			const rndMinutes = Math.floor(Math.random() * 59);		// Randomize the start of the schedule
+			const rndHours = 20 + Math.floor(Math.random() * 2);
 
-			this.log.info(`Schedule for sleep activated. ${rndMinutes} 20 * * *`);
-			this.schedule = mSchedule.scheduleJob(`${rndMinutes} 20 * * *`, () => {
+			this.log.info(`Schedule for sleep activated. ${rndMinutes} ${rndHours} * * *`);
+			this.schedule = mSchedule.scheduleJob(`${rndMinutes} ${rndHours} * * *`, () => {
 				if (this.config.sleeprecords) {
 					this.getSleepRecords();
 				}
