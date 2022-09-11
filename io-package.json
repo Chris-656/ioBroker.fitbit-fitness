@@ -88,18 +88,18 @@
         "zh-cn": "更改了身份验证方法。也用 Chrome 测试过"
       }
     },
-    "title": "Fitbit",
+    "title": "fitbit-fitness",
     "titleLang": {
-      "en": "Fitbit",
-      "de": "Fitbit",
+      "en": "fitbit-fitness",
+      "de": "fitbit-fitness",
       "ru": "Фитбит",
-      "pt": "Fitbit",
-      "nl": "Fitbit",
-      "fr": "Fitbit",
-      "it": "Fitbit",
-      "es": "fitbit",
-      "pl": "Fitbit",
-      "zh-cn": "Fitbit"
+      "pt": "fitbit-fitness",
+      "nl": "fitbit-fitness",
+      "fr": "fitbit-fitness",
+      "it": "fitbit-fitness",
+      "es": "fitbit-fitness",
+      "pl": "fitbit-fitness",
+      "zh-cn": "fitbit-fitness"
     },
     "desc": {
       "en": "retrieves data from FITBIT",
