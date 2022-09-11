@@ -1,7 +1,7 @@
 ![Logo](admin/fitbit-fitness.png)
 # iobroker.fitbit-fitness
-
-[![NPM version](http://img.shields.io/npm/v/iobroker.fitbit-fitness.svg)](https://www.npmjs.com/package/iobroker.fitbit-fitness)
+[![NPM version](https://img.shields.io/npm/v/iobroker.fitbit-fitness.svg)](https://www.npmjs.com/package/iobroker.fitbit-fitness)
+[![Number of Installations (latest)](https://iobroker.live/badges/fitbit-fitness-installed.svg)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.fitbit-fitness)](https://www.npmjs.com/package/iobroker.fitbit-fitness)
 [![Known Vulnerabilities](https://snyk.io/test/github/chris-1965/iobroker.fitbit-fitness/badge.svg)](https://app.snyk.io/org/chris-1965/iobroker.fitbit-fitness)
 
