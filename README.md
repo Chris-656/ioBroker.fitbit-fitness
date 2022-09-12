@@ -5,7 +5,9 @@
 [![Downloads](https://img.shields.io/npm/dm/iobroker.fitbit-fitness)](https://www.npmjs.com/package/iobroker.fitbit-fitness)
 [![Known Vulnerabilities](https://snyk.io/test/github/chris-1965/iobroker.fitbit-fitness/badge.svg)](https://app.snyk.io/org/chris-1965/iobroker.fitbit-fitness)
 
+## FITBIT adapter for ioBroker
 
+Adapter for fitbit devices
 This adapter retrieves fitbit data into iobroker. Ported from @GermanBluefox  from his fitbit-api (great thx) into the new iobroker template structure and added some new features
 
 ## Features
