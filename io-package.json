@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "fitbit-fitness",
-    "version": "0.4.6",
+    "version": "0.4.7",
     "news": {
+      "0.4.7": {
+        "en": "Added Devices request and battery status",
+        "de": "Zusätzliche Geräteanforderung und Batteriestatus",
+        "ru": "Добавлен запрос устройств и статус батареи",
+        "pt": "Pedido de dispositivos adicionados e status da bateria",
+        "nl": "Verzocht Devices verzoek en batterij status",
+        "fr": "Ajout de la demande d'appareils et l'état de la batterie",
+        "it": "Richiesta di dispositivi e stato della batteria",
+        "es": "Solicitud de dispositivos y estado de la batería",
+        "pl": "Added Device",
+        "zh-cn": "增删要求和电池状况"
+      },
       "0.4.6": {
         "en": "Changed the schedule variance also to 2 hours",
         "de": "Änderung der Fahrplanvarianz auch auf 2 Stunden",
@@ -74,18 +86,6 @@
         "es": "corregido el método de autenticación de la redirección",
         "pl": "poprawiono metodę uwierzytelniania przekierowania",
         "zh-cn": "更正了重定向的auth方法"
-      },
-      "0.3.7": {
-        "en": "changed the auth method. Tested also with Chrome",
-        "de": "die Authentifizierungsmethode geändert. Auch mit Chrome getestet",
-        "ru": "изменил метод авторизации. Проверено также с Chrome",
-        "pt": "mudou o método de autenticação. Testado também com Chrome",
-        "nl": "de auth-methode gewijzigd. Ook getest met Chrome",
-        "fr": "changé la méthode d'authentification. Testé aussi avec Chrome",
-        "it": "cambiato il metodo di autenticazione. Testato anche con Chrome",
-        "es": "cambió el método de autenticación. Probado también con Chrome",
-        "pl": "zmieniono metodę uwierzytelniania. Testowane również z Chrome",
-        "zh-cn": "更改了身份验证方法。也用 Chrome 测试过"
       }
     },
     "title": "fitbit-fitness",
