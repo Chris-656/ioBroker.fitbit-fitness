@@ -150,7 +150,8 @@
     "activityrecords": false,
     "sleeprecords": false,
     "sleeprecordsschedule": true,
-    "foodrecords": false
+    "foodrecords": false,
+    "devicerecords": false
   },
   "objects": [],
   "instanceObjects": [

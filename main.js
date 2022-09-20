@@ -11,6 +11,7 @@ const utils = require("@iobroker/adapter-core");
 //const { errorMonitor } = require("events");
 const axios = require("axios").default;
 const mSchedule = require("node-schedule");          // https://github.com/node-schedule/node-schedule
+const { stringify } = require("querystring");
 const axiosTimeout = 8000;
 // const clientID = "22BD68";
 // const clientSecret = "c4612114c93436901b6affb03a1e5ec8";
@@ -93,6 +94,9 @@ class FitBit extends utils.Adapter {
 			}
 			if (this.config.sleeprecords && !this.config.sleeprecordsschedule) {
 				this.getSleepRecords();
+			}
+			if (this.config.devicerecords) {
+				this.getDeviceRecords();
 			}
 
 		}
@@ -327,10 +331,30 @@ class FitBit extends utils.Adapter {
 		}
 	}
 
-	async getBodyRecords() {
-		//const url = "https://api.fitbit.com/1/user/-/body/log/fat/date/2022-02-01.json";
-		const url = `${BASE_URL}-/body/log/weight/date/${this.getDateTime().dateString}.json`;
+	async getDeviceRecords() {
+		const url = `${BASE_URL}-/devices.json`;
+		const token = this.fitbit.tokens.access_token;
 
+		try {
+			const response = await axios.get(url,
+				{
+					headers: { "Authorization": `Bearer ${token}` },
+					timeout: axiosTimeout
+				});
+
+			if (response.status === 200) {
+				if (!this.setDeviceStates(response.data)) {
+					this.log.debug(`Device Records: No devices avaliable`);
+				}
+			}
+		}
+		catch (err) {
+			this.log.warn(`getDeviceRecords: ${err}`);
+		}
+	}
+
+	async getBodyRecords() {
+		const url = `${BASE_URL}-/body/log/weight/date/${this.getDateTime().dateString}.json`;
 		const token = this.fitbit.tokens.access_token;
 		try {
 			const response = await axios.get(url,
@@ -348,6 +372,76 @@ class FitBit extends utils.Adapter {
 		}
 		catch (err) {
 			this.log.warn(`getBodyRecords: ${err}`);
+		}
+	}
+
+	setDeviceStates(data) {
+		if (data) {
+			this.setObjectNotExists("devices", {
+				type: "channel",
+				common: {
+					name: "FITBIT Devices",
+				},
+				native: {},
+			});
+
+			data.forEach(device => {
+				this.log.info(`Device: ${device.deviceVersion} Battery: ${device.batteryLevel} `);
+
+				this.setObjectNotExists(`Devices.${device.deviceVersion}`, {
+					type: "channel",
+					common: {
+						name: `${device.deviceVersion}`,
+					},
+					native: {},
+				});
+				const idbat = `devices.${device.deviceVersion}.battery`;
+				this.setObjectNotExists(idbat, {
+					type: "state",
+					common: {
+						name: "Battery",
+						role: "indicator.lowbat",
+						type: "string",
+						write: false,
+						read: true,
+					},
+					native: {},
+				});
+				this.setState(idbat, device.battery, true);
+
+				const idbatlev = `devices.${device.deviceVersion}.batteryLevel`;
+				this.setObjectNotExists(idbatlev, {
+					type: "state",
+					common: {
+						name: "Battery Level",
+						role: "indicator.lowbat",
+						type: "number",
+						write: false,
+						read: true,
+					},
+					native: {},
+				});
+				this.setState(idbatlev, device.batteryLevel, true);
+
+				const idtype = `devices.${device.deviceVersion}.type`;
+				this.setObjectNotExists(idtype, {
+					type: "state",
+					common: {
+						name: "Device type",
+						role: "state",
+						type: "string",
+						write: false,
+						read: true,
+					},
+					native: {},
+				});
+				this.setState(idtype, device.type, true);
+
+			});
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 

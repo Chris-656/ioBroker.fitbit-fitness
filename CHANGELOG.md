@@ -2,6 +2,10 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+## **WORK IN PROGRESS**
+- Added Devices request and battery status
+
+
 ## 0.4.6 (2022-08-01)
 - Changed the schedule variance also to 2 hours
 
