@@ -388,7 +388,7 @@ class FitBit extends utils.Adapter {
 			data.forEach(device => {
 				this.log.info(`Device: ${device.deviceVersion} Battery: ${device.batteryLevel} `);
 
-				this.setObjectNotExists(`Devices.${device.deviceVersion}`, {
+				this.setObjectNotExists(`devices.${device.deviceVersion}`, {
 					type: "channel",
 					common: {
 						name: `${device.deviceVersion}`,
@@ -400,7 +400,7 @@ class FitBit extends utils.Adapter {
 					type: "state",
 					common: {
 						name: "Battery",
-						role: "indicator.lowbat",
+						role: "value.battery",
 						type: "string",
 						write: false,
 						read: true,
@@ -414,7 +414,7 @@ class FitBit extends utils.Adapter {
 					type: "state",
 					common: {
 						name: "Battery Level",
-						role: "indicator.lowbat",
+						role: "level",
 						type: "number",
 						write: false,
 						read: true,
@@ -436,6 +436,20 @@ class FitBit extends utils.Adapter {
 					native: {},
 				});
 				this.setState(idtype, device.type, true);
+
+				const idstatus = `devices.${device.deviceVersion}.batteryAlarm`;
+				this.setObjectNotExists(idstatus, {
+					type: "state",
+					common: {
+						name: "Device type",
+						role: "indicator.lowbat",
+						type: "boolean",
+						write: false,
+						read: true,
+					},
+					native: {},
+				});
+				this.setState(idstatus, device.battery.toLowerCase() === "empty", true);
 
 			});
 			return true;

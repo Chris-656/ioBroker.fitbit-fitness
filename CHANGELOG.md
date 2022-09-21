@@ -2,7 +2,10 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
-## 0.4.7 (2022-09-20)
+ ## **WORK IN PROGRESS**
+- added lowBatteryAlarm
+
+ ## 0.4.7 (2022-09-20)
 - Added Devices request and battery status
 
 ## 0.4.6 (2022-08-01)
