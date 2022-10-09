@@ -461,7 +461,7 @@ class FitBit extends utils.Adapter {
 
 	setBodyStates(data) {
 		if (data.weight.length > 0) {
-			this.fitbit.body = data.weight.slice(-1);				// last record entry from a day
+			this.fitbit.body = data.weight.slice(-1)[0];				// last record entry from a day
 
 			this.log.info(`Body records: Weight:${this.fitbit.body.weight} Fat:${this.fitbit.body.fat} BMI:${this.fitbit.body.bmi}`);
 			this.setState("body.weight", this.fitbit.body.weight, true);
