@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "fitbit-fitness",
-    "version": "0.4.7",
+    "version": "0.4.8",
     "news": {
+      "0.4.8": {
+        "en": "- added lowBatteryAlarm\n- fixed body records undefined\n\n ## 0.4.7 (2022-09-20)\n- Added Devices request and battery status",
+        "de": "- hinzugefügt lowBattery Alarmstufe\n- festkörperrekorde undefiniert\n\n0,4.7 (2022-09-20)\n- Zusätzliche Geräteanforderung und Batteriestatus",
+        "ru": "- добавлена lowBattery Сигнализация\n- фиксированные записи тела неопределены\n\n## 0.4.7 (2022-09-20)\n- Добавлен запрос устройств и статус батареи",
+        "pt": "- adicionado baixoBattery Alarme de alarme\n- registros do corpo fixo indefinidos\n\n# # 0.4.7 (2022-09-20)\n- Pedido de dispositivos adicionados e status da bateria",
+        "nl": "- Vertaling: Alarm\nvertaling:\n\nQuality over Quantity (QoQ) Releases Vertaling:\nVerzocht Devices verzoek en batterij status",
+        "fr": "- ajout basBattery Alarme\n- registres des corps fixes indéfinis\n\n## 0.4.7 (2022-09-20)\n- Ajout de la demande des appareils et de l'état de la batterie",
+        "it": "- aggiunto bassoBattery Allarme\n- record corpo fisso non definito\n\n## 0.4.7 (2022-09-20)\n- Aggiunto richiesta di dispositivi e stato della batteria",
+        "es": "- añadido bajoBattery Alarma\n- registros de cuerpos fijos indefinidos\n\n## 0.4.7 (2022-09-20)\n- Solicitud de dispositivos añadidos y estado de la batería",
+        "pl": "- dodawane do niskobaterapii Alarma\n- ustalono, że ciała nie są zdefiniowane\n\n# 0.4.7 (2022-09-20) (ang.)\nAdded Devices (ang.)",
+        "zh-cn": "- 增加低排放 Alarm\n- 固定机构记录\n\n# 0.4.7(2022-09-20)\n- 增加要求和电池身份"
+      },
       "0.4.7": {
         "en": "Added Devices request and battery status",
         "de": "Zusätzliche Geräteanforderung und Batteriestatus",
@@ -74,18 +86,6 @@
         "es": "frecuencia cardiaca en reposo añadida",
         "pl": "dodano tętno spoczynkowe",
         "zh-cn": "添加了静息心率"
-      },
-      "0.3.8": {
-        "en": "corrected the auth method of the redirection",
-        "de": "die auth-Methode der Umleitung korrigiert",
-        "ru": "исправлен метод авторизации редиректа",
-        "pt": "corrigiu o método de autenticação do redirecionamento",
-        "nl": "de auth-methode van de omleiding gecorrigeerd",
-        "fr": "corrigé la méthode auth de la redirection",
-        "it": "corretto il metodo di autenticazione del reindirizzamento",
-        "es": "corregido el método de autenticación de la redirección",
-        "pl": "poprawiono metodę uwierzytelniania przekierowania",
-        "zh-cn": "更正了重定向的auth方法"
       }
     },
     "title": "fitbit-fitness",
