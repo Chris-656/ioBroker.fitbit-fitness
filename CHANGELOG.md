@@ -4,6 +4,7 @@
 -->
  ## **WORK IN PROGRESS**
 - added lowBatteryAlarm
+- fixed body records undefined
 
  ## 0.4.7 (2022-09-20)
 - Added Devices request and battery status
