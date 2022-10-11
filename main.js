@@ -464,10 +464,12 @@ class FitBit extends utils.Adapter {
 			this.fitbit.body = data.weight.slice(-1)[0];				// last record entry from a day
 
 			this.log.info(`Body records: Weight:${this.fitbit.body.weight} Fat:${this.fitbit.body.fat} BMI:${this.fitbit.body.bmi}`);
-			this.setState("body.weight", this.fitbit.body.weight, true);
+			if (this.fitbit.body.weight)
+				this.setState("body.weight", this.fitbit.body.weight, true);
 			if (this.fitbit.body.fat)
 				this.setState("body.fat", this.fitbit.body.fat, true);
-			this.setState("body.bmi", this.fitbit.body.bmi, true);
+			if (this.fitbit.body.bmi)
+				this.setState("body.bmi", this.fitbit.body.bmi, true);
 			return true;
 		}
 		else {
