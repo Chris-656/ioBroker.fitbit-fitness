@@ -327,6 +327,7 @@
         "role": "state",
         "name": "Active Minutes",
         "type": "number",
+        "unit": "Minutes",
         "read": true,
         "write": false
       },
@@ -339,6 +340,7 @@
         "role": "value.health.bpm",
         "name": "Resting Heart Rate",
         "type": "number",
+        "unit": "bpm",
         "read": true,
         "write": false
       },
@@ -359,6 +361,7 @@
         "role": "value.health.weight",
         "name": "Weight",
         "type": "number",
+        "unit": "kg",
         "read": true,
         "write": true
       },
@@ -383,6 +386,7 @@
         "role": "value.health.fat",
         "name": "FAT",
         "type": "number",
+        "unit": "%",
         "read": true,
         "write": true
       },
@@ -433,18 +437,6 @@
       "native": {}
     },
     {
-      "_id": "food.Fiber",
-      "type": "state",
-      "common": {
-        "role": "state",
-        "name": "Fiber Consumed",
-        "type": "number",
-        "read": true,
-        "write": false
-      },
-      "native": {}
-    },
-    {
       "_id": "food.Sodium",
       "type": "state",
       "common": {
@@ -463,6 +455,7 @@
         "role": "value.health.fat",
         "name": "food.Fat",
         "type": "number",
+        "unit": "%",
         "read": true,
         "write": false
       },
