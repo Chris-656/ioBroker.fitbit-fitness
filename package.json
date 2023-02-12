@@ -3,7 +3,7 @@
   "version": "0.4.8",
   "description": "retrieves data from FITBIT",
   "author": "Chris <besterquester@live.at>",
-  "homepage": "https://github.com/Chris-1965/ioBroker.fitbit-fitness",
+  "homepage": "https://github.com/Chris-656/ioBroker.fitbit-fitness",
   "license": "MIT",
   "keywords": [
     "Fitbit",
@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Chris-1965/ioBroker.fitbit-fitness.git"
+    "url": "git+https://github.com/Chris-656/ioBroker.fitbit-fitness.git"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.5.1",
@@ -63,7 +63,7 @@
     "release": "release-script"
   },
   "bugs": {
-    "url": "https://github.com/Chris-1965/iobroker.fitbit-fitness/issues"
+    "url": "https://github.com/Chris-656/iobroker.fitbit-fitness/issues"
   },
   "directories": {
     "lib": "lib",

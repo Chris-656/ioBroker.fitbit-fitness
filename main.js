@@ -707,6 +707,7 @@ class FitBit extends utils.Adapter {
 				if (id.indexOf("body.weight") !== -1) {
 					this.log.info(`weight changed ${id} changed: ${state.val} (ack = ${state.ack})`);
 					this.setWeight(state.val);
+					this.setState("body.weight",state.val,true);
 				}
 
 				// if (id.indexOf("body.fat") !== -1) {
