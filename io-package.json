@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "fitbit-fitness",
-    "version": "0.4.8",
+    "version": "0.4.9",
     "news": {
+      "0.4.9": {
+        "en": "Changed Repo name",
+        "de": "Repo Name geändert",
+        "ru": "Изменено имя Repo",
+        "pt": "Nome de Repo alterado",
+        "nl": "Veranderde naam van Repo",
+        "fr": "Changement de nom Repo",
+        "it": "Cambiato nome Repo",
+        "es": "Cambio de nombre Repo",
+        "pl": "Nazwisko Repo",
+        "uk": "Змінено назву Repo",
+        "zh-cn": "B. 改变Repo名称"
+      },
       "0.4.8": {
         "en": "- added lowBatteryAlarm\n- fixed body records undefined\n\n ## 0.4.7 (2022-09-20)\n- Added Devices request and battery status",
         "de": "- hinzugefügt lowBattery Alarmstufe\n- festkörperrekorde undefiniert\n\n0,4.7 (2022-09-20)\n- Zusätzliche Geräteanforderung und Batteriestatus",
@@ -74,18 +87,6 @@
         "es": "cambio de nodo. horario al azar con una hora",
         "pl": "zmienione węzeły mają losowy plan z godziną",
         "zh-cn": "没有改变随时间随机安排时间。"
-      },
-      "0.3.10": {
-        "en": "added Resting Heartrate",
-        "de": "Ruheherzfrequenz hinzugefügt",
-        "ru": "добавлен пульс в состоянии покоя",
-        "pt": "adicionado batimento cardíaco em repouso",
-        "nl": "Hartslag in rust toegevoegd",
-        "fr": "ajouté Rythme cardiaque au repos",
-        "it": "aggiunto Battito cardiaco a riposo",
-        "es": "frecuencia cardiaca en reposo añadida",
-        "pl": "dodano tętno spoczynkowe",
-        "zh-cn": "添加了静息心率"
       }
     },
     "title": "fitbit-fitness",
