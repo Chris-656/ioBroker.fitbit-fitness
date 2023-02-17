@@ -2,7 +2,7 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
-## **WORK IN PROGRESS**
+## 0.4.10 (2023-02-17)
 - fixed web page for token
 
 ## 0.4.9 (2023-02-14)

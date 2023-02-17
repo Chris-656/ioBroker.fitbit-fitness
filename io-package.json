@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "fitbit-fitness",
-    "version": "0.4.9",
+    "version": "0.4.10",
     "news": {
+      "0.4.10": {
+        "en": "fixed web page for token",
+        "de": "feste webseite für token",
+        "ru": "фиксированная веб-страница для токена",
+        "pt": "página web fixa para token",
+        "nl": "vertaling:",
+        "fr": "page web fixe pour jeton",
+        "it": "pagina web fissa per token",
+        "es": "página web fija para ficha",
+        "pl": "oficjalna strona internetowa",
+        "uk": "фіксована сторінка для токен",
+        "zh-cn": "固定网页"
+      },
       "0.4.9": {
         "en": "Changed Repo name",
         "de": "Repo Name geändert",
@@ -75,18 +88,6 @@
         "es": "cuestiones menores fijas",
         "pl": "drobna kwestia",
         "zh-cn": "固定问题"
-      },
-      "0.4.3": {
-        "en": "changed node.schedule to random schedule with an hour",
-        "de": "node.schedule in zufallsschema mit einer stunde",
-        "ru": "измененный node.schedule к случайному расписанию с часом",
-        "pt": "mudou node.schedule para horário aleatório com uma hora",
-        "nl": "veranderde node",
-        "fr": "changé node.schedule à l'horaire aléatoire avec une heure",
-        "it": "cambiato node.schedule a programma casuale con un'ora",
-        "es": "cambio de nodo. horario al azar con una hora",
-        "pl": "zmienione węzeły mają losowy plan z godziną",
-        "zh-cn": "没有改变随时间随机安排时间。"
       }
     },
     "title": "fitbit-fitness",
