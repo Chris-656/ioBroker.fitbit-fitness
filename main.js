@@ -312,18 +312,12 @@ class FitBit extends utils.Adapter {
 	setActivityStates(data) {
 		if (data.summary) {
 			this.fitbit.activities = data;				// First record in the array
-			if (this.fitbit.activities.summary.steps)
-				this.setState("activity.Steps", this.fitbit.activities.summary.steps, true);
-			if (this.fitbit.activities.summary.floors)
-				this.setState("activity.Floors", this.fitbit.activities.summary.floors, true);
-			if (this.fitbit.activities.summary.veryActiveMinutes)
-				this.setState("activity.ActiveMinutes", this.fitbit.activities.summary.veryActiveMinutes, true);
-			if (this.fitbit.activities.summary.restingHeartRate)
-				this.setState("activity.RestingHeartRate", this.fitbit.activities.summary.restingHeartRate, true);
-			if (this.fitbit.activities.summary.caloriesOut)
-				this.setState("activity.Calories", this.fitbit.activities.summary.caloriesOut, true);
-			if (this.fitbit.activities.activities.length)
-				this.setState("activity.ActivitiesCount", this.fitbit.activities.activities.length, true);
+			this.setState("activity.Steps", this.fitbit.activities.summary.steps ? this.fitbit.activities.summary.steps : 0, true);
+			this.setState("activity.Floors", this.fitbit.activities.summary.floors ? this.fitbit.activities.summary.floors : 0, true);
+			this.setState("activity.ActiveMinutes", this.fitbit.activities.summary.veryActiveMinutes ? this.fitbit.activities.summary.veryActiveMinutes : 0, true);
+			this.setState("activity.RestingHeartRate", this.fitbit.activities.summary.restingHeartRate ? this.fitbit.activities.summary.restingHeartRate : 0, true);
+			this.setState("activity.Calories", this.fitbit.activities.summary.caloriesOut ? this.fitbit.activities.summary.caloriesOut : 0, true);
+			this.setState("activity.ActivitiesCount", this.fitbit.activities.activities.length ? this.fitbit.activities.activities.length : 0, true);
 			return true;
 		} else {
 			return false;
