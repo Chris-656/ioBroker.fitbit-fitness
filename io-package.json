@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "fitbit-fitness",
-    "version": "0.4.10",
+    "version": "0.4.11",
     "news": {
+      "0.4.11": {
+        "en": "Catch unpresent activity data",
+        "de": "Nicht vorhandene Aktivitätsdaten erfassen",
+        "ru": "Поймать непредвиденные данные о деятельности",
+        "pt": "Pegar dados de atividade não presentes",
+        "nl": "Vang onvoorspelbare activiteiten",
+        "fr": "Catch unpresent activity data",
+        "it": "Cattura i dati delle attività non presenti",
+        "es": "Buscar datos de actividad no presentes",
+        "pl": "Catch unprezentuje dane",
+        "uk": "Кетч непредставлені дані активності",
+        "zh-cn": "未代表的活动数据"
+      },
       "0.4.10": {
         "en": "fixed web page for token",
         "de": "feste webseite für token",
@@ -76,18 +89,6 @@
         "es": "versión 0.4.5",
         "pl": "wersja 0.4,5",
         "zh-cn": "b 倾销版本0.450"
-      },
-      "0.4.4": {
-        "en": "fixed minor issues",
-        "de": "feste kleinere probleme",
-        "ru": "фиксированные мелкие вопросы",
-        "pt": "problemas menores",
-        "nl": "gerepareerde kleine kwesties",
-        "fr": "questions mineures",
-        "it": "problemi minori fissi",
-        "es": "cuestiones menores fijas",
-        "pl": "drobna kwestia",
-        "zh-cn": "固定问题"
       }
     },
     "title": "fitbit-fitness",

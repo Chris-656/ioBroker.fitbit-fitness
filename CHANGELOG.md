@@ -2,7 +2,7 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
-## **WORK IN PROGRESS**
+## 0.4.11 (2023-09-26)
 - Catch unpresent activity data
 
 ## 0.4.10 (2023-02-17)
