@@ -2,6 +2,9 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+## **WORK IN PROGRESS**
+- Catch unpresent activity data
+
 ## 0.4.10 (2023-02-17)
 - fixed web page for token
 

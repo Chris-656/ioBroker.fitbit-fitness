@@ -318,6 +318,7 @@ class FitBit extends utils.Adapter {
 			this.setState("activity.RestingHeartRate", this.fitbit.activities.summary.restingHeartRate ? this.fitbit.activities.summary.restingHeartRate : 0, true);
 			this.setState("activity.Calories", this.fitbit.activities.summary.caloriesOut ? this.fitbit.activities.summary.caloriesOut : 0, true);
 			this.setState("activity.ActivitiesCount", this.fitbit.activities.activities.length ? this.fitbit.activities.activities.length : 0, true);
+
 			return true;
 		} else {
 			return false;
