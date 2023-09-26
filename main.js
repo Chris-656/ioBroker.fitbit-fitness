@@ -11,10 +11,7 @@ const utils = require("@iobroker/adapter-core");
 //const { errorMonitor } = require("events");
 const axios = require("axios").default;
 const mSchedule = require("node-schedule");          // https://github.com/node-schedule/node-schedule
-const { stringify } = require("querystring");
 const axiosTimeout = 8000;
-// const clientID = "22BD68";
-// const clientSecret = "c4612114c93436901b6affb03a1e5ec8";
 const clientID = "2387KZ";
 const clientSecret = "bf343e0474cca869afb218975585b2e2";
 
@@ -122,7 +119,7 @@ class FitBit extends utils.Adapter {
 					refresh_token: refreshToken.val
 				};
 
-				this.log.debug(`Getting refresh Token: ${this.fitbit.tokens.refresh_token}`);
+				// this.log.debug(`Getting refresh Token: ${this.fitbit.tokens.refresh_token}`);
 			} else {
 				throw new Error("no tokens available. Recreate token in config");
 			}
@@ -299,7 +296,7 @@ class FitBit extends utils.Adapter {
 					headers: { "Authorization": `Bearer ${token}` },
 					timeout: axiosTimeout
 				});
-			//this.log.info(`getActivityRecords Status: ${response.status}`);
+			// this.log.info(`getActivityRecords Status: ${response.status}`);
 
 			if (response.status === 200) {
 				if (!this.setActivityStates(response.data)) {
@@ -315,15 +312,12 @@ class FitBit extends utils.Adapter {
 	setActivityStates(data) {
 		if (data.summary) {
 			this.fitbit.activities = data;				// First record in the array
-			this.log.info(`Activity Records: Steps:${this.fitbit.activities.summary.steps} Floors:${this.fitbit.activities.summary.floors} Calories:${this.fitbit.activities.summary.caloriesOut} ${(this.fitbit.activities.summary.restingHeartRate) ? "BMP:" + this.fitbit.activities.summary.restingHeartRate : ""}`);
-
-			this.setState("activity.Steps", this.fitbit.activities.summary.steps, true);
-			this.setState("activity.Floors", this.fitbit.activities.summary.floors, true);
-			this.setState("activity.ActiveMinutes", this.fitbit.activities.summary.veryActiveMinutes, true);
-			if (this.fitbit.activities.summary.restingHeartRate)
-				this.setState("activity.RestingHeartRate", this.fitbit.activities.summary.restingHeartRate, true);
-			this.setState("activity.Calories", this.fitbit.activities.summary.caloriesOut, true);
-			this.setState("activity.ActivitiesCount", this.fitbit.activities.activities.length, true);
+			this.setState("activity.Steps", this.fitbit.activities.summary.steps ? this.fitbit.activities.summary.steps : 0, true);
+			this.setState("activity.Floors", this.fitbit.activities.summary.floors ? this.fitbit.activities.summary.floors : 0, true);
+			this.setState("activity.ActiveMinutes", this.fitbit.activities.summary.veryActiveMinutes ? this.fitbit.activities.summary.veryActiveMinutes : 0, true);
+			this.setState("activity.RestingHeartRate", this.fitbit.activities.summary.restingHeartRate ? this.fitbit.activities.summary.restingHeartRate : 0, true);
+			this.setState("activity.Calories", this.fitbit.activities.summary.caloriesOut ? this.fitbit.activities.summary.caloriesOut : 0, true);
+			this.setState("activity.ActivitiesCount", this.fitbit.activities.activities.length ? this.fitbit.activities.activities.length : 0, true);
 			return true;
 		} else {
 			return false;
@@ -386,7 +380,7 @@ class FitBit extends utils.Adapter {
 			});
 
 			data.forEach(device => {
-				this.log.info(`Device: ${device.deviceVersion} Battery: ${device.batteryLevel} `);
+				// this.log.info(`Device: ${device.deviceVersion} Battery: ${device.batteryLevel} `);
 
 				this.setObjectNotExists(`devices.${device.deviceVersion}`, {
 					type: "channel",
