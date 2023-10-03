@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "fitbit-fitness",
-    "version": "0.4.11",
+    "version": "0.4.12",
     "news": {
+      "0.4.12": {
+        "en": "changed node dependencies to node 16",
+        "de": "geänderte knotenabhängigkeiten zum knoten 16",
+        "ru": "изменены зависимости от узлов до ноды 16",
+        "pt": "dependências de nó alteradas para o nó 16",
+        "nl": "veranderde node afhankelijkheid om 16",
+        "fr": "changement de dépendances de noeud à node 16",
+        "it": "cambiato nodo dipendenze in nodo 16",
+        "es": "cambios en las dependencias de los nodos",
+        "pl": "zmiany węzłów zależą od węzła 16",
+        "uk": "змінені залежності вершини до вершини 16",
+        "zh-cn": "第16条"
+      },
       "0.4.11": {
         "en": "Catch unpresent activity data",
         "de": "Nicht vorhandene Aktivitätsdaten erfassen",
@@ -77,18 +90,6 @@
         "es": "Cambio de la diferencia de horarios también a 2 horas",
         "pl": "Zmienił zmienność harmonogramu do 2 godzin",
         "zh-cn": "B. 改变时间表"
-      },
-      "0.4.5": {
-        "en": "bumping version 0.4.5",
-        "de": "bumping version 0.4.5",
-        "ru": "bumping версия 0.4.5",
-        "pt": "batendo versão 0.4.5",
-        "nl": "vertaling:",
-        "fr": "version 0.4.5",
-        "it": "urto versione 0.4.5",
-        "es": "versión 0.4.5",
-        "pl": "wersja 0.4,5",
-        "zh-cn": "b 倾销版本0.450"
       }
     },
     "title": "fitbit-fitness",

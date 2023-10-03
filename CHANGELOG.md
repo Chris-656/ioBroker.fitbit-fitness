@@ -2,7 +2,7 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
-## **WORK IN PROGRESS**
+## 0.4.12 (2023-10-03)
 - changed node dependencies to node 16
 
 ## 0.4.11 (2023-09-26)
