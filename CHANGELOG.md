@@ -2,6 +2,9 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+## **WORK IN PROGRESS**
+- changed node dependencies to node 16
+
 ## 0.4.11 (2023-09-26)
 - Catch unpresent activity data
 
