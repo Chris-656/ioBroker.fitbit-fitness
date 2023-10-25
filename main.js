@@ -18,6 +18,8 @@ const clientSecret = "bf343e0474cca869afb218975585b2e2";
 const BASE_URL = "https://api.fitbit.com/1/user/";
 const BASE2_URL = "https://api.fitbit.com/1.2/user/";
 
+const HEART_RATE_ZONE_RANGES = ["customHeartRateZones", "heartRateZones"];
+
 class FitBit extends utils.Adapter {
 
 	/**
@@ -273,9 +275,19 @@ class FitBit extends utils.Adapter {
 	}
 
 	async setHeartRateTimeSeries(data) {
-		this.log.info("store heart rate time series");
-		data["activities-heart"]["value"].forEach((zoneType) => {
-			this.log.info("zone type : " + zoneType);
+		data["activities-heart"].map(entry => {
+			Object.keys(entry.value).filter(e => HEART_RATE_ZONE_RANGES.includes(e)).forEach(zones => {
+				entry.value[zones].map(zone => {
+					const zoneName = zone.name.replace(this.FORBIDDEN_CHARS, "_");
+					Object.keys(zone).filter(z => z !== "name").map(entryValue => {
+						const entryValueName = entryValue.replace(this.FORBIDDEN_CHARS, "_");
+						this.setObjectNotExists(`activity.heartratezones.${zoneName}.${entryValueName}`, {type: "state", common: {name: `${entryValue} - ${zoneName}`, type: "number", read: true, write: false}, native: {}});
+						this.setState(`activity.heartratezones.${zoneName}.${entryValueName}`,{val: zone[entryValue] ? zone[entryValue] : 0, ack: true});
+					});
+					this.setObjectNotExists(`activity.heartratezones.${zoneName}.isCustom`, {type: "state", common: {name: `custom heart rate zone`, type: "boolean", read: true, write: false}, native: {}});
+					this.setState(`activity.heartratezones.${zoneName}.isCustom`,{val: zones.includes("custom"), ack: true});
+				});
+			});
 		});
 	}
 
