@@ -209,7 +209,6 @@ class FitBit extends utils.Adapter {
 	async getHeartRateTimeSeries() {
 
 		const url = `${BASE_URL}-/activities/heart/date/today/1d.json`;
-		this.log.info("url : " + url);
 		const token = this.fitbit.tokens.access_token;
 
 		try {
@@ -219,8 +218,6 @@ class FitBit extends utils.Adapter {
 				headers: { "Authorization": `Bearer ${token}` },
 				timeout: axiosTimeout
 			});
-			this.log.info(`DATA: ${JSON.stringify(response.data)}`);
-			this.log.info("response status : " + response.status);
 			if (response.status === 200) {
 				if (!this.setHeartRateTimeSeries(response.data)) {
 					this.log.debug(`Activity Records: No heart rate time series avaliable`);
