@@ -54,6 +54,7 @@ class FitBit extends utils.Adapter {
 					this.setState("info.connection", true, true);
 					//this.getTokenExpireDate(this.config.token);
 					this.initSleepSchedule();
+
 					this.getFitbitRecords();						// get data one time
 
 					this.updateInterval = setInterval(() => {
@@ -82,6 +83,7 @@ class FitBit extends utils.Adapter {
 			}
 			if (this.config.activityrecords) {
 				await this.getActivityRecords();
+				await this.getHeartRateTimeSeries();
 			}
 			if (this.config.bodyrecords) {
 				await this.getBodyRecords();
@@ -176,61 +178,6 @@ class FitBit extends utils.Adapter {
 		);
 	}
 
-	async getLastHistoryDate(id) {
-		return new Promise((resolve, reject) => {
-			const date = new Date().getTime();
-			let state;
-
-			this.sendTo("history.0", "getHistory", {
-				id: id,
-				options: {
-					start: date - 60 * 60 * 1000,
-					end: date,
-					count: 1,
-					aggregate: "none" // or 'none' to get raw values
-				}
-			}, (ret) => {
-
-				// @ts-ignore
-				if (ret && ret.error) {
-					// @ts-ignore
-					reject("Error:(gethistorydata) " + ret.error);
-				} else {
-					// @ts-ignore
-					if (ret && ret.result) {
-						// @ts-ignore
-						state = ret.result.slice(-1)[0];
-						resolve(this.getDateTime(state.ts));
-					}
-				}
-			});
-		});
-	}
-
-	async syncHeartRateTS(id, historyInstance = "history.0") {
-
-		const historyValues = [];
-		const from = await this.getLastHistoryDate(id);
-		const now = this.getDateTime();
-
-		this.log.info(`Syncing data from:${from.dateString}:${from.time} to: ${now.dateString}:${now.time}`);
-
-		for (let i = from.date; i <= now.date; i.setDate(i.getDate() + 1)) {
-			const stepDate = this.getDateTime(i);
-			const timefrom = (i == from.date) ? from.timeShort : "00:00";
-			const timeto = (i == now.date) ? now.timeShort : "23:59";
-			this.log.info(`   ... syncing: ${stepDate.dateString} from ${timefrom} to ${timeto}`);
-			const intradayHeartRates = await this.getHeartRateTimeSeries(stepDate.dateString, timefrom, timeto);
-			//const dataset = intradayHeartRates["activities-heart-intraday"]["dataset"];
-
-			intradayHeartRates.map(el => {
-				//this.log.info(`Date : ${`${stepDate.dateString}T${el.time}`}`);
-				historyValues.push({ ts: new Date(`${stepDate.dateString}T${el.time}`), val: el.value, q: 0 });
-			});
-		}
-		this.writeHistorytoState(id, historyInstance, historyValues);
-	}
-
 	async setWeight(actWeight) {
 		const url = `${BASE_URL}-/body/log/weight.json`;
 		const token = this.fitbit.tokens.access_token;
@@ -259,12 +206,11 @@ class FitBit extends utils.Adapter {
 		}
 	}
 
-	async getHeartRateTimeSeries(dateFrom, timeFrom, timeTo) {
+	async getHeartRateTimeSeries() {
 
-		const url = `${BASE_URL}-/activities/heart/date/${dateFrom}/1d/1min/time/${timeFrom}/${timeTo}.json`;
-		//const url1 = `https://api.fitbit.com/1/user/-/activities/heart/date/${from}/${period}/1min/time/17:00/19:00.json`;
+		const url = `${BASE_URL}-/activities/heart/date/today/1d.json`;
+		this.log.info("url : " + url);
 		const token = this.fitbit.tokens.access_token;
-		//this.log.debug(`token: ${token}`);
 
 		try {
 			const response = await axios({
@@ -273,13 +219,16 @@ class FitBit extends utils.Adapter {
 				headers: { "Authorization": `Bearer ${token}` },
 				timeout: axiosTimeout
 			});
-			//this.log.info(`DATA: ${JSON.stringify(response.status)}`);
+			this.log.info(`DATA: ${JSON.stringify(response.data)}`);
+			this.log.info("response status : " + response.status);
 			if (response.status === 200) {
-				const intradayData = response.data["activities-heart-intraday"]["dataset"];
-				return (intradayData);
+				if (!this.setHeartRateTimeSeries(response.data)) {
+					this.log.debug(`Activity Records: No heart rate time series avaliable`);
+				}
 			}
 		}
 		catch (err) {
+			this.log.error("error in heartrate : " + err);
 			return (`Error in Heartrate ${err}`);
 		}
 	}
@@ -326,6 +275,13 @@ class FitBit extends utils.Adapter {
 		}
 	}
 
+	async setHeartRateTimeSeries(data) {
+		this.log.info("store heart rate time series");
+		data["activities-heart"]["value"].forEach((zoneType) => {
+			this.log.info("zone type : " + zoneType);
+		});
+	}
+
 	async getDeviceRecords() {
 		const url = `${BASE_URL}-/devices.json`;
 		const token = this.fitbit.tokens.access_token;
@@ -338,9 +294,7 @@ class FitBit extends utils.Adapter {
 				});
 
 			if (response.status === 200) {
-				if (!this.setDeviceStates(response.data)) {
-					this.log.debug(`Device Records: No devices avaliable`);
-				}
+				this.setDeviceStates(response.data);
 			}
 		}
 		catch (err) {
@@ -357,7 +311,6 @@ class FitBit extends utils.Adapter {
 					headers: { "Authorization": `Bearer ${token}` },
 					timeout: axiosTimeout
 				});
-			//this.log.info(`Status: ${response.status}`);
 
 			if (response.status === 200) {
 				if (!this.setBodyStates(response.data)) {
@@ -707,7 +660,6 @@ class FitBit extends utils.Adapter {
 
 				// if (id.indexOf("body.fat") !== -1) {
 				// 	this.log.info(`fat changed ${id} changed: ${state.val} (ack = ${state.ack})`);
-				// 	this.syncHeartRateTS("fitbit-fitness.0.activity.HeartRate-ts");
 				// }
 			}
 		} else {

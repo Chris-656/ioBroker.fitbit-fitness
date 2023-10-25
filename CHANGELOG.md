@@ -2,6 +2,10 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+
+## **WORK IN PROGRESS**
+- make heartrate time series working
+
 ## 0.4.12 (2023-10-03)
 - changed node dependencies to node 16
 
