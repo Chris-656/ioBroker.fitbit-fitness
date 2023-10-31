@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "fitbit-fitness",
-    "version": "0.4.12",
+    "version": "0.4.13",
     "news": {
+      "0.4.13": {
+        "en": "make heartrate time series working",
+        "de": "herzhafte zeitreihen arbeiten",
+        "ru": "сделать серию сердечных времен работая",
+        "pt": "fazer séries de tempo de ritmo cardíaco trabalhando",
+        "nl": "maak hartslagtijdserieën die werken",
+        "fr": "faire fonctionner les séries temporelles",
+        "it": "rendere cardiovascolare tempo serie di lavoro",
+        "es": "hacer el trabajo de la serie de tiempo",
+        "pl": "czas pracy",
+        "uk": "змусити роботу сердечника серця",
+        "zh-cn": "工作时间系列"
+      },
       "0.4.12": {
         "en": "changed node dependencies to node 16",
         "de": "geänderte knotenabhängigkeiten zum knoten 16",
@@ -78,18 +91,6 @@
         "es": "Solicitud de dispositivos y estado de la batería",
         "pl": "Added Device",
         "zh-cn": "增删要求和电池状况"
-      },
-      "0.4.6": {
-        "en": "Changed the schedule variance also to 2 hours",
-        "de": "Änderung der Fahrplanvarianz auch auf 2 Stunden",
-        "ru": "Изменили вариантность графика также до 2 часов",
-        "pt": "Alterou a variação do horário também para 2 horas",
-        "nl": "Verander het schema ook tot 2 uur",
-        "fr": "Changement de l'écart horaire à 2 heures",
-        "it": "Cambiato la variazione di programma anche a 2 ore",
-        "es": "Cambio de la diferencia de horarios también a 2 horas",
-        "pl": "Zmienił zmienność harmonogramu do 2 godzin",
-        "zh-cn": "B. 改变时间表"
       }
     },
     "title": "fitbit-fitness",
