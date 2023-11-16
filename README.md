@@ -1,7 +1,7 @@
 ![Logo](admin/fitbit-fitness.png)
 # iobroker.fitbit-fitness
 [![NPM version](https://img.shields.io/npm/v/iobroker.fitbit-fitness.svg)](https://www.npmjs.com/package/iobroker.fitbit-fitness)
-[![Number of Installations (latest)](https://iobroker.live/badges/fitbit-fitness-installed.svg)
+[![Number of Installations (latest)](https://iobroker.live/badges/fitbit-fitness-installed.svg)](https://iobroker.live/badges/fitbit-fitness-installed.svg)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.fitbit-fitness)](https://www.npmjs.com/package/iobroker.fitbit-fitness)
 ![Number of Installations (stable)](https://iobroker.live/badges/fitbit-fitness.svg)
 [![Known Vulnerabilities](https://snyk.io/test/github/Chris-656/iobroker.fitbit-fitness/badge.svg)](https://app.snyk.io/org/Chris-656/iobroker.fitbit-fitness)
@@ -26,7 +26,7 @@ This adapter retrieves fitbit data into iobroker. Ported from @GermanBluefox  fr
 ## License
 MIT License
 
-Copyright (c) 2022 Chris-656 <besterquester@live.at>
+Copyright (c) 2023 Chris <besterquester@live.at>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
