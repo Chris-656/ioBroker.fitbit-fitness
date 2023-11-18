@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "fitbit-fitness",
-    "version": "0.4.14",
+    "version": "0.5.0",
     "news": {
+      "0.5.0": {
+        "en": "Maintanance issues",
+        "de": "Wichtigste behandelte Fragen",
+        "ru": "Вопросы континента",
+        "pt": "Questões de manutenção",
+        "nl": "Maintanance problemen",
+        "fr": "Maintanance issues",
+        "it": "Questioni principali",
+        "es": "Cuestiones de mantenimiento",
+        "pl": "Zagadnienia administracyjne",
+        "uk": "Основні проблеми",
+        "zh-cn": "主要问题"
+      },
       "0.4.14": {
         "en": "Fixed some minor bugs",
         "de": "Einige kleinere Fehler behoben",
@@ -80,19 +93,6 @@
         "pl": "Nazwisko Repo",
         "uk": "Змінено назву Repo",
         "zh-cn": "B. 改变Repo名称"
-      },
-      "0.4.8": {
-        "en": "- added lowBatteryAlarm\n- fixed body records undefined\n\n ## 0.4.7 (2022-09-20)\n- Added Devices request and battery status",
-        "de": "- hinzugefügt lowBattery Alarmstufe\n- festkörperrekorde undefiniert\n\n0,4.7 (2022-09-20)\n- Zusätzliche Geräteanforderung und Batteriestatus",
-        "ru": "- добавлена lowBattery Сигнализация\n- фиксированные записи тела неопределены\n\n## 0.4.7 (2022-09-20)\n- Добавлен запрос устройств и статус батареи",
-        "pt": "- adicionado baixoBattery Alarme de alarme\n- registros do corpo fixo indefinidos\n\n# # 0.4.7 (2022-09-20)\n- Pedido de dispositivos adicionados e status da bateria",
-        "nl": "- Vertaling: Alarm\nvertaling:\n\nQuality over Quantity (QoQ) Releases Vertaling:\nVerzocht Devices verzoek en batterij status",
-        "fr": "- ajout basBattery Alarme\n- registres des corps fixes indéfinis\n\n## 0.4.7 (2022-09-20)\n- Ajout de la demande des appareils et de l'état de la batterie",
-        "it": "- aggiunto bassoBattery Allarme\n- record corpo fisso non definito\n\n## 0.4.7 (2022-09-20)\n- Aggiunto richiesta di dispositivi e stato della batteria",
-        "es": "- añadido bajoBattery Alarma\n- registros de cuerpos fijos indefinidos\n\n## 0.4.7 (2022-09-20)\n- Solicitud de dispositivos añadidos y estado de la batería",
-        "pl": "- dodawane do niskobaterapii Alarma\n- ustalono, że ciała nie są zdefiniowane\n\n# 0.4.7 (2022-09-20) (ang.)\nAdded Devices (ang.)",
-        "uk": "- додано низькийBatteryAlarm\\n- фіксовані записи тіла undefined\\n\\n # 0.4.7 (2022-09-20)\\n Додані пристрої запиту та статус батареї",
-        "zh-cn": "- 增加低排放 Alarm\n- 固定机构记录\n\n# 0.4.7(2022-09-20)\n- 增加要求和电池身份"
       }
     },
     "titleLang": {
@@ -121,8 +121,14 @@
       "uk": "отримувати дані з FITBIT",
       "zh-cn": "fITBIT 数据检索"
     },
-    "authors": ["Chris <besterquester@live.at>"],
-    "keywords": ["Fitbit", "Heath", "Fitness"],
+    "authors": [
+      "Chris <besterquester@live.at>"
+    ],
+    "keywords": [
+      "Fitbit",
+      "Heath",
+      "Fitness"
+    ],
     "license": "MIT",
     "platform": "Javascript/Node.js",
     "main": "main.js",

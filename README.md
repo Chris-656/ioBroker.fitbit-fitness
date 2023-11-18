@@ -24,7 +24,7 @@ This adapter retrieves fitbit data into iobroker. Ported from @GermanBluefox  fr
 <!--
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.5.0 (2023-11-18)
 - Maintanance issues
 
 ### 0.4.14 (2023-11-18)
