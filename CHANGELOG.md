@@ -2,6 +2,9 @@
 <!--
     ## **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- Fixed some minor bugs
+
 ### 0.4.13 (2023-10-31)
 - make heartrate time series working
 
