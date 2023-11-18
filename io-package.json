@@ -91,10 +91,10 @@
         "it": "- aggiunto bassoBattery Allarme\n- record corpo fisso non definito\n\n## 0.4.7 (2022-09-20)\n- Aggiunto richiesta di dispositivi e stato della batteria",
         "es": "- añadido bajoBattery Alarma\n- registros de cuerpos fijos indefinidos\n\n## 0.4.7 (2022-09-20)\n- Solicitud de dispositivos añadidos y estado de la batería",
         "pl": "- dodawane do niskobaterapii Alarma\n- ustalono, że ciała nie są zdefiniowane\n\n# 0.4.7 (2022-09-20) (ang.)\nAdded Devices (ang.)",
+        "uk": "- додано низькийBatteryAlarm\\n- фіксовані записи тіла undefined\\n\\n # 0.4.7 (2022-09-20)\\n Додані пристрої запиту та статус батареї",
         "zh-cn": "- 增加低排放 Alarm\n- 固定机构记录\n\n# 0.4.7(2022-09-20)\n- 增加要求和电池身份"
       }
     },
-    "title": "fitbit-fitness",
     "titleLang": {
       "en": "fitbit-fitness",
       "de": "fitbit-fitness",
@@ -105,28 +105,24 @@
       "it": "fitbit-fitness",
       "es": "fitbit-fitness",
       "pl": "fitbit-fitness",
+      "uk": "fitbit-fitness",
       "zh-cn": "fitbit-fitness"
     },
     "desc": {
       "en": "retrieves data from FITBIT",
-      "de": "ruft Daten von FITBIT ab",
+      "de": "daten von FITBIT abruft",
       "ru": "извлекает данные из FITBIT",
-      "pt": "recupera dados do FITBIT",
-      "nl": "haalt gegevens op van FITBIT",
+      "pt": "recupera dados de FITBIT",
+      "nl": "haal gegevens van FITBIT",
       "fr": "récupère les données de FITBIT",
       "it": "recupera i dati da FITBIT",
       "es": "recupera datos de FITBIT",
-      "pl": "pobiera dane z FITBIT",
-      "zh-cn": "从 FITBIT 检索数据"
+      "pl": "dane z FITB",
+      "uk": "отримувати дані з FITBIT",
+      "zh-cn": "fITBIT 数据检索"
     },
-    "authors": [
-      "Chris <besterquester@live.at>"
-    ],
-    "keywords": [
-      "Fitbit",
-      "Heath",
-      "Fitness"
-    ],
+    "authors": ["Chris <besterquester@live.at>"],
+    "keywords": ["Fitbit", "Heath", "Fitness"],
     "license": "MIT",
     "platform": "Javascript/Node.js",
     "main": "main.js",
