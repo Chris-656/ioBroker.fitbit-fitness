@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "fitbit-fitness",
-    "version": "0.4.13",
+    "version": "0.4.14",
     "news": {
+      "0.4.14": {
+        "en": "Fixed some minor bugs",
+        "de": "Einige kleinere Fehler behoben",
+        "ru": "Исправлены некоторые незначительные ошибки",
+        "pt": "Corrigido alguns bugs menores",
+        "nl": "_",
+        "fr": "Correction de quelques insectes mineurs",
+        "it": "Risolto alcuni bug minori",
+        "es": "Arreglado algunos errores menores",
+        "pl": "Fixed Some Minor bugs (ang.)",
+        "uk": "Виправлено деякі незначні помилки",
+        "zh-cn": "偷窃某些小偷窃者"
+      },
       "0.4.13": {
         "en": "make heartrate time series working",
         "de": "herzhafte zeitreihen arbeiten",
@@ -79,18 +92,6 @@
         "es": "- añadido bajoBattery Alarma\n- registros de cuerpos fijos indefinidos\n\n## 0.4.7 (2022-09-20)\n- Solicitud de dispositivos añadidos y estado de la batería",
         "pl": "- dodawane do niskobaterapii Alarma\n- ustalono, że ciała nie są zdefiniowane\n\n# 0.4.7 (2022-09-20) (ang.)\nAdded Devices (ang.)",
         "zh-cn": "- 增加低排放 Alarm\n- 固定机构记录\n\n# 0.4.7(2022-09-20)\n- 增加要求和电池身份"
-      },
-      "0.4.7": {
-        "en": "Added Devices request and battery status",
-        "de": "Zusätzliche Geräteanforderung und Batteriestatus",
-        "ru": "Добавлен запрос устройств и статус батареи",
-        "pt": "Pedido de dispositivos adicionados e status da bateria",
-        "nl": "Verzocht Devices verzoek en batterij status",
-        "fr": "Ajout de la demande d'appareils et l'état de la batterie",
-        "it": "Richiesta di dispositivi e stato della batteria",
-        "es": "Solicitud de dispositivos y estado de la batería",
-        "pl": "Added Device",
-        "zh-cn": "增删要求和电池状况"
       }
     },
     "title": "fitbit-fitness",
