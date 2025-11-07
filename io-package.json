@@ -137,6 +137,7 @@
     "extIcon": "https://raw.githubusercontent.com/Chris-656/ioBroker.fitbit-fitness/main/admin/fitbit-fitness.png",
     "readme": "https://github.com/Chris-656/ioBroker.fitbit-fitness/blob/main/README.md",
     "loglevel": "info",
+    "tier": 2,
     "mode": "daemon",
     "type": "health",
     "compact": true,
