@@ -131,7 +131,6 @@
     ],
     "license": "MIT",
     "platform": "Javascript/Node.js",
-    "main": "main.js",
     "icon": "fitbit-fitness.png",
     "enabled": true,
     "extIcon": "https://raw.githubusercontent.com/Chris-656/ioBroker.fitbit-fitness/main/admin/fitbit-fitness.png",
