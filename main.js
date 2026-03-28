@@ -8,7 +8,7 @@
 // you need to create an adapter
 const utils = require("@iobroker/adapter-core");
 
-//const { errorMonitor } = require("events");
+//const { errorMonitor } = require("node:events");
 const axios = require("axios").default;
 const mSchedule = require("node-schedule");          // https://github.com/node-schedule/node-schedule
 const axiosTimeout = 8000;
