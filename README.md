@@ -24,6 +24,9 @@ This adapter retrieves fitbit data into iobroker. Ported from @GermanBluefox  fr
 <!--
     ### **WORK IN PROGRESS**
 -->
+### **WORK IN PROGRESS**
+- (copilot) Adapter requires node.js >= 22 now
+
 ### 0.5.0 (2023-11-18)
 - Maintanance issues
 
