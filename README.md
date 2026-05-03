@@ -134,6 +134,8 @@ This adapter retrieves fitbit data into iobroker. Ported from @GermanBluefox  fr
 - reduced the parallel reading since the web page blocks after some time
 - included food and sleep records to be retrieved
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 Copyright (c) 2023 Chris <besterquester@live.at>
 
