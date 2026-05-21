@@ -24,6 +24,10 @@ This adapter retrieves fitbit data into iobroker. Ported from @GermanBluefox  fr
 <!--
     ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+- (ioBroker-Bot) Adapter requires js-controller >= 6.0.11 now.
+
 ### 0.5.0 (2023-11-18)
 - Maintanance issues
 
