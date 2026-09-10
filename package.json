@@ -15,7 +15,7 @@
     "url": "git+https://github.com/Chris-656/ioBroker.fitbit-fitness.git"
   },
   "engines": {
-    "node": ">= 16"
+    "node": ">= 22"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^3.0.3",
